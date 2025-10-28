@@ -23,5 +23,16 @@ namespace Labb03_GUI.Dialogs
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            myTextBox.Focus();
+            myTextBox.SelectAll();
+        }
+
+        private void mySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mySecondsLabel.Content = $"{mySlider.Value} seconds";
+        }
     }
 }

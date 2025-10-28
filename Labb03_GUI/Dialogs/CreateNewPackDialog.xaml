@@ -5,8 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
         mc:Ignorable="d"
-        Title="CreateNewPackDialog" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded"
+        Title="New Question Pack" Height="250" Width="200">
     <Grid>
-        
+        <StackPanel>
+            <Label
+                Content="Pack Name:"
+                FontWeight="Bold"
+                Margin="10 5 10 0"
+                />
+            <TextBox
+                x:Name="myTextBox"
+                Margin="10 0 10 0"
+                Text="&lt;PackName&gt;"
+                />
+            <Label
+                Content="Difficulty:"
+                FontWeight="Bold"
+                Margin="10 5 10 0"
+                />
+            <ComboBox
+                
+                Margin="10 0 10 0">
+                <ComboBoxItem Content="Easy" />
+                <ComboBoxItem IsSelected="True" Content="Medium" />
+                <ComboBoxItem Content="Hard" />
+            </ComboBox>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    HorizontalAlignment="Left"
+                    
+                    Content="Time Limit:"
+                    FontWeight="Bold"
+                    Margin="10 5 10 0"/>
+                <Label
+                    HorizontalAlignment="Right"
+                    Grid.Column="1"
+                    x:Name="mySecondsLabel"
+                    Content="X seconds"
+                    Margin="0 5 10 0"/>
+            </Grid>
+            <Slider
+                x:Name="mySlider"
+                Margin="10 0 10 0"
+                Minimum="5"
+                Maximum="120"
+                Value="30"
+                TickFrequency="5"
+                TickPlacement="BottomRight"
+                IsSnapToTickEnabled="True"
+                ValueChanged="mySlider_ValueChanged"
+                />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Content="Cancel"
+                    Width="60"
+                    Height="20"
+                    Margin="0 20 0 0"
+                    />
+                <Button
+                    Content="Create"
+                    Width="60"
+                    Height="20"
+                    Margin="0 20 0 0"
+                    Grid.Column="1"
+                    />
+
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

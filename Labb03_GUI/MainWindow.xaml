@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Labb03_GUI"
         xmlns:dialogs="clr-namespace:Labb03_GUI.Dialogs"
+        xmlns:views="clr-namespace:Labb03_GUI.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>

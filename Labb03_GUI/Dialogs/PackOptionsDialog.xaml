@@ -54,8 +54,10 @@
                 Minimum="5"
                 Maximum="120"
                 TickFrequency="5"
+                TickPlacement="BottomRight"
                 IsSnapToTickEnabled="True"
-                ValueChanged="Slider_ValueChanged"/>
+                ValueChanged="Slider_ValueChanged"
+                />
         </StackPanel>
     </Grid>
 </Window>
