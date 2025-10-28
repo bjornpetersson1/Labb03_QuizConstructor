@@ -10,17 +10,47 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
-                    <MenuItem Header="New Question Pack" />
-                    <MenuItem Header="Select Question Pack">
-                        <MenuItem Header="Test"/>
+                    <MenuItem Header="New Question Pack">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82E;" FontSize="15"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                        <MenuItem Header="Select Question Pack">
+                            <MenuItem.Icon>
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82D;" FontSize="15"/>
+                            </MenuItem.Icon>
+                            <MenuItem Header="Test"/>
+                        </MenuItem>
+                    <MenuItem Header="Delete Question Pack">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE750;" FontSize="15"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Import Questions">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEA52;" FontSize="15"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Exit">
+                        <MenuItem.Icon>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEF2C;" FontSize="15"/>
+                        </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 
                 <MenuItem Header="Edit">
-
+                    <MenuItem Header="Add Question" />
+                    <MenuItem Header="Remove Question" />
+                    <MenuItem Header="Pack Options" />
                 </MenuItem>
+                
                 <MenuItem Header="View">
-
+                    <MenuItem Header="Play" />
+                    <MenuItem Header="Edit" />
+                    <Separator />
+                    <MenuItem Header="Fullscreen" />
                 </MenuItem>
             </Menu>
         </DockPanel>
