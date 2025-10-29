@@ -7,8 +7,29 @@
         xmlns:dialogs="clr-namespace:Labb03_GUI.Dialogs"
         xmlns:views="clr-namespace:Labb03_GUI.Views"
         mc:Ignorable="d"
+        d:Height='800' d:Width="400"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBox 
+                Margin="10 10 10 0"
+                Text="{Binding Path=Name}"
+                />
+            <Button
+                Margin="10 10 10 0"
+                Content="Update name!"
+                Click="Button_Click"
+                />
+        </StackPanel>
+        <ListBox 
+            Margin="10"
+            Grid.Row="1"
+            ItemsSource="{Binding Questions}"
+            DisplayMemberPath="Query"
+            />
     </Grid>
 </Window>

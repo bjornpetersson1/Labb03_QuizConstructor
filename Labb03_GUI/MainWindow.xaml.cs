@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Labb03_GUI.Models;
+using Labb03_GUI.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,19 @@ namespace Labb03_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int count = 1;
         public MainWindow()
         {
             InitializeComponent();
+            var pack = new QuestionPack("MyPack");
+            DataContext = new QuestionPackViewModel(pack);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            QuestionPackViewModel viewModel = (DataContext as QuestionPackViewModel);
+            viewModel.Name = "New name";
+            viewModel.Questions.Add(new Question($"{count++}VAd är gult?", "1", "2", "3", "4"));
         }
     }
 }
