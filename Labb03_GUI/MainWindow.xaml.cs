@@ -1,4 +1,5 @@
-﻿using Labb03_GUI.Models;
+﻿using Labb03_GUI.Dialogs;
+using Labb03_GUI.Models;
 using Labb03_GUI.ViewModels;
 using System.Text;
 using System.Windows;
@@ -29,8 +30,10 @@ namespace Labb03_GUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             QuestionPackViewModel viewModel = (DataContext as QuestionPackViewModel);
+            PackOptionsDialog myWindow = new PackOptionsDialog();
             viewModel.Name = "New name";
             viewModel.Questions.Add(new Question($"{count++}VAd är gult?", "1", "2", "3", "4"));
+            myWindow.Show();
         }
     }
 }
