@@ -5,8 +5,115 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Labb03_GUI.Views"
              mc:Ignorable="d" 
+             d:Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Label
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Margin="10 0 0 0"
+            FontWeight="Bold"
+            Content="HÄR SKA NAMNET BINDAS" />
+        <StackPanel 
+            Orientation="Horizontal"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="10 5 ">
+            <Button
+                x:Name="myAddButton"
+                FontFamily="Segoe MDL2 Assets"
+                Margin="0 0 5 0"
+                ToolTip="Add Question"
+                Width="20"
+                Height="20"
+                Content="&#xE710;" />
+            <Button
+                x:Name="myRemoveButton"
+                FontFamily="Segoe MDL2 Assets"
+                Margin="0 0 5 0"
+                ToolTip="Remove Question"
+                Width="20"
+                Height="20"
+                Content="&#xE738;"/>
+            <Button
+                x:Name="myOptionsButton"
+                FontFamily="Segoe MDL2 Assets"
+                Margin="0 0 5 0"
+                ToolTip="Pack Options"
+                Width="20"
+                Height="20"
+                Content="&#xE713;"/>
+        </StackPanel>
+        <ListBox 
+            x:Name="myQuestionListBox"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Margin="5"
+        >
+            <ListBoxItem>
+                <StackPanel>
+                    <TextBlock                               
+                            FontWeight="Bold"
+                            Text="Question" />
+                    <TextBlock
+                            Text="Frågan frågar en fråga om en fråga?" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem>
+                <StackPanel>
+                    <TextBlock                               
+                    FontWeight="Bold"
+                   Text="Question" />
+                    <TextBlock
+                    Text="Frågan frågar en fråga om frågor som frågar frågor?" />
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+        <DockPanel
+            Grid.Row="1"
+            Grid.Column="1">
+            <Label
+                DockPanel.Dock="Top"
+                FontWeight="Bold"
+                Content="Question:" />
+            <TextBox
+                Margin="5 5 20 0"/>
+        </DockPanel>
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="2">
+            <Label
+                Margin="0 30 0 0"
+                FontWeight="Bold"
+                Content="Correct Answer:" />
+            <TextBox
+                Margin="5 0 20 10"/>
+            <Label
+                FontWeight="Bold"
+                Content="First Incorrect Answer:" />
+            <TextBox
+                Margin="5 0 20 10"/>
+            <Label
+                FontWeight="Bold"
+                Content="Second Incorrect Answer:" />
+            <TextBox
+                Margin="5 0 20 10"/>
+            <Label
+                FontWeight="Bold"
+                Content="Third Incorrect Answer:" />
+            <TextBox
+                Margin="5 0 20 10"/>
+
+        </StackPanel>
             
     </Grid>
 </UserControl>

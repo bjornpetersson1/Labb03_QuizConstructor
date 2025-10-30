@@ -16,7 +16,7 @@
                 />
             <TextBox
                 Margin="10 0 10 0"
-                Text="Default Question Pack"
+                Text="{Binding Name}"
                 />
             <Label
                 Content="Difficulty:"

@@ -11,8 +11,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBox 
@@ -24,6 +26,9 @@
                 Content="Update name!"
                 Click="Button_Click"
                 />
+            <Label
+                Content="{Binding Path=TimeLimitInSeconds}"
+                />
         </StackPanel>
         <ListBox 
             Margin="10"
@@ -31,5 +36,7 @@
             ItemsSource="{Binding Questions}"
             DisplayMemberPath="Query"
             />
+        <views:MenuView Grid.Row="2"/>
+        <views:ConfigurationView Grid.Row="3" />
     </Grid>
 </Window>
