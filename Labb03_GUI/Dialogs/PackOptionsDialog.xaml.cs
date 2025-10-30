@@ -23,10 +23,5 @@ namespace Labb03_GUI.Dialogs
         {
             InitializeComponent();
         }
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            mySecondsLabel.Content = $"{mySlider.Value} seconds";
-        }
     }
 }

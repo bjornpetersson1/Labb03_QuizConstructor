@@ -45,7 +45,7 @@
                     HorizontalAlignment="Right"
                     Grid.Column="1"
                     x:Name="mySecondsLabel"
-                    Content="X seconds"
+                    Content="{Binding Path=TimeLimitInSeconds}"
                     Margin="0 5 10 0"/>
             </Grid>
             <Slider
@@ -56,7 +56,7 @@
                 TickFrequency="5"
                 TickPlacement="BottomRight"
                 IsSnapToTickEnabled="True"
-                ValueChanged="Slider_ValueChanged"
+                Value="{Binding Path=TimeLimitInSeconds}"
                 />
         </StackPanel>
     </Grid>
