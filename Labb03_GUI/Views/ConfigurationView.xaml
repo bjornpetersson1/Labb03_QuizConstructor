@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Labb03_GUI.Views"
              mc:Ignorable="d" 
              d:Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding ConfigurationViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,7 +23,7 @@
             VerticalAlignment="Bottom"
             Margin="10 0 0 0"
             FontWeight="Bold"
-            Content="{Binding Name}" />
+            Content="{Binding ActivePack.Name}" />
         <StackPanel 
             Orientation="Horizontal"
             VerticalAlignment="Bottom"

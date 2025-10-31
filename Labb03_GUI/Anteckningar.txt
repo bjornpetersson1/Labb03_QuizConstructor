@@ -7,3 +7,8 @@ Att göra:
 Fixa snabbkommandon både i menyn och funktionalitet
 Ev egen usercontrol för slutskärmen i playmode
 Bindea packs i mainwindowviewmodel till Selectpacks
+Listbox bindea itemsource och selcted source till pack och question
+
+Städa upp placeholdercommand i playerview
+Städa upp meny setPackname
+Städa player view och playerviewmodel

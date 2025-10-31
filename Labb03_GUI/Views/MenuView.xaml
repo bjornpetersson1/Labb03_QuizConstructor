@@ -38,6 +38,7 @@
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEF2C;" FontSize="15"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Set packname" Command="{Binding PlayerViewModel.SetPackNameCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="_Edit">

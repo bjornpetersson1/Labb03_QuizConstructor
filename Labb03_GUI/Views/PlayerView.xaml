@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Labb03_GUI.Views"
              mc:Ignorable="d" 
              d:Background="PapayaWhip"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding PlayerViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -20,18 +21,23 @@
         <TextBlock
             Grid.ColumnSpan="2"
             FontSize="40"
-            Text="En fråga om något svårt?"
+            Text="{Binding ActivePack.Questions[0].Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
+        <TextBlock
+            Grid.Column="1"
+            Text="{Binding ActivePack.Name}"/>
+        <TextBox Text="{Binding DemoText, UpdateSourceTrigger=PropertyChanged}"/>
         <Button
             Grid.Column="0"
             Grid.Row="1"
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="{Binding ActivePack.Name}"
+            Content="{Binding ActivePack.Questions[0].CorrectAnswer}"
+            Command="{Binding SetPackNameCommand}"
             />
         <Button
             Grid.Column="1"
@@ -39,7 +45,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="Svar 2"
+            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[0]}"
             />
         <Button
             Grid.Column="0"
@@ -47,7 +53,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="Svar 3"
+            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[1]}"
             />
         <Button
             Grid.Column="1"
@@ -55,7 +61,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="Svar 3"
+            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[2]}"
             />
     </Grid>
 </UserControl>
