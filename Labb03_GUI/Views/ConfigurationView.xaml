@@ -22,7 +22,7 @@
             VerticalAlignment="Bottom"
             Margin="10 0 0 0"
             FontWeight="Bold"
-            Content="HÄR SKA NAMNET BINDAS" />
+            Content="{Binding Name}" />
         <StackPanel 
             Orientation="Horizontal"
             VerticalAlignment="Bottom"
@@ -51,7 +51,9 @@
                 ToolTip="Pack Options"
                 Width="20"
                 Height="20"
-                Content="&#xE713;"/>
+                Content="&#xE713;"
+                Click="myOptionsButton_Click"
+                />
         </StackPanel>
         <ListBox 
             x:Name="myQuestionListBox"
@@ -63,7 +65,7 @@
                 <StackPanel>
                     <TextBlock                               
                             FontWeight="Bold"
-                            Text="Question" />
+                            Text="Question:" />
                     <TextBlock
                             Text="Frågan frågar en fråga om en fråga?" />
                 </StackPanel>
@@ -71,10 +73,10 @@
             <ListBoxItem>
                 <StackPanel>
                     <TextBlock                               
-                    FontWeight="Bold"
-                   Text="Question" />
+                        FontWeight="Bold"
+                        Text="Question:" />
                     <TextBlock
-                    Text="Frågan frågar en fråga om frågor som frågar frågor?" />
+                        Text="Frågan frågar en fråga om frågor som frågar frågor?" />
                 </StackPanel>
             </ListBoxItem>
         </ListBox>

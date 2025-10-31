@@ -26,17 +26,5 @@ namespace Labb03_GUI
             var pack = new QuestionPack("MyPack");
             DataContext = new QuestionPackViewModel(pack);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            QuestionPackViewModel viewModel = (DataContext as QuestionPackViewModel);
-            PackOptionsDialog myWindow = new PackOptionsDialog()
-            {
-                DataContext = viewModel
-            };
-            viewModel.Name = "New name";
-            viewModel.Questions.Add(new Question($"{count++}VAd är gult?", "1", "2", "3", "4"));
-            myWindow.Show();
-        }
     }
 }

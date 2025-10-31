@@ -23,8 +23,7 @@
                 FontWeight="Bold"
                 Margin="10 5 10 0"
                 />
-            <ComboBox
-                
+            <ComboBox               
                 Margin="10 0 10 0">
                 <ComboBoxItem Content="Easy" />
                 <ComboBoxItem IsSelected="True" Content="Medium" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Labb03_GUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace Labb03_GUI.Views
         public ConfigurationView()
         {
             InitializeComponent();
+        }
+
+        private void myOptionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            //ConfigurationView myConfig = new ConfigurationView
+            //{
+            //    DataContext = new QuestionPackViewModel(pack)
+            //}
         }
     }
 }
