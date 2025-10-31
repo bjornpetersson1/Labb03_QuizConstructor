@@ -6,3 +6,4 @@ Bindea till objeekt i viewmodel som har raisepropertychange
 Att göra:
 Fixa snabbkommandon både i menyn och funktionalitet
 Ev egen usercontrol för slutskärmen i playmode
+Bindea packs i mainwindowviewmodel till Selectpacks

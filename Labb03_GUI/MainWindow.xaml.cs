@@ -19,12 +19,10 @@ namespace Labb03_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int count = 1;
         public MainWindow()
         {
             InitializeComponent();
-            var pack = new QuestionPack("MyPack");
-            DataContext = new QuestionPackViewModel(pack);
+            DataContext = new MainWindowViewModel();
         }
     }
 }

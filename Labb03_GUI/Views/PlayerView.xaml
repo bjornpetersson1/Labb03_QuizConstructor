@@ -31,7 +31,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="Svar 1"
+            Content="{Binding ActivePack.Name}"
             />
         <Button
             Grid.Column="1"
