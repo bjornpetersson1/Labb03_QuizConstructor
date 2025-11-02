@@ -36,7 +36,8 @@
                 ToolTip="Add Question"
                 Width="20"
                 Height="20"
-                Content="&#xE710;" />
+                Content="&#xE710;" 
+                Command="{Binding ActivePack.AddQuestionCommand}"/>
             <Button
                 x:Name="myRemoveButton"
                 FontFamily="Segoe MDL2 Assets"
