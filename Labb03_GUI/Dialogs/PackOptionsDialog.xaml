@@ -16,7 +16,7 @@
                 />
             <TextBox
                 Margin="10 0 10 0"
-                Text="{Binding Name}"
+                Text="{Binding ActivePack.Name, UpdateSourceTrigger=PropertyChanged}"
                 />
             <Label
                 Content="Difficulty:"
@@ -55,7 +55,7 @@
                 TickFrequency="5"
                 TickPlacement="BottomRight"
                 IsSnapToTickEnabled="True"
-                Value="{Binding TimeLimitInSeconds, Mode=TwoWay}"
+                Value="{Binding ActivePack.TimeLimitInSeconds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 />
         </StackPanel>
     </Grid>

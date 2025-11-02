@@ -20,10 +20,12 @@ namespace Labb03_GUI.ViewModels
         }
         public PlayerViewModel? PlayerViewModel { get; set; }
         public ConfigurationViewModel? ConfigurationViewModel { get; set; }
+        public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
         public MainWindowViewModel()
         {
             PlayerViewModel = new PlayerViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
+            PackOptionsDialogViewModel = new PackOptionsDialogViewModel(this);
 
             var pack = new QuestionPack("MyQuestionPack");
             ActivePack = new QuestionPackViewModel(pack);
