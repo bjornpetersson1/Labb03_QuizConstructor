@@ -10,7 +10,9 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New Question Pack">
+                    <MenuItem 
+                        Header="_New Question Pack"
+                        Command="{Binding MenuViewModel.OpenCreateDialogCommand}">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82E;" FontSize="15"/>
                         </MenuItem.Icon>
@@ -38,7 +40,6 @@
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEF2C;" FontSize="15"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Set packname" Command="{Binding PlayerViewModel.SetPackNameCommand}"/>
                 </MenuItem>
                 
                 <MenuItem Header="_Edit">
@@ -53,7 +54,9 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Pack _Options">
+                    <MenuItem 
+                        Header="Pack _Options"
+                        Command="{Binding MenuViewModel.OpenOptionsDialogCommand}">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="15"/>
                         </MenuItem.Icon>

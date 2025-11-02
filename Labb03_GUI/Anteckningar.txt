@@ -12,3 +12,8 @@ Listbox bindea itemsource och selcted source till pack och question
 Städa upp placeholdercommand i playerview
 Städa upp meny setPackname
 Städa player view och playerviewmodel
+
+
+
+
+DU HAR GJORT MYCKET, BIIND NU DEN VALDA FRÅGAN TILL RUTORNA TILL HÖGER

@@ -1,4 +1,5 @@
-﻿using Labb03_GUI.Models;
+﻿using Labb03_GUI.Command;
+using Labb03_GUI.Models;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -7,11 +8,18 @@ namespace Labb03_GUI.ViewModels
     class QuestionPackViewModel : ViewModelBase
     {
         private readonly QuestionPack _model;
+        public DelegateCommand AddQuestionCommand { get; }
         public QuestionPackViewModel(QuestionPack model)
         {
             _model = model;
             Questions = new ObservableCollection<Question>(_model.Questions);
             Questions.CollectionChanged += Questions_CollectionChanged;
+            AddQuestionCommand = new DelegateCommand(AddQuestion);
+        }
+
+        private void AddQuestion(object? obj)
+        {
+            Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
         }
 
         private void Questions_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -34,6 +42,10 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
+        public Array Difficulties 
+        {
+            get => _model.Difficulties;  
+        }
         public string Name
         {
             get => _model.Name;

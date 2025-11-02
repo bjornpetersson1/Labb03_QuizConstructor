@@ -16,7 +16,7 @@
                 />
             <TextBox
                 Margin="10 0 10 0"
-                Text="{Binding ActivePack.Name, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding ActivePack.Name, UpdateSourceTrigger=LostFocus}"
                 />
             <Label
                 Content="Difficulty:"
@@ -24,10 +24,9 @@
                 Margin="10 5 10 0"
                 />
             <ComboBox               
-                Margin="10 0 10 0">
-                <ComboBoxItem Content="Easy" />
-                <ComboBoxItem IsSelected="True" Content="Medium" />
-                <ComboBoxItem Content="Hard" />
+                Margin="10 0 10 0"
+                ItemsSource="{Binding ActivePack.Difficulties}"
+                SelectedItem="{Binding ActivePack.Difficulty}">
             </ComboBox>
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

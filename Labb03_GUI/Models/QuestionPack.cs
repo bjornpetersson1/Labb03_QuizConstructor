@@ -11,7 +11,7 @@
             TimeLimitInSeconds = timeLimitInSeconds;
             Questions = new List<Question>();
         }
-
+        public Array Difficulties => Enum.GetValues(typeof(Difficulty));
         public string Name { get; set; }
         public Difficulty Difficulty { get; set; }
         public int TimeLimitInSeconds 

@@ -11,10 +11,12 @@ namespace Labb03_GUI.ViewModels
     class PackOptionsDialogViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
+        public Array Difficulties => ActivePack.Difficulties;
 
         public DelegateCommand SetPackNameCommand { get; }
         public DelegateCommand SetDiffucultyCommand { get; }
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
+        
         private string _packName = string.Empty;
 
         public string PackName
@@ -30,31 +32,12 @@ namespace Labb03_GUI.ViewModels
                 }
             }
         }
-        private Difficulty _selectedDifficulty;
-
-        public Difficulty SelectedDifficulty
-        {
-            get => _selectedDifficulty;
-            set
-            {
-                _selectedDifficulty = value;
-                RaisePropertyChanged();
-                SetDiffucultyCommand.RaiseCanExecuteChanged();
-            }
-        }
 
 
         public PackOptionsDialogViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
             SetPackNameCommand = new DelegateCommand(SetPackName, CanSetPackName);
-            SetDiffucultyCommand = new DelegateCommand(SetDifficulty);
-        }
-
-        private void SetDifficulty(object? obj)
-        {
-            if (ActivePack == null) return;
-            ActivePack.Difficulty = SelectedDifficulty;
         }
 
         private bool CanSetPackName(object? arg)
