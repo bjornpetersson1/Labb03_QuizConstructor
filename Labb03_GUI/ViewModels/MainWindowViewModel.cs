@@ -17,6 +17,7 @@ namespace Labb03_GUI.ViewModels
                 _activePack = value;
                 RaisePropertyChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
+                PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
             }
         }
         public PlayerViewModel? PlayerViewModel { get; set; }
