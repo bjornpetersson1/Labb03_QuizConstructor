@@ -9,12 +9,39 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly QuestionPack _model;
         public DelegateCommand AddQuestionCommand { get; }
+        public DelegateCommand RemoveQuestionCommand { get; }
+
+        private Question? _selectedQuestion;
+        public Question? SelectedQuestion
+        {
+            get => _selectedQuestion;
+            set
+            {
+                _selectedQuestion = value;
+                RaisePropertyChanged();
+                RemoveQuestionCommand.RaiseCanExecuteChanged();
+            }
+        }
         public QuestionPackViewModel(QuestionPack model)
         {
             _model = model;
             Questions = new ObservableCollection<Question>(_model.Questions);
             Questions.CollectionChanged += Questions_CollectionChanged;
             AddQuestionCommand = new DelegateCommand(AddQuestion);
+            RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
+        }
+
+        private bool CanRemoveQuestion(object? arg)
+        {
+            return arg is Question;
+        }
+
+        private void RemoveQuestion(object? obj)
+        {
+            if (obj is Question question && Questions.Contains(question))
+            {
+                Questions.Remove(question);
+            }
         }
 
         private void AddQuestion(object? obj)

@@ -43,12 +43,17 @@
                 </MenuItem>
                 
                 <MenuItem Header="_Edit">
-                    <MenuItem Header="_Add Question">
+                    <MenuItem 
+                        Header="_Add Question"
+                        Command="{Binding ActivePack.AddQuestionCommand}">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="15"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Remove Question">
+                    <MenuItem 
+                        Header="_Remove Question"
+                        Command="{Binding ActivePack.RemoveQuestionCommand}"
+                        CommandParameter="{Binding ActivePack.SelectedQuestion}">
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE738;" FontSize="15"/>
                         </MenuItem.Icon>
