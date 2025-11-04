@@ -12,7 +12,8 @@
                 <MenuItem Header="_File">
                     <MenuItem 
                         Header="_New Question Pack"
-                        Command="{Binding MenuViewModel.OpenCreateDialogCommand}">
+                        Command="{Binding MenuViewModel.OpenCreateDialogCommand}"
+                        >
                         <MenuItem.Icon>
                             <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82E;" FontSize="15"/>
                         </MenuItem.Icon>
