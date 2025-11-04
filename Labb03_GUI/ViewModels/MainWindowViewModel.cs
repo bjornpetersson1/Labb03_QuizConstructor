@@ -1,6 +1,8 @@
 ﻿using Labb03_GUI.Command;
 using Labb03_GUI.Models;
+using Labb03_GUI.Views;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace Labb03_GUI.ViewModels
 {
@@ -8,6 +10,18 @@ namespace Labb03_GUI.ViewModels
     {
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
         private QuestionPackViewModel _activePack;
+        private UserControl _currentView;
+
+        public UserControl CurrentView
+        {
+            get => _currentView;
+            set 
+            {
+                _currentView = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public QuestionPackViewModel ActivePack
         {
@@ -25,6 +39,8 @@ namespace Labb03_GUI.ViewModels
         public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
         public MenuViewModel? MenuViewModel { get; set; }
         public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
+        public ConfigurationView ConfigurationView { get; }
+        public PlayerView PlayerView { get; }
         public MainWindowViewModel()
         {
             PlayerViewModel = new PlayerViewModel(this);
@@ -32,6 +48,9 @@ namespace Labb03_GUI.ViewModels
             PackOptionsDialogViewModel = new PackOptionsDialogViewModel(this);
             MenuViewModel = new MenuViewModel(this);
             CreateNewPackDialogViewModel = new CreateNewPackDialogViewModel(this);
+            ConfigurationView = new Views.ConfigurationView();
+            PlayerView = new Views.PlayerView();
+            CurrentView = ConfigurationView;
 
             var pack = new QuestionPack("MyQuestionPack");
             ActivePack = new QuestionPackViewModel(pack);

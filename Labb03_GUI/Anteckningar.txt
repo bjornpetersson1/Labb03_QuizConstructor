@@ -13,11 +13,6 @@ Städa upp placeholdercommand i playerview
 Städa upp meny setPackname
 Städa player view och playerviewmodel
 
-
-
-
-DU HAR GJORT MYCKET, BIIND NU DEN VALDA FRÅGAN TILL RUTORNA TILL HÖGER
-
 CanExcutegrejen är till för att gråa ut om knappen inte ska gå att använda, ska implimenteras på t ex ta bort fråga knappen 
 
-Lös iconnamspace, nya fönster öppnas mitt i aktivt fönster, application rsoursces för styles
+application rsoursces för styles

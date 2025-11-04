@@ -26,10 +26,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
-        <TextBlock
-            Grid.Column="1"
-            Text="{Binding ActivePack.Name}"/>
-        <TextBox Text="{Binding DemoText, UpdateSourceTrigger=PropertyChanged}"/>
         <Button
             Grid.Column="0"
             Grid.Row="1"
@@ -37,7 +33,6 @@
             Width="200"
             HorizontalAlignment="Right"
             Content="{Binding ActivePack.Questions[0].CorrectAnswer}"
-            Command="{Binding SetPackNameCommand}"
             />
         <Button
             Grid.Column="1"

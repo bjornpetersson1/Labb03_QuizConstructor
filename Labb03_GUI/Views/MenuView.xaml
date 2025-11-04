@@ -7,38 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+                   
+        </Grid.Resources>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem 
                         Header="_New Question Pack"
-                        Command="{Binding MenuViewModel.OpenCreateDialogCommand}"
-                        >
+                        Command="{Binding MenuViewModel.OpenCreateDialogCommand}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82E;" FontSize="15"/>
+                            <TextBlock Text="&#xE82E;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="_Select Question Pack">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE82D;" FontSize="15"/>
+                            <TextBlock Text="&#xE82D;"/>
                         </MenuItem.Icon>
                         <MenuItem Header="Test"/>
                     </MenuItem>
                     <MenuItem Header="_Delete Question Pack">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE750;" FontSize="15"/>
+                            <TextBlock Text="&#xE750;" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="_Import Questions">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEA52;" FontSize="15"/>
+                            <TextBlock Text="&#xEA52;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="E_xit">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEF2C;" FontSize="15"/>
+                            <TextBlock Text="&#xEF2C;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
@@ -48,7 +54,7 @@
                         Header="_Add Question"
                         Command="{Binding ActivePack.AddQuestionCommand}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="15"/>
+                            <TextBlock Text="&#xE710;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem 
@@ -56,7 +62,7 @@
                         Command="{Binding ActivePack.RemoveQuestionCommand}"
                         CommandParameter="{Binding ActivePack.SelectedQuestion}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE738;" FontSize="15"/>
+                            <TextBlock Text="&#xE738;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
@@ -64,26 +70,30 @@
                         Header="Pack _Options"
                         Command="{Binding MenuViewModel.OpenOptionsDialogCommand}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="15"/>
+                            <TextBlock Text="&#xE713;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 
                 <MenuItem Header="_View">
-                    <MenuItem Header="_Play">
+                    <MenuItem 
+                        Header="_Play"
+                        Command="{Binding MenuViewModel.OpenPlayerViewCommand}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEDB5;" FontSize="15"/>
+                            <TextBlock Text="&#xEDB5;"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Edit">
+                    <MenuItem 
+                        Header="_Edit"
+                        Command="{Binding MenuViewModel.OpenConfigViewCommand}">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xED58;" FontSize="15"/>
+                            <TextBlock Text="&#xED58;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="_Fullscreen">
                         <MenuItem.Icon>
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE740;" FontSize="15"/>
+                            <TextBlock Text="&#xE740;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
