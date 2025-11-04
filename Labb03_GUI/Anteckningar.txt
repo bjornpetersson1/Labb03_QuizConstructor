@@ -16,3 +16,10 @@ Städa player view och playerviewmodel
 CanExcutegrejen är till för att gråa ut om knappen inte ska gå att använda, ska implimenteras på t ex ta bort fråga knappen 
 
 application rsoursces för styles
+
+Bindea playerview
+	random frågor
+	random svarsalternativ
+	signal för rätt eller fel
+	håll räkningen
+	visa resultat
