@@ -6,14 +6,6 @@ Bindea till objeekt i viewmodel som har raisepropertychange
 Att göra:
 Fixa snabbkommandon både i menyn och funktionalitet
 Ev egen usercontrol för slutskärmen i playmode
-Bindea packs i mainwindowviewmodel till Selectpacks
-Listbox bindea itemsource och selcted source till pack och question
-
-Städa upp placeholdercommand i playerview
-Städa upp meny setPackname
-Städa player view och playerviewmodel
-
-CanExcutegrejen är till för att gråa ut om knappen inte ska gå att använda, ska implimenteras på t ex ta bort fråga knappen 
 
 application rsoursces för styles
 
@@ -25,5 +17,4 @@ Bindea playerview
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 
-
-LÖS DET HÄR MED NYTT PACK, packet ska skapas när fönstret öppnas och om man trycker create så sparas det i packs och blir acrtivee pack annars slängs det
+fixa ett event för när activpack ändras så grjer kan kolla om dom fortfarande "CanExecute"

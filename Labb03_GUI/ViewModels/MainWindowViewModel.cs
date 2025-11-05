@@ -11,7 +11,6 @@ namespace Labb03_GUI.ViewModels
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
         private QuestionPackViewModel _activePack;
         private UserControl _currentView;
-
         public UserControl CurrentView
         {
             get => _currentView;
@@ -53,8 +52,17 @@ namespace Labb03_GUI.ViewModels
             ConfigurationView = new Views.ConfigurationView();
             PlayerView = new Views.PlayerView();
             CurrentView = ConfigurationView;
-            OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView);
-            OpenConfigViewCommand = new DelegateCommand(OpenConfigView);
+            OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
+            OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
+
+            Packs.CollectionChanged += (s, e) =>
+            { 
+                RaisePropertyChanged(nameof(Packs));
+                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
+                OpenConfigViewCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
+            };
 
             var pack = new QuestionPack("MyQuestionPack");
             ActivePack = new QuestionPackViewModel(pack);
@@ -63,6 +71,17 @@ namespace Labb03_GUI.ViewModels
             Packs.Add(ActivePack);
 
         }
+
+        private bool CanOpenConfigView(object? arg)
+        {
+            return Packs.Count != 0;
+        }
+
+        private bool CanOpenPlayerView(object? arg)
+        {
+           return Packs.Count > 0 && ActivePack != null && ActivePack.Questions.Count > 0;
+        }
+
         private void OpenConfigView(object? obj)
         {
             CurrentView = ConfigurationView;

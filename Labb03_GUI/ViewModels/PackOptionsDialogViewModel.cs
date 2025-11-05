@@ -28,7 +28,6 @@ namespace Labb03_GUI.ViewModels
                 {
                     _packName = value;
                     RaisePropertyChanged();
-                    SetPackNameCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -37,18 +36,6 @@ namespace Labb03_GUI.ViewModels
         public PackOptionsDialogViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
-            SetPackNameCommand = new DelegateCommand(SetPackName, CanSetPackName);
-        }
-
-        private bool CanSetPackName(object? arg)
-        {
-            return !string.IsNullOrWhiteSpace(PackName) && ActivePack != null;
-        }
-
-        private void SetPackName(object? obj)
-        {
-            if (ActivePack == null) return;
-            ActivePack.Name = PackName;
         }
     }
 }

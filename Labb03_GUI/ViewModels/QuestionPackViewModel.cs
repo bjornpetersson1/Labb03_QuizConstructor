@@ -8,6 +8,7 @@ namespace Labb03_GUI.ViewModels
     class QuestionPackViewModel : ViewModelBase
     {
         private readonly QuestionPack _model;
+        private readonly MainWindowViewModel? _mainWindowViewModel;
         public DelegateCommand AddQuestionCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
 
@@ -30,6 +31,11 @@ namespace Labb03_GUI.ViewModels
             AddQuestionCommand = new DelegateCommand(AddQuestion);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
         }
+
+        //private bool CanAddQuestion(object? arg)
+        //{
+        //    //return _mainWindowViewModel.Packs.Count != 0;
+        //}
 
         private bool CanRemoveQuestion(object? arg)
         {

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Loaded="Window_Loaded"
-        Title="New Question Pack" Height="250" Width="200">
+        Title="New Question Pack" Height="250" Width="200"
+        DataContext="{Binding CreateNewPackDialogViewModel}">
     <Grid>
         <StackPanel>
             <Label
@@ -18,7 +18,7 @@
             <TextBox
                 x:Name="myTextBox"
                 Margin="10 0 10 0"
-                Text="&lt;PackName&gt;"
+                Text="{Binding TempNewPack.Name, Mode=TwoWay}"
                 />
             <Label
                 Content="Difficulty:"
@@ -26,7 +26,6 @@
                 Margin="10 5 10 0"
                 />
             <ComboBox
-                
                 Margin="10 0 10 0">
                 <ComboBoxItem Content="Easy" />
                 <ComboBoxItem IsSelected="True" Content="Medium" />
@@ -39,7 +38,6 @@
                 </Grid.ColumnDefinitions>
                 <Label
                     HorizontalAlignment="Left"
-                    
                     Content="Time Limit:"
                     FontWeight="Bold"
                     Margin="10 5 10 0"/>
@@ -47,7 +45,7 @@
                     HorizontalAlignment="Right"
                     Grid.Column="1"
                     x:Name="mySecondsLabel"
-                    Content="X seconds"
+                    Content="{Binding ElementName=mySlider, Path=Value}"
                     Margin="0 5 10 0"/>
             </Grid>
             <Slider
@@ -55,11 +53,10 @@
                 Margin="10 0 10 0"
                 Minimum="5"
                 Maximum="120"
-                Value="30"
+                Value="{Binding TempNewPack.TimeLimitInSeconds}"
                 TickFrequency="5"
                 TickPlacement="BottomRight"
                 IsSnapToTickEnabled="True"
-                ValueChanged="mySlider_ValueChanged"
                 />
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -71,6 +68,7 @@
                     Width="60"
                     Height="20"
                     Margin="0 20 0 0"
+                    Click="Button_Click"
                     />
                 <Button
                     Content="Create"
@@ -78,8 +76,9 @@
                     Height="20"
                     Margin="0 20 0 0"
                     Grid.Column="1"
+                    Command="{Binding CreateNewPackCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                     />
-
             </Grid>
         </StackPanel>
     </Grid>

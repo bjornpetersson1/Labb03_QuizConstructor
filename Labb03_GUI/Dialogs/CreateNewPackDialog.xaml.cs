@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Labb03_GUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,17 +23,12 @@ namespace Labb03_GUI.Dialogs
         public CreateNewPackDialog()
         {
             InitializeComponent();
+            
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            myTextBox.Focus();
-            myTextBox.SelectAll();
-        }
-
-        private void mySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            mySecondsLabel.Content = $"{mySlider.Value} seconds";
+            this.Close();
         }
     }
 }

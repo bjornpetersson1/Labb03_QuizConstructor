@@ -35,7 +35,9 @@
                             </Style>
                         </MenuItem.ItemContainerStyle>
                     </MenuItem>
-                    <MenuItem Header="_Delete Question Pack">
+                    <MenuItem 
+                        Header="_Delete Question Pack"
+                        Command="{Binding MenuViewModel.DeleteActivePackCommand}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE750;" />
                         </MenuItem.Icon>

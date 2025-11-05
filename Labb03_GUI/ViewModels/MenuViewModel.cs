@@ -14,16 +14,42 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public DelegateCommand OpenOptionsDialogCommand { get; }
         public DelegateCommand OpenCreateDialogCommand { get; }
+        public DelegateCommand DeleteActivePackCommand { get; }
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
-            OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog);
+            OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog, CanOpenOption);
             OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
+            DeleteActivePackCommand = new DelegateCommand(DeleteActivePack, CanDeleteActivePack);
+        }
+
+
+        private bool CanDeleteActivePack(object? arg)
+        {
+            return _mainWindowViewModel.Packs.Count != 0;
+        }
+
+        private void DeleteActivePack(object? obj)
+        {
+            if (_mainWindowViewModel.ActivePack != null)
+            {
+                var result = MessageBox.Show(
+                    $"Är du säker på att du vill ta bort '{_mainWindowViewModel.ActivePack.Name}'?",
+                    "Bekräfta borttagning",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning
+                );
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    _mainWindowViewModel.Packs.Remove(_mainWindowViewModel.ActivePack);
+                    _mainWindowViewModel.ActivePack = _mainWindowViewModel.Packs.FirstOrDefault();                    
+                }
+            }
         }
 
         private void OpenCreateDialog(object? obj)
         {
-            
             var dialog = new CreateNewPackDialog();
             dialog.Owner = Application.Current.MainWindow;
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
@@ -39,6 +65,10 @@ namespace Labb03_GUI.ViewModels
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             dialog.DataContext = _mainWindowViewModel.PackOptionsDialogViewModel;
             dialog.ShowDialog();
+        }
+        private bool CanOpenOption(object? arg)
+        {
+            return _mainWindowViewModel.Packs.Count != 0;
         }
     }
 }
