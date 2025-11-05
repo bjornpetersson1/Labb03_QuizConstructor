@@ -24,11 +24,16 @@
                             <TextBlock Text="&#xE82E;"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Select Question Pack">
+                    <MenuItem Header="_Select Question Pack"
+                              ItemsSource="{Binding Packs}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE82D;"/>
                         </MenuItem.Icon>
-                        <MenuItem Header="Test"/>
+                        <MenuItem.ItemContainerStyle>
+                            <Style TargetType="MenuItem">
+                                <Setter Property="Header" Value="{Binding Name}"/>
+                            </Style>
+                        </MenuItem.ItemContainerStyle>
                     </MenuItem>
                     <MenuItem Header="_Delete Question Pack">
                         <MenuItem.Icon>

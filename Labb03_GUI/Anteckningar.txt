@@ -18,8 +18,12 @@ CanExcutegrejen är till för att gråa ut om knappen inte ska gå att använda,
 application rsoursces för styles
 
 Bindea playerview
-	random frågor --- Det är något fel här / metoden ska va en command :)
-	random svarsalternativ
+	random svarsalternativ -- COuntgrjen är helt fel fixa det
 	signal för rätt eller fel
 	håll räkningen
 	visa resultat
+
+Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
+
+
+LÖS DET HÄR MED NYTT PACK, packet ska skapas när fönstret öppnas och om man trycker create så sparas det i packs och blir acrtivee pack annars slängs det

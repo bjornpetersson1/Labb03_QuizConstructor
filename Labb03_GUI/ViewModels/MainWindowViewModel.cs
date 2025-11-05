@@ -60,6 +60,7 @@ namespace Labb03_GUI.ViewModels
             ActivePack = new QuestionPackViewModel(pack);
             ActivePack.Questions.Add(new Question("Vad heter du?", "mitt namn", "ditt namn", "era namn", "doms namn"));
             ActivePack.Questions.Add(new Question("Vad heter dom?", "doms namn", "ditt namn", "era namn", "mitt namn"));
+            Packs.Add(ActivePack);
 
         }
         private void OpenConfigView(object? obj)
@@ -70,6 +71,7 @@ namespace Labb03_GUI.ViewModels
         private void OpenPlayerView(object? obj)
         {
             PlayerViewModel?.RandomiseActivePack();
+            PlayerViewModel?.RandomiseActiveQuestionAnswers(0);
             CurrentView = PlayerView;
         }
 

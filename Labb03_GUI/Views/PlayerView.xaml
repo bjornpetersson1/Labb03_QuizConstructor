@@ -21,18 +21,25 @@
         <TextBlock
             Grid.ColumnSpan="2"
             FontSize="40"
-            Text="{Binding PlayerViewModel.randomQuestions[0].Query}"
+            Text="{Binding PlayerViewModel.RandomQuestions[0].Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Text="{Binding PlayerViewModel.TimeLeft}" 
+            Margin="15"
+            FontSize="25"/>
         <Button
             Grid.Column="0"
             Grid.Row="1"
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="{Binding randomQuestions[0].CorrectAnswer}"
+            Content="{Binding PlayerViewModel.Answers[0]}"
             />
         <Button
             Grid.Column="1"
@@ -40,7 +47,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="{Binding randomQuestions[0].IncorrectAnswers[0]}"
+            Content="{Binding PlayerViewModel.Answers[1]}"
             />
         <Button
             Grid.Column="0"
@@ -48,7 +55,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="{Binding randomQuestions[0].IncorrectAnswers[1]}"
+            Content="{Binding PlayerViewModel.Answers[2]}"
             />
         <Button
             Grid.Column="1"
@@ -56,7 +63,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="{Binding randomQuestions[0].IncorrectAnswers[2]}"
+            Content="{Binding PlayerViewModel.Answers[3]}"
             />
     </Grid>
 </UserControl>

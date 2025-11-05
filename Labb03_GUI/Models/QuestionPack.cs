@@ -4,7 +4,7 @@
     internal class QuestionPack
     {
         private int _timeLimitInSeconds;
-        public QuestionPack(string name, Difficulty difficulty = Difficulty.Medium, int timeLimitInSeconds = 30)
+        public QuestionPack(string name = "MyQuestionPack", Difficulty difficulty = Difficulty.Medium, int timeLimitInSeconds = 30)
         {
             Name = name;
             Difficulty = difficulty;
