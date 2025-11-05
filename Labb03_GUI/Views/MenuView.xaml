@@ -78,14 +78,14 @@
                 <MenuItem Header="_View">
                     <MenuItem 
                         Header="_Play"
-                        Command="{Binding MenuViewModel.OpenPlayerViewCommand}">
+                        Command="{Binding OpenPlayerViewCommand}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xEDB5;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem 
                         Header="_Edit"
-                        Command="{Binding MenuViewModel.OpenConfigViewCommand}">
+                        Command="{Binding OpenConfigViewCommand}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xED58;"/>
                         </MenuItem.Icon>

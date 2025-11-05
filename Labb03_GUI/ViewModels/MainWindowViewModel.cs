@@ -41,6 +41,8 @@ namespace Labb03_GUI.ViewModels
         public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
         public ConfigurationView ConfigurationView { get; }
         public PlayerView PlayerView { get; }
+        public DelegateCommand OpenPlayerViewCommand { get; }
+        public DelegateCommand OpenConfigViewCommand { get; }
         public MainWindowViewModel()
         {
             PlayerViewModel = new PlayerViewModel(this);
@@ -51,12 +53,24 @@ namespace Labb03_GUI.ViewModels
             ConfigurationView = new Views.ConfigurationView();
             PlayerView = new Views.PlayerView();
             CurrentView = ConfigurationView;
+            OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView);
+            OpenConfigViewCommand = new DelegateCommand(OpenConfigView);
 
             var pack = new QuestionPack("MyQuestionPack");
             ActivePack = new QuestionPackViewModel(pack);
             ActivePack.Questions.Add(new Question("Vad heter du?", "mitt namn", "ditt namn", "era namn", "doms namn"));
             ActivePack.Questions.Add(new Question("Vad heter dom?", "doms namn", "ditt namn", "era namn", "mitt namn"));
 
+        }
+        private void OpenConfigView(object? obj)
+        {
+            CurrentView = ConfigurationView;
+        }
+
+        private void OpenPlayerView(object? obj)
+        {
+            PlayerViewModel?.RandomiseActivePack();
+            CurrentView = PlayerView;
         }
 
     }

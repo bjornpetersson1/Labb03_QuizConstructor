@@ -8,11 +8,14 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
         private readonly Random random = new Random();
-        private List<Question> randomQuestions;
+        public List<Question> randomQuestions { get; set; } = new List<Question>();
 
         public PlayerViewModel(MainWindowViewModel? mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
+        }
+        public void RandomiseActivePack()
+        {
             randomQuestions = ActivePack?.Questions.ToList() ?? new List<Question>();
             randomQuestions = randomQuestions.OrderBy(q => random.Next()).ToList();
         }

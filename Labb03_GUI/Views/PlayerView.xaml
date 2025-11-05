@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:Background="PapayaWhip"
              d:DesignHeight="450" d:DesignWidth="800"
-             DataContext="{Binding PlayerViewModel}">
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,7 +21,7 @@
         <TextBlock
             Grid.ColumnSpan="2"
             FontSize="40"
-            Text="{Binding randomQuestions[0].Query}"
+            Text="{Binding PlayerViewModel.randomQuestions[0].Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

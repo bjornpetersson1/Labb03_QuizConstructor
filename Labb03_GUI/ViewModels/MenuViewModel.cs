@@ -14,26 +14,26 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public DelegateCommand OpenOptionsDialogCommand { get; }
         public DelegateCommand OpenCreateDialogCommand { get; }
-        public DelegateCommand OpenPlayerViewCommand { get; }
-        public DelegateCommand OpenConfigViewCommand { get; }
+        //public DelegateCommand OpenPlayerViewCommand { get; }
+        //public DelegateCommand OpenConfigViewCommand { get; }
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
             OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog);
             OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
-            OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView);
-            OpenConfigViewCommand = new DelegateCommand(OpenConfigView);
+            //OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView);
+            //OpenConfigViewCommand = new DelegateCommand(OpenConfigView);
         }
 
-        private void OpenConfigView(object? obj)
-        {
-            _mainWindowViewModel.CurrentView = _mainWindowViewModel.ConfigurationView;
-        }
+        //private void OpenConfigView(object? obj)
+        //{
+        //    _mainWindowViewModel.CurrentView = _mainWindowViewModel.ConfigurationView;
+        //}
 
-        private void OpenPlayerView(object? obj)
-        {
-            _mainWindowViewModel.CurrentView = _mainWindowViewModel.PlayerView;
-        }
+        //private void OpenPlayerView(object? obj)
+        //{ 
+        //    _mainWindowViewModel.CurrentView = _mainWindowViewModel.PlayerView;
+        //}
 
         private void OpenCreateDialog(object? obj)
         {
