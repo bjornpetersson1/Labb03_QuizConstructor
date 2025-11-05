@@ -21,7 +21,7 @@
         <TextBlock
             Grid.ColumnSpan="2"
             FontSize="40"
-            Text="{Binding ActivePack.Questions[0].Query}"
+            Text="{Binding randomQuestions[0].Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -32,7 +32,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="{Binding ActivePack.Questions[0].CorrectAnswer}"
+            Content="{Binding randomQuestions[0].CorrectAnswer}"
             />
         <Button
             Grid.Column="1"
@@ -40,7 +40,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[0]}"
+            Content="{Binding randomQuestions[0].IncorrectAnswers[0]}"
             />
         <Button
             Grid.Column="0"
@@ -48,7 +48,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Right"
-            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[1]}"
+            Content="{Binding randomQuestions[0].IncorrectAnswers[1]}"
             />
         <Button
             Grid.Column="1"
@@ -56,7 +56,7 @@
             Margin="20"
             Width="200"
             HorizontalAlignment="Left"
-            Content="{Binding ActivePack.Questions[0].IncorrectAnswers[2]}"
+            Content="{Binding randomQuestions[0].IncorrectAnswers[2]}"
             />
     </Grid>
 </UserControl>
