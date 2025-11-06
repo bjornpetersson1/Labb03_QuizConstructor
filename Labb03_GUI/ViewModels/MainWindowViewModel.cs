@@ -40,6 +40,7 @@ namespace Labb03_GUI.ViewModels
         public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
         public ConfigurationView ConfigurationView { get; }
         public PlayerView PlayerView { get; }
+        public QuestionPackViewModel QuestionPackViewModel { get; set; }
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
         public MainWindowViewModel()
@@ -62,10 +63,17 @@ namespace Labb03_GUI.ViewModels
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenConfigViewCommand.RaiseCanExecuteChanged();
                 OpenPlayerViewCommand.RaiseCanExecuteChanged();
+                foreach (var pack in Packs)
+                {
+                    pack.AddQuestionCommand.RaiseCanExecuteChanged();
+                    pack.RemoveQuestionCommand.RaiseCanExecuteChanged();
+                }
+                ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
+                ActivePack?.AddQuestionCommand.RaiseCanExecuteChanged();
             };
 
             var pack = new QuestionPack("MyQuestionPack");
-            ActivePack = new QuestionPackViewModel(pack);
+            ActivePack = new QuestionPackViewModel(pack, this);
             ActivePack.Questions.Add(new Question("Vad heter du?", "mitt namn", "ditt namn", "era namn", "doms namn"));
             ActivePack.Questions.Add(new Question("Vad heter dom?", "doms namn", "ditt namn", "era namn", "mitt namn"));
             Packs.Add(ActivePack);

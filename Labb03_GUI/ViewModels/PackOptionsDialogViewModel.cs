@@ -12,9 +12,6 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public Array Difficulties => ActivePack.Difficulties;
-
-        public DelegateCommand SetPackNameCommand { get; }
-        public DelegateCommand SetDiffucultyCommand { get; }
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
         
         private string _packName = string.Empty;

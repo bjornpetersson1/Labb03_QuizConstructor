@@ -23,23 +23,20 @@ namespace Labb03_GUI.ViewModels
                 RemoveQuestionCommand.RaiseCanExecuteChanged();
             }
         }
-        public QuestionPackViewModel(QuestionPack model)
+        public QuestionPackViewModel(QuestionPack model, MainWindowViewModel mainWindowViewModel)
         {
             _model = model;
+            _mainWindowViewModel = mainWindowViewModel;
             Questions = new ObservableCollection<Question>(_model.Questions);
             Questions.CollectionChanged += Questions_CollectionChanged;
-            AddQuestionCommand = new DelegateCommand(AddQuestion);
+            AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
         }
 
-        //private bool CanAddQuestion(object? arg)
-        //{
-        //    //return _mainWindowViewModel.Packs.Count != 0;
-        //}
 
         private bool CanRemoveQuestion(object? arg)
         {
-            return arg is Question;
+            return _mainWindowViewModel?.Packs.Count > 0 && arg is Question && _model.Questions != null;
         }
 
         private void RemoveQuestion(object? obj)
@@ -48,6 +45,11 @@ namespace Labb03_GUI.ViewModels
             {
                 Questions.Remove(question);
             }
+        }
+
+        private bool CanAddQuestion(object? arg)
+        {
+            return _mainWindowViewModel?.Packs.Count > 0 && _model.Questions != null;
         }
 
         private void AddQuestion(object? obj)

@@ -21,7 +21,7 @@ namespace Labb03_GUI.ViewModels
             this._mainWindowViewModel = mainWindowViewModel;
             CreateNewPackCommand = new DelegateCommand(CreateNewPack);
             _model = new QuestionPack();
-            TempNewPack = new QuestionPackViewModel(_model);
+            TempNewPack = new QuestionPackViewModel(_model, mainWindowViewModel);
         }
 
         private void CreateNewPack(object? obj)
@@ -32,11 +32,11 @@ namespace Labb03_GUI.ViewModels
                 Difficulty = TempNewPack.Difficulty,
                 TimeLimitInSeconds = TempNewPack.TimeLimitInSeconds
             };
-            var newPack = new QuestionPackViewModel(newModel);
+            var newPack = new QuestionPackViewModel(newModel, _mainWindowViewModel);
 
             _mainWindowViewModel.Packs.Add(newPack);
             _mainWindowViewModel.ActivePack = newPack;
-            TempNewPack = new QuestionPackViewModel(new QuestionPack());
+            TempNewPack = new QuestionPackViewModel(new QuestionPack(), _mainWindowViewModel);
             RaisePropertyChanged(nameof(TempNewPack));
             if (obj is System.Windows.Window window) window.Close();
         }
