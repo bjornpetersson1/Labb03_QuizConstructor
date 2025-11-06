@@ -21,7 +21,7 @@
         <TextBlock
             Grid.ColumnSpan="2"
             FontSize="40"
-            Text="{Binding PlayerViewModel.RandomQuestions[0].Query}"
+            Text="{Binding PlayerViewModel.CurrentQuestion.Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -40,6 +40,8 @@
             Width="200"
             HorizontalAlignment="Right"
             Content="{Binding PlayerViewModel.Answers[0]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[0]}"
             />
         <Button
             Grid.Column="1"
@@ -48,6 +50,8 @@
             Width="200"
             HorizontalAlignment="Left"
             Content="{Binding PlayerViewModel.Answers[1]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[1]}"
             />
         <Button
             Grid.Column="0"
@@ -56,6 +60,8 @@
             Width="200"
             HorizontalAlignment="Right"
             Content="{Binding PlayerViewModel.Answers[2]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[2]}"
             />
         <Button
             Grid.Column="1"
@@ -64,6 +70,8 @@
             Width="200"
             HorizontalAlignment="Left"
             Content="{Binding PlayerViewModel.Answers[3]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[3]}"
             />
     </Grid>
 </UserControl>

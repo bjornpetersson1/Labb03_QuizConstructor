@@ -76,6 +76,9 @@ namespace Labb03_GUI.ViewModels
             ActivePack = new QuestionPackViewModel(pack, this);
             ActivePack.Questions.Add(new Question("Vad heter du?", "mitt namn", "ditt namn", "era namn", "doms namn"));
             ActivePack.Questions.Add(new Question("Vad heter dom?", "doms namn", "ditt namn", "era namn", "mitt namn"));
+            ActivePack.Questions.Add(new Question("Hur mycke sover du?", "6 timmar", "4 timmar", "lagom", "för mycket"));
+            ActivePack.Questions.Add(new Question("okej?", "JA!!!", "javiss", "t", "45"));
+            ActivePack.Questions.Add(new Question("en till fråååååga!!", "23", "43", "67", "99"));
             Packs.Add(ActivePack);
 
         }
@@ -98,7 +101,7 @@ namespace Labb03_GUI.ViewModels
         private void OpenPlayerView(object? obj)
         {
             PlayerViewModel?.RandomiseActivePack();
-            PlayerViewModel?.RandomiseActiveQuestionAnswers(0);
+            PlayerViewModel?.RandomiseActiveQuestionAnswers(PlayerViewModel.CurrentQuestionIndex);
             CurrentView = PlayerView;
         }
 

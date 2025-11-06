@@ -1,7 +1,5 @@
 ﻿Ev json-hantering i models-mappen också
 
-Bindea till objeekt i viewmodel som har raisepropertychange
-
 
 Att göra:
 Fixa snabbkommandon både i menyn och funktionalitet
@@ -10,11 +8,14 @@ Ev egen usercontrol för slutskärmen i playmode
 application rsoursces för styles
 
 Bindea playerview
-	random svarsalternativ -- COuntgrjen är helt fel fixa det
 	signal för rätt eller fel
 	håll räkningen
 	visa resultat
 
+	Spelet funkar nu men känns väldigt icke MVVM - FIXA DET!!
+
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
+
+Packoptions gråas ut när det itne finns några packs mn plu o minus gråas inte ut, fixa det
 
 fixa ett event för när activpack ändras så grjer kan kolla om dom fortfarande "CanExecute"
