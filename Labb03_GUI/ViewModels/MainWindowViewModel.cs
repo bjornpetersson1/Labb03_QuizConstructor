@@ -68,8 +68,8 @@ namespace Labb03_GUI.ViewModels
                     pack.AddQuestionCommand.RaiseCanExecuteChanged();
                     pack.RemoveQuestionCommand.RaiseCanExecuteChanged();
                 }
-                ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
                 ActivePack?.AddQuestionCommand.RaiseCanExecuteChanged();
+                ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
             };
 
             var pack = new QuestionPack("MyQuestionPack");

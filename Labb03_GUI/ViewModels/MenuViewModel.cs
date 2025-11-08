@@ -1,5 +1,6 @@
 ﻿using Labb03_GUI.Command;
 using Labb03_GUI.Dialogs;
+using Labb03_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand OpenOptionsDialogCommand { get; }
         public DelegateCommand OpenCreateDialogCommand { get; }
         public DelegateCommand DeleteActivePackCommand { get; }
+        public DelegateCommand RemoveQuestionCommand { get; }
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
@@ -22,7 +24,6 @@ namespace Labb03_GUI.ViewModels
             OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
             DeleteActivePackCommand = new DelegateCommand(DeleteActivePack, CanDeleteActivePack);
         }
-
 
         private bool CanDeleteActivePack(object? arg)
         {

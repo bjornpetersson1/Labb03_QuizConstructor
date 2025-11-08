@@ -28,11 +28,12 @@
             Orientation="Horizontal"
             VerticalAlignment="Bottom"
             HorizontalAlignment="Right"
-            Margin="10 5 ">
+            Margin="10 5 "
+            >
             <Button
                 x:Name="myAddButton"
                 FontFamily="Segoe MDL2 Assets"
-                Margin="0 0 5 0"
+                Margin="0 0 5 0" 
                 ToolTip="Add Question"
                 Width="20"
                 Height="20"

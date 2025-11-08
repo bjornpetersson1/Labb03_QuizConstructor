@@ -36,7 +36,7 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanRemoveQuestion(object? arg)
         {
-            return _mainWindowViewModel?.Packs.Count > 0 && arg is Question && _model.Questions != null;
+            return arg is Question;
         }
 
         private void RemoveQuestion(object? obj)
