@@ -9,69 +9,62 @@
              d:DesignHeight="450" d:DesignWidth="800"
              >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
-            Grid.ColumnSpan="2"
             FontSize="40"
-            Text="{Binding PlayerViewModel.CurrentQuestion.Query}"
+            Text="{Binding CurrentQuestion.Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             />
         <TextBlock
-            Grid.Column="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Text="{Binding PlayerViewModel.TimeLeft}" 
+            Text="{Binding TimeLeft}" 
             Margin="15"
             FontSize="25"/>
-        <Button
-            Grid.Column="0"
+        <ItemsControl 
+            ItemsSource="{Binding AnswerViewModels}"
             Grid.Row="1"
-            Margin="20"
-            Width="200"
-            HorizontalAlignment="Right"
-            Content="{Binding PlayerViewModel.Answers[0]}"
-            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
-            CommandParameter="{Binding PlayerViewModel.Answers[0]}"
-            />
-        <Button
-            Grid.Column="1"
-            Grid.Row="1"
-            Margin="20"
-            Width="200"
-            HorizontalAlignment="Left"
-            Content="{Binding PlayerViewModel.Answers[1]}"
-            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
-            CommandParameter="{Binding PlayerViewModel.Answers[1]}"
-            />
-        <Button
-            Grid.Column="0"
-            Grid.Row="2"
-            Margin="20"
-            Width="200"
-            HorizontalAlignment="Right"
-            Content="{Binding PlayerViewModel.Answers[2]}"
-            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
-            CommandParameter="{Binding PlayerViewModel.Answers[2]}"
-            />
-        <Button
-            Grid.Column="1"
-            Grid.Row="2"
-            Margin="20"
-            Width="200"
-            HorizontalAlignment="Left"
-            Content="{Binding PlayerViewModel.Answers[3]}"
-            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
-            CommandParameter="{Binding PlayerViewModel.Answers[3]}"
-            />
+            Grid.RowSpan="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="2" Columns="2"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Text}" 
+                        Command="{Binding DataContext.CheckAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Margin" Value="20" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                                        <Setter Property="Background" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsCorrect}" Value="False">
+                                        <Setter Property="Background" Value="Red"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="Blue"/>
+                                        <Setter Property="BorderThickness" Value="3"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
     </Grid>
+
 </UserControl>

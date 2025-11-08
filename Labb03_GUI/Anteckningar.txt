@@ -8,14 +8,59 @@ Ev egen usercontrol för slutskärmen i playmode
 application rsoursces för styles
 
 Bindea playerview
-	signal för rätt eller fel
+    Visa rätt svar i grönt när man trycker fel
 	håll räkningen
 	visa resultat
+
+Dela upp checkanswrmetoden
 
 	Spelet funkar nu men känns väldigt icke MVVM - FIXA DET!!
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 
-Packoptions gråas ut när det itne finns några packs mn plu o minus gråas inte ut, fixa det
+Packoptions gråas ut när det itne finns några packs mn plu o minus gråas inte ut, fixa det - Fråga frdr om det här
 
-fixa ett event för när activpack ändras så grjer kan kolla om dom fortfarande "CanExecute"
+fixa timertick initieringen
+
+
+
+        <Button
+            Grid.Column="0"
+            Grid.Row="1"
+            Margin="20"
+            Width="200"
+            HorizontalAlignment="Right"
+            Content="{Binding PlayerViewModel.Answers[0]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[0]}"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="1"
+            Margin="20"
+            Width="200"
+            HorizontalAlignment="Left"
+            Content="{Binding PlayerViewModel.Answers[1]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[1]}"
+            />
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Margin="20"
+            Width="200"
+            HorizontalAlignment="Right"
+            Content="{Binding PlayerViewModel.Answers[2]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[2]}"
+            />
+        <Button
+            Grid.Column="1"
+            Grid.Row="2"
+            Margin="20"
+            Width="200"
+            HorizontalAlignment="Left"
+            Content="{Binding PlayerViewModel.Answers[3]}"
+            Command="{Binding PlayerViewModel.CheckAnswerCommand}"
+            CommandParameter="{Binding PlayerViewModel.Answers[3]}"
+            />

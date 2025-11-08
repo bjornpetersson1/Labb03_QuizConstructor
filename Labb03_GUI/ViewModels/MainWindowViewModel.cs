@@ -33,6 +33,7 @@ namespace Labb03_GUI.ViewModels
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
             }
         }
+        public AnswerViewModel AnswerViewModel { get; set; }
         public PlayerViewModel? PlayerViewModel { get; set; }
         public ConfigurationViewModel? ConfigurationViewModel { get; set; }
         public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
@@ -45,7 +46,6 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand OpenConfigViewCommand { get; }
         public MainWindowViewModel()
         {
-            PlayerViewModel = new PlayerViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
             PackOptionsDialogViewModel = new PackOptionsDialogViewModel(this);
             MenuViewModel = new MenuViewModel(this);
@@ -55,6 +55,8 @@ namespace Labb03_GUI.ViewModels
             CurrentView = ConfigurationView;
             OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
+            PlayerViewModel = new PlayerViewModel(this);
+            PlayerView.DataContext = PlayerViewModel;
 
             Packs.CollectionChanged += (s, e) =>
             { 

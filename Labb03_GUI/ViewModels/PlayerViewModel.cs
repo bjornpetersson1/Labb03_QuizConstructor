@@ -11,6 +11,7 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         private int _timeLeft;
         public DelegateCommand CheckAnswerCommand { get; }
+        public ObservableCollection<AnswerViewModel> AnswerViewModels { get; set; } = new ObservableCollection<AnswerViewModel>();
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
         private readonly Random random = new Random();
         public List<Question> RandomQuestions { get; set; } = new List<Question>();
@@ -55,22 +56,25 @@ namespace Labb03_GUI.ViewModels
             timer.Tick += Timer_Tick;
             CurrentQuestionIndex = 0;
             CheckAnswerCommand = new DelegateCommand(CheckAnswer);
+            RaisePropertyChanged(nameof(CurrentQuestion));
+            RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
         }
 
-        private void CheckAnswer(object? obj)
+        private async void CheckAnswer(object? obj)
         {
-            if (CurrentQuestion == null) return;
+            if (obj is not AnswerViewModel answer || CurrentQuestion == null) return;
 
-            if (obj == CurrentQuestion.CorrectAnswer)
+            answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
+            foreach (var ans in AnswerViewModels)
             {
-                MessageBox.Show("Rätt svar! 🎉");
+                if (ans != answer && ans.Text != CurrentQuestion.CorrectAnswer)
+                    ans.IsCorrect = false;
             }
-            else
-            {
-                MessageBox.Show($"Fel svar! 😢 Rätt svar var: {CurrentQuestion.CorrectAnswer}");
-            }
+
             if (CurrentQuestionIndex < RandomQuestions.Count - 1)
             {
+                timer.Stop();
+                await Task.Delay(2000);
                 CurrentQuestionIndex++;
                 RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
                 TimeLeft = ActivePack.TimeLimitInSeconds;
@@ -91,6 +95,14 @@ namespace Labb03_GUI.ViewModels
         {
             RandomQuestions = ActivePack?.Questions.ToList() ?? new List<Question>();
             RandomQuestions = RandomQuestions.OrderBy(q => random.Next()).ToList();
+
+            if (RandomQuestions.Count > 0)
+            {
+                CurrentQuestionIndex = 0;
+                RaisePropertyChanged(nameof(CurrentQuestion));
+                RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
+            }
+
             if (ActivePack != null)
             {
                 TimeLeft = ActivePack.TimeLimitInSeconds;
@@ -101,15 +113,18 @@ namespace Labb03_GUI.ViewModels
         {
             if (RandomQuestions == null || RandomQuestions.Count == 0) return;
             var currentQuestion = RandomQuestions[questionIndex];
-            var allAnswers = new List<string>();
-            allAnswers.Add(currentQuestion.CorrectAnswer);
-            allAnswers.Add(currentQuestion.IncorrectAnswers[0]);
-            allAnswers.Add(currentQuestion.IncorrectAnswers[1]);
-            allAnswers.Add(currentQuestion.IncorrectAnswers[2]);
-            Answers.Clear();
+
+            var allAnswers = new List<AnswerViewModel>
+            {
+                new AnswerViewModel(currentQuestion.CorrectAnswer),
+                new AnswerViewModel(currentQuestion.IncorrectAnswers[0]),
+                new AnswerViewModel(currentQuestion.IncorrectAnswers[1]),
+                new AnswerViewModel(currentQuestion.IncorrectAnswers[2])
+            };
+            AnswerViewModels.Clear();
             foreach (var ans in allAnswers.OrderBy(a => random.Next()))
             {
-                Answers.Add(ans);
+                AnswerViewModels.Add(ans);
             }
         }
 
