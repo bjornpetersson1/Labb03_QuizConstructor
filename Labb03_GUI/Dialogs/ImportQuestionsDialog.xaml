@@ -1,0 +1,83 @@
+﻿<Window x:Class="Labb03_GUI.Dialogs.ImportQuestionsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
+        mc:Ignorable="d"
+        Title="ImportQuestionsDialog" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label
+            Content="Category:"
+            FontWeight="Bold"
+            Margin="10 5 10 0"
+            />
+            <ComboBox
+                Margin="10 0 10 0">
+                <ComboBoxItem Content="Easy" />
+                <ComboBoxItem IsSelected="True" Content="Medium" />
+                <ComboBoxItem Content="Hard" />
+            </ComboBox>
+            <Label
+            Content="Difficulty:"
+            FontWeight="Bold"
+            Margin="10 5 10 0"
+            />
+            <ComboBox
+            Margin="10 0 10 0">
+                <ComboBoxItem Content="Easy" />
+                <ComboBoxItem IsSelected="True" Content="Medium" />
+                <ComboBoxItem Content="Hard" />
+            </ComboBox>
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                HorizontalAlignment="Left"
+                Content="Number Of Questions:"
+                FontWeight="Bold"
+                Margin="10 5 10 0"/>
+                <Label
+                HorizontalAlignment="Right"
+                Grid.Column="1"
+                x:Name="mySecondsLabel"
+                Content="{Binding ElementName=mySlider, Path=Value}"
+                Margin="0 5 10 0"/>
+            </Grid>
+            <Slider
+            x:Name="mySlider"
+            Margin="10 0 10 0"
+            Minimum="1"
+            Maximum="20"
+            Value="{Binding TempNewPack.TimeLimitInSeconds}"
+            TickFrequency="1"
+            TickPlacement="BottomRight"
+            IsSnapToTickEnabled="True"
+            />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                Content="Cancel"
+                Width="60"
+                Height="20"
+                Margin="0 20 0 0"
+                />
+                <Button
+                Content="Import"
+                Width="60"
+                Height="20"
+                Margin="0 20 0 0"
+                Grid.Column="1"
+                Command="{Binding CreateNewPackCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                />
+            </Grid>
+        </StackPanel>
+        </Grid>
+</Window>

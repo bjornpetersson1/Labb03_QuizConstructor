@@ -44,6 +44,7 @@ namespace Labb03_GUI.ViewModels
         public QuestionPackViewModel QuestionPackViewModel { get; set; }
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
+        public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
         public MainWindowViewModel()
         {
             ConfigurationViewModel = new ConfigurationViewModel(this);
@@ -57,6 +58,7 @@ namespace Labb03_GUI.ViewModels
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
             PlayerViewModel = new PlayerViewModel(this);
             PlayerView.DataContext = PlayerViewModel;
+            ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
 
             Packs.CollectionChanged += (s, e) =>
             { 

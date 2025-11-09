@@ -2,13 +2,24 @@
 
 
 Att göra:
+stäng av en massa knappar när man är i playmode
 Fixa snabbkommandon både i menyn och funktionalitet
 Ev egen usercontrol för slutskärmen i playmode
+API-grejen
+    Bygg xaml
+    laddaa ner en json
+    jsonhantering i model
+    ladda in json
+    tokenhantering i viewmodel
+        tokentolkning i view
+    popuprutor från codebehind
+    koppla ihop mot api
 
 application rsoursces för styles
 
 Bindea playerview
     Visa rätt svar i grönt när man trycker fel
+        Det funkar nu men mousehoover är problem, går int att få bort det ljusblåa
 	håll räkningen
 	visa resultat
 

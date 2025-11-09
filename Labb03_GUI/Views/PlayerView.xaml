@@ -44,8 +44,10 @@
                         CommandParameter="{Binding}">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="LightGray"/>
-                                <Setter Property="Margin" Value="20" />
+                                <Setter Property="Background" Value="{x:Null}"/>
+                                <Setter Property="BorderBrush" Value="Gray"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Margin" Value="20"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="True">
                                         <Setter Property="Background" Value="Green"/>
@@ -56,6 +58,7 @@
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="BorderBrush" Value="Blue"/>
                                         <Setter Property="BorderThickness" Value="3"/>
+                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

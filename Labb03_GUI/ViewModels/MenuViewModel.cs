@@ -15,6 +15,7 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public DelegateCommand OpenOptionsDialogCommand { get; }
         public DelegateCommand OpenCreateDialogCommand { get; }
+        public DelegateCommand OpenImportDialogCommand { get; }
         public DelegateCommand DeleteActivePackCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
@@ -23,6 +24,16 @@ namespace Labb03_GUI.ViewModels
             OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog, CanOpenOption);
             OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
             DeleteActivePackCommand = new DelegateCommand(DeleteActivePack, CanDeleteActivePack);
+            OpenImportDialogCommand = new DelegateCommand(OpenImportDialog);
+        }
+
+        private void OpenImportDialog(object? obj)
+        {
+            var dialog = new CreateNewPackDialog();
+            dialog.Owner = Application.Current.MainWindow;
+            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            dialog.DataContext = _mainWindowViewModel.ImportQuestionsDialogViewModel;
+            dialog.ShowDialog();
         }
 
         private bool CanDeleteActivePack(object? arg)

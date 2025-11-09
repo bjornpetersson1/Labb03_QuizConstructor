@@ -43,7 +43,9 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="_Import Questions">
+                    <MenuItem 
+                        Header="_Import Questions"
+                        Command="{Binding MenuViewModel.OpenImportDialogCommand}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xEA52;"/>
                         </MenuItem.Icon>
