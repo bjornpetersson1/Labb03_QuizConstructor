@@ -15,7 +15,10 @@
             />
             <ComboBox
                 Margin="10 0 10 0"
-                ItemsSource="{Binding ImportQuestionsDialogViewModel.Categories}">
+                ItemsSource="{Binding Categories}"
+                DisplayMemberPath="Name"
+                SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                >
             </ComboBox>
             <Label
             Content="Difficulty:"

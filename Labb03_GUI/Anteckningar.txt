@@ -15,6 +15,11 @@ API-grejen
     popuprutor från codebehind
     koppla ihop mot api
 
+    https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple
+        Utgå från det här och modda för att ladda in frågor :)
+
+
+
 application rsoursces för styles
 
 Bindea playerview

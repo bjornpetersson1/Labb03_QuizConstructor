@@ -29,7 +29,7 @@ namespace Labb03_GUI.ViewModels
 
         private void OpenImportDialog(object? obj)
         {
-            var dialog = new CreateNewPackDialog();
+            var dialog = new ImportQuestionsDialog();
             dialog.Owner = Application.Current.MainWindow;
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             dialog.DataContext = _mainWindowViewModel.ImportQuestionsDialogViewModel;
