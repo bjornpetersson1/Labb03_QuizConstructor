@@ -16,15 +16,13 @@ API-grejen
 
 application rsoursces för styles
 
-Bindea playerview
+PlayerView
     Visa rätt svar i grönt när man trycker fel
         Det funkar nu men mousehoover är problem, går int att få bort det ljusblåa
-	håll räkningen
+	håll räkningen!!!!!!!!!!!!!!!!!!!!!!!
 	visa resultat
 
 Dela upp checkanswrmetoden
-
-	Spelet funkar nu men känns väldigt icke MVVM - FIXA DET!!
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
         mc:Ignorable="d"
-        Title="ImportQuestionsDialog" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="ImportQuestionsDialog" Height="250" Width="200">
     <Grid>
         <StackPanel>
             <Label
@@ -67,6 +68,7 @@
                 Width="60"
                 Height="20"
                 Margin="0 20 0 0"
+                Click="Button_Click"
                 />
                 <Button
                 Content="Import"
@@ -75,6 +77,7 @@
                 Margin="0 20 0 0"
                 Grid.Column="1"
                 Command="{Binding ImportQuestionsCommand}"
+                Click="Button_Click"
                 />
             </Grid>
         </StackPanel>
