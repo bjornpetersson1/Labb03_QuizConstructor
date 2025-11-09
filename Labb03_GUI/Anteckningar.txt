@@ -6,11 +6,11 @@ stäng av en massa knappar när man är i playmode
 Fixa snabbkommandon både i menyn och funktionalitet
 Ev egen usercontrol för slutskärmen i playmode
 API-grejen
-    Bygg xaml
+    Savemetoden - skriv om till interfacebaserat
     laddaa ner en json
     jsonhantering i model
     ladda in json
-    tokenhantering i viewmodel
+    tokenhantering i viewmodel !!!! fixa även det i loaad, just nu temp-lösning där
         tokentolkning i view
     popuprutor från codebehind
     koppla ihop mot api

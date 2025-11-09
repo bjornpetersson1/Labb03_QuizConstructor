@@ -11,6 +11,7 @@ namespace Labb03_GUI.Models
 		private int _numbersOfQuestions;
         public Difficulty Difficulty { get; set; }
 
+
         public int NumberOfQuestions
 		{
 			get => _numbersOfQuestions;

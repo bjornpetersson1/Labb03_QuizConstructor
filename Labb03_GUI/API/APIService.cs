@@ -18,5 +18,11 @@ namespace Labb03_GUI.API
             var questions = await _httpClient.GetFromJsonAsync<List<Question>>(url);
             return questions ?? new List<Question>();
         }
+        public async Task<List<Category>> GetCategoriesAsync()
+        {
+            var url = "https://opentdb.com/api_category.php";
+            var response = await _httpClient.GetFromJsonAsync<CategoryRespons>(url);
+            return response?.Trivia_categories ?? new List<Category>();
+        }
     }
 }

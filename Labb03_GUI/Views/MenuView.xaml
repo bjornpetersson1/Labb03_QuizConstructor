@@ -24,7 +24,7 @@
                             <TextBlock Text="&#xE82E;"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_Select Question Pack"
+                    <MenuItem Header="S_elect Question Pack"
                               ItemsSource="{Binding Packs}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE82D;"/>
