@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Labb03_GUI.API
@@ -12,11 +13,18 @@ namespace Labb03_GUI.API
     internal class APIService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        public async Task<List<Question>> GetQuestionsAsync()
+        public async Task<List<APIQuestion>> GetQuestionsAsync(int numberOfQuestion, ImportQuestion importQuestion)
         {
-            var url = "https://opentdb.com/api.php?amount=10";
-            var questions = await _httpClient.GetFromJsonAsync<List<Question>>(url);
-            return questions ?? new List<Question>();
+            var difficulty = importQuestion.Difficulty?.ToLower() ?? "medium";
+            var url = $"https://opentdb.com/api.php?amount={numberOfQuestion}&category={importQuestion.Category.Id}&difficulty={difficulty}&type=multiple";
+            var response = await _httpClient.GetStringAsync(url);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            var data = JsonSerializer.Deserialize<APIQuestionResponse>(response, options);
+
+            return data.Results;
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {

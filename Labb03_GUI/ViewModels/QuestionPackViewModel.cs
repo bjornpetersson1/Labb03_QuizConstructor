@@ -54,7 +54,14 @@ namespace Labb03_GUI.ViewModels
 
         private void AddQuestion(object? obj)
         {
-            Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
+            if (obj is Question question)
+            {
+                Questions.Add(question);
+            }
+            else
+            {
+                Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
+            }
         }
 
         private void Questions_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

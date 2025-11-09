@@ -26,11 +26,10 @@
             Margin="10 5 10 0"
             />
             <ComboBox
-            Margin="10 0 10 0">
-                <ComboBoxItem Content="Easy" />
-                <ComboBoxItem IsSelected="True" Content="Medium" />
-                <ComboBoxItem Content="Hard" />
-            </ComboBox>
+                Margin="10 0 10 0"
+                ItemsSource="{Binding Difficulties}"
+                SelectedItem="{Binding SelectedDifficulty, Mode=TwoWay}"
+                />
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -53,7 +52,7 @@
             Margin="10 0 10 0"
             Minimum="1"
             Maximum="20"
-            Value="{Binding TempNewPack.TimeLimitInSeconds}"
+            Value="{Binding NumberOfQuestions, Mode=TwoWay}"
             TickFrequency="1"
             TickPlacement="BottomRight"
             IsSnapToTickEnabled="True"
@@ -75,8 +74,7 @@
                 Height="20"
                 Margin="0 20 0 0"
                 Grid.Column="1"
-                Command="{Binding CreateNewPackCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                Command="{Binding ImportQuestionsCommand}"
                 />
             </Grid>
         </StackPanel>
