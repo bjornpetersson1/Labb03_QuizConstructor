@@ -47,6 +47,7 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand OpenConfigViewCommand { get; }
         public DelegateCommand OpenEndScreenCommand { get; }
         public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
+        private JsonModel _jsonModel = new JsonModel();
         public MainWindowViewModel()
         {
             ConfigurationViewModel = new ConfigurationViewModel(this);
@@ -88,6 +89,14 @@ namespace Labb03_GUI.ViewModels
 
         }
 
+        public async Task IntializeAsync()
+        {
+            var loadedPacks = await _jsonModel.LoadFromJsonAsync();
+            foreach (var pack in loadedPacks)
+            {
+                Packs.Add(new QuestionPackViewModel(pack, this));
+            }
+        }
         private void OpenEndScreen(object? obj)
         {
             CurrentView = PlayerEndScreen;

@@ -116,5 +116,10 @@ namespace Labb03_GUI.ViewModels
             }
         }
         public ObservableCollection<Question> Questions { get; set; }
+        public QuestionPack GetModel()
+        {
+            _model.Questions = Questions.ToList();
+            return _model;
+        }
     }
 }

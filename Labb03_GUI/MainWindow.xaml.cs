@@ -19,10 +19,25 @@ namespace Labb03_GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel _mainWindowViewModel;
+        private readonly JsonModel _jsonModel = new JsonModel();
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            _mainWindowViewModel = new MainWindowViewModel();
+            DataContext = _mainWindowViewModel;
+
+            Loaded += async (s, e) =>
+            {
+                await _mainWindowViewModel.IntializeAsync();
+            };
+            Closing += MainWindow_Closing;
+        }
+
+        private async void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var myPacks = _mainWindowViewModel.Packs.Select(ps => ps.GetModel()).ToList();
+            await _jsonModel.SaveToJsonAsync(myPacks);
         }
     }
 }
