@@ -14,8 +14,28 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <StackPanel 
+            Orientation="Horizontal"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <TextBlock
+                FontSize="40"
+                Margin="15"
+                Text="{Binding NumberOfCorrectAnswers}"
+                    />
+            <TextBlock
+                FontSize="40"
+                Margin="15"
+                Text="/"
+                    />
+            <TextBlock
+                FontSize="40"
+                Margin="15"
+                Text="{Binding ActivePack.Questions.Count}"
+                    />
+        </StackPanel>
         <TextBlock
-            FontSize="40"
+            FontSize="30"
             Text="{Binding CurrentQuestion.Query}"
             TextWrapping="Wrap"
             HorizontalAlignment="Center"

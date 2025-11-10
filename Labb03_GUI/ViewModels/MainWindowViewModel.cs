@@ -41,9 +41,11 @@ namespace Labb03_GUI.ViewModels
         public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
         public ConfigurationView ConfigurationView { get; }
         public PlayerView PlayerView { get; }
+        public PlayerEndScreen PlayerEndScreen { get; }
         public QuestionPackViewModel QuestionPackViewModel { get; set; }
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
+        public DelegateCommand OpenEndScreenCommand { get; }
         public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
         public MainWindowViewModel()
         {
@@ -53,9 +55,11 @@ namespace Labb03_GUI.ViewModels
             CreateNewPackDialogViewModel = new CreateNewPackDialogViewModel(this);
             ConfigurationView = new Views.ConfigurationView();
             PlayerView = new Views.PlayerView();
+            PlayerEndScreen = new Views.PlayerEndScreen();
             CurrentView = ConfigurationView;
             OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
+            OpenEndScreenCommand = new DelegateCommand(OpenEndScreen);
             PlayerViewModel = new PlayerViewModel(this);
             PlayerView.DataContext = PlayerViewModel;
             ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
@@ -78,13 +82,15 @@ namespace Labb03_GUI.ViewModels
 
             var pack = new QuestionPack("MyQuestionPack");
             ActivePack = new QuestionPackViewModel(pack, this);
-            ActivePack.Questions.Add(new Question("Vad heter du?", "mitt namn", "ditt namn", "era namn", "doms namn"));
-            ActivePack.Questions.Add(new Question("Vad heter dom?", "doms namn", "ditt namn", "era namn", "mitt namn"));
-            ActivePack.Questions.Add(new Question("Hur mycke sover du?", "6 timmar", "4 timmar", "lagom", "för mycket"));
             ActivePack.Questions.Add(new Question("okej?", "JA!!!", "javiss", "t", "45"));
             ActivePack.Questions.Add(new Question("en till fråååååga!!", "23", "43", "67", "99"));
             Packs.Add(ActivePack);
 
+        }
+
+        private void OpenEndScreen(object? obj)
+        {
+            CurrentView = PlayerEndScreen;
         }
 
         private bool CanOpenConfigView(object? arg)

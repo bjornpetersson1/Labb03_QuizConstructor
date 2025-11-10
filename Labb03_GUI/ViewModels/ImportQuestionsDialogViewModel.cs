@@ -4,6 +4,7 @@ using Labb03_GUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -89,8 +90,10 @@ namespace Labb03_GUI.ViewModels
             var questions = await aPIService.GetQuestionsAsync(NumberOfQuestions, ImportQuestionModel);
             foreach (var que in questions)
             {
-                _mainWindowViewModel.ActivePack.AddQuestionCommand.Execute(new Question(que.Question, que.Correct_Answer, que.Incorrect_Answers[0], que.Incorrect_Answers[1], que.Incorrect_Answers[2]));
-
+                string decodedQuery = WebUtility.HtmlDecode(que.Question);
+                string decodedCorrectAnswer = WebUtility.HtmlDecode(que.Correct_Answer);
+                var decodedIncorrectAnswers = que.Incorrect_Answers.Select(ans => WebUtility.HtmlDecode(ans)).ToList();
+                _mainWindowViewModel.ActivePack.AddQuestionCommand.Execute(new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Labb03_GUI.Command;
 using Labb03_GUI.Models;
+using Labb03_GUI.Views;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,6 +17,16 @@ namespace Labb03_GUI.ViewModels
         private readonly Random random = new Random();
         public List<Question> RandomQuestions { get; set; } = new List<Question>();
         public ObservableCollection<string> Answers { get; set; } = new ObservableCollection<string>();
+        private int _numberOfCorrectAnswers;
+        public int NumberOfCorrectAnswers 
+        {
+            get => _numberOfCorrectAnswers;
+            set
+            {
+                _numberOfCorrectAnswers = value;
+                RaisePropertyChanged();
+            }
+        }
         DispatcherTimer timer = new DispatcherTimer();
         public int TimeLeft
         {
@@ -55,9 +66,9 @@ namespace Labb03_GUI.ViewModels
             timer.Interval = TimeSpan.FromSeconds(1.0);
             timer.Tick += Timer_Tick;
             CurrentQuestionIndex = 0;
+            NumberOfCorrectAnswers = 0;
             CheckAnswerCommand = new DelegateCommand(CheckAnswer);
             RaisePropertyChanged(nameof(CurrentQuestion));
-            RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
         }
 
         private async void CheckAnswer(object? obj)
@@ -65,6 +76,10 @@ namespace Labb03_GUI.ViewModels
             if (obj is not AnswerViewModel answer || CurrentQuestion == null) return;
 
             answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
+            if ((bool)answer.IsCorrect)
+            {
+                NumberOfCorrectAnswers++;
+            }
             foreach (var ans in AnswerViewModels)
             {
                 if (ans != answer && ans.Text != CurrentQuestion.CorrectAnswer)
@@ -78,11 +93,12 @@ namespace Labb03_GUI.ViewModels
                 CurrentQuestionIndex++;
                 RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
                 TimeLeft = ActivePack.TimeLimitInSeconds;
+                timer.Start();
             }
             else
             {
                 timer.Stop();
-                MessageBox.Show("Spelet är slut!");
+                _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
             }
         }
 
