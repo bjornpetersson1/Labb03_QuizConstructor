@@ -1,16 +1,14 @@
-﻿Ev json-hantering i models-mappen också
-
+﻿
 
 Att göra:
 stäng av en massa knappar när man är i playmode
 Fixa snabbkommandon både i menyn och funktionalitet
-Fullscreen laggar minimera och stäng-knapparna
+
 API-grejen
     Savemetoden - skriv om till interfacebaserat
-    laddaa ner en json
-    jsonhantering i model
-    ladda in json
     Hantera internetfel, alltså brist på internet
+
+SelectPack funkar inte nu!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 application rsoursces för styles
 
