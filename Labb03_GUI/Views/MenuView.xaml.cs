@@ -24,5 +24,22 @@ namespace Labb03_GUI.Views
         {
             InitializeComponent();
         }
+
+        private void Fullscreen_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            if (window.WindowState != WindowState.Maximized || window.WindowStyle != WindowStyle.None)
+            {
+                window.WindowState = WindowState.Maximized;
+                window.ResizeMode = ResizeMode.CanResize;
+            }
+            else
+            {
+                window.WindowState = WindowState.Normal;
+                window.WindowStyle = WindowStyle.SingleBorderWindow;
+                window.ResizeMode = ResizeMode.CanResize;
+            }
+
+        }
     }
 }

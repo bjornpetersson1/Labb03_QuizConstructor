@@ -4,7 +4,7 @@
 Att göra:
 stäng av en massa knappar när man är i playmode
 Fixa snabbkommandon både i menyn och funktionalitet
-Ev egen usercontrol för slutskärmen i playmode
+Fullscreen laggar minimera och stäng-knapparna
 API-grejen
     Savemetoden - skriv om till interfacebaserat
     laddaa ner en json

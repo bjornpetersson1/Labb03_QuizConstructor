@@ -100,7 +100,9 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="_Fullscreen">
+                    <MenuItem 
+                        Header="_Fullscreen"
+                        Click="Fullscreen_Click">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE740;"/>
                         </MenuItem.Icon>

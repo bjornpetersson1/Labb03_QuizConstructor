@@ -64,7 +64,7 @@
                         CommandParameter="{Binding}">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="{x:Null}"/>
+                                <Setter Property="Background" Value="Cornsilk"/>
                                 <Setter Property="BorderBrush" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="2"/>
                                 <Setter Property="Margin" Value="20"/>
