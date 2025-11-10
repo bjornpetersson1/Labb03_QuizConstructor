@@ -10,17 +10,13 @@ API-grejen
     laddaa ner en json
     jsonhantering i model
     ladda in json
-    tokenhantering i viewmodel !!!! fixa även det i loaad, just nu temp-lösning där
-        tokentolkning i view
-    popuprutor från codebehind
+    Hantera internetfel, alltså brist på internet
 
 application rsoursces för styles
 
 PlayerView
     Visa rätt svar i grönt när man trycker fel
-        Det funkar nu men mousehoover är problem, går int att få bort det ljusblåa
-	håll räkningen!!!!!!!!!!!!!!!!!!!!!!!
-	visa resultat
+        Det funkar nu men mousehoover är problem, går int att få bort det ljusblå
 
 Dela upp checkanswrmetoden
 

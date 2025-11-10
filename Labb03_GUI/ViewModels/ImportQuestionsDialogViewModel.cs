@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Labb03_GUI.ViewModels
 {
@@ -87,7 +88,7 @@ namespace Labb03_GUI.ViewModels
         }
         private async Task ImportQuestionsAsync()
         {
-            var questions = await aPIService.GetQuestionsAsync(NumberOfQuestions, ImportQuestionModel);
+            var (questions, responseCode) = await aPIService.GetQuestionsAsync(NumberOfQuestions, ImportQuestionModel);
             foreach (var que in questions)
             {
                 string decodedQuery = WebUtility.HtmlDecode(que.Question);
@@ -95,6 +96,8 @@ namespace Labb03_GUI.ViewModels
                 var decodedIncorrectAnswers = que.Incorrect_Answers.Select(ans => WebUtility.HtmlDecode(ans)).ToList();
                 _mainWindowViewModel.ActivePack.AddQuestionCommand.Execute(new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
             }
+            string responseMessage = TokenRespons.TokenMessage.ContainsKey(responseCode) ? TokenRespons.TokenMessage[responseCode] : "Unknown error occured";
+            MessageBox.Show(responseMessage, "Question import status", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

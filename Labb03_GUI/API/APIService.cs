@@ -13,7 +13,7 @@ namespace Labb03_GUI.API
     internal class APIService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        public async Task<List<APIQuestion>> GetQuestionsAsync(int numberOfQuestion, ImportQuestion importQuestion)
+        public async Task<(List<APIQuestion> questions, int responseCode)> GetQuestionsAsync(int numberOfQuestion, ImportQuestion importQuestion)
         {
             var difficulty = importQuestion.Difficulty?.ToLower() ?? "medium";
             var url = $"https://opentdb.com/api.php?amount={numberOfQuestion}&category={importQuestion.Category.Id}&difficulty={difficulty}&type=multiple";
@@ -24,7 +24,9 @@ namespace Labb03_GUI.API
             };
             var data = JsonSerializer.Deserialize<APIQuestionResponse>(response, options);
 
-            return data.Results;
+
+
+            return (data.Results, data.Response_Code);
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {
