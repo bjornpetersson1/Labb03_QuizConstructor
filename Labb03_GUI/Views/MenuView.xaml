@@ -32,6 +32,10 @@
                         <MenuItem.ItemContainerStyle>
                             <Style TargetType="MenuItem">
                                 <Setter Property="Header" Value="{Binding Name}"/>
+                                <Setter Property="Command" Value="{Binding DataContext.MenuViewModel.SetActivePackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                                <Setter Property="CommandParameter" Value="{Binding}" />
+                                <Setter Property="IsCheckable" Value="True"/>
+                                <Setter Property="IsChecked" Value="{Binding IsActive, Mode=OneWay}"/>
                             </Style>
                         </MenuItem.ItemContainerStyle>
                     </MenuItem>

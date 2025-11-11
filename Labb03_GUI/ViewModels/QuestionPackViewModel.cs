@@ -11,6 +11,8 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel? _mainWindowViewModel;
         public DelegateCommand AddQuestionCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
+        public bool IsActive => _mainWindowViewModel.ActivePack == this;
+        public void RefreshActiveStatus() => RaisePropertyChanged(nameof(IsActive));
 
         private Question? _selectedQuestion;
         public Question? SelectedQuestion

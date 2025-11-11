@@ -1,20 +1,23 @@
 ﻿
 
 Att göra:
-stäng av en massa knappar när man är i playmode
 Fixa snabbkommandon både i menyn och funktionalitet
 
 API-grejen
     Savemetoden - skriv om till interfacebaserat
     Hantera internetfel, alltså brist på internet
 
-SelectPack funkar inte nu!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SelectPack - gråa ut om det inte finns några packs
+
 
 application rsoursces för styles
 
 PlayerView
     Visa rätt svar i grönt när man trycker fel
         Det funkar nu men mousehoover är problem, går int att få bort det ljusblå
+    Sista frågan i quizet får man inte se svaret
+        stäng av en massa knappar när man är i playmode
+        playagain?-knapp annars return to config
 
 Dela upp checkanswrmetoden
 

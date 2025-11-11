@@ -28,6 +28,10 @@ namespace Labb03_GUI.ViewModels
             set
             {
                 _activePack = value;
+                foreach (var pack in Packs)
+                {
+                    pack.RefreshActiveStatus();
+                }
                 RaisePropertyChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
@@ -80,12 +84,8 @@ namespace Labb03_GUI.ViewModels
                 ActivePack?.AddQuestionCommand.RaiseCanExecuteChanged();
                 ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
             };
-
-            var pack = new QuestionPack("MyQuestionPack");
-            ActivePack = new QuestionPackViewModel(pack, this);
-            ActivePack.Questions.Add(new Question("okej?", "JA!!!", "javiss", "t", "45"));
-            ActivePack.Questions.Add(new Question("en till fråååååga!!", "23", "43", "67", "99"));
-            Packs.Add(ActivePack);
+            //ActivePack.Questions.Add(new Question("okej?", "JA!!!", "javiss", "t", "45"));
+            //ActivePack.Questions.Add(new Question("en till fråååååga!!", "23", "43", "67", "99"));
 
         }
 
@@ -96,6 +96,13 @@ namespace Labb03_GUI.ViewModels
             {
                 Packs.Add(new QuestionPackViewModel(pack, this));
             }
+            if (Packs.Count == 0)
+            {
+                var pack = new QuestionPack("MyNewQuestionPack");
+                ActivePack = new QuestionPackViewModel(pack, this);
+                Packs.Add(ActivePack);
+            }
+            ActivePack = Packs.FirstOrDefault();
         }
         private void OpenEndScreen(object? obj)
         {
