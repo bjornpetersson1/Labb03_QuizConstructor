@@ -20,6 +20,8 @@ PlayerView
     Sista frågan i quizet får man inte se svaret
         stäng av en massa knappar när man är i playmode
         playagain?-knapp annars return to config
+    Fixa så speleet tar slut om timern tar slut
+    Fixa ruta runt timern
 
 Dela upp checkanswrmetoden
 

@@ -8,7 +8,11 @@
         xmlns:views="clr-namespace:Labb03_GUI.Views"
         mc:Ignorable="d"
         d:Height='800' d:Width="400"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Quiz constructor 2000" 
+        Height="450" 
+        Width="800"
+        MinWidth="500"
+        MinHeight="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

@@ -10,37 +10,77 @@
              >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel 
-            Orientation="Horizontal"
+        <Border 
+            BorderBrush="Gray"
+            BorderThickness="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
-            <TextBlock
-                FontSize="40"
-                Margin="15"
-                Text="{Binding NumberOfCorrectAnswers}"
-                    />
-            <TextBlock
-                FontSize="40"
-                Margin="15"
-                Text="/"
-                    />
-            <TextBlock
-                FontSize="40"
-                Margin="15"
-                Text="{Binding ActivePack.Questions.Count}"
-                    />
-        </StackPanel>
-        <TextBlock
-            FontSize="30"
-            Text="{Binding CurrentQuestion.Query}"
-            TextWrapping="Wrap"
+            <StackPanel
+                Orientation="Vertical"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Cornsilk">
+                <TextBlock
+                    FontSize="10"
+                    Margin="0 3 0 0"
+                    Text="p o i n t s"
+                    Foreground="Red"
+                    HorizontalAlignment="Center"
+                        />
+                <StackPanel 
+                    Orientation="Horizontal"                
+                    >
+                    <TextBlock
+                        FontSize="30"
+                        Margin="15 0 0 10"
+                        Text="{Binding NumberOfCorrectAnswers}"
+                            />
+                    <TextBlock
+                        FontSize="30"
+                        Margin="0 0 0 10"
+                        Text="/"
+                            />
+                    <TextBlock
+                        FontSize="30"
+                        Margin="0 0 15 10"
+                        Text="{Binding ActivePack.Questions.Count}"
+                            />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Orientation="Vertical"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            />
+            VerticalAlignment="Top">
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    FontSize="40"
+                    Margin="15 15 0 15"
+                    Foreground="Purple"
+                    Text="Question "
+                        />
+                <TextBlock
+                    FontSize="40"
+                    Margin="0 15 15 15"
+                    Foreground="Purple"
+                    Text="{Binding NumberOfCurrentQuestion}"
+                        />
+            </StackPanel>
+            <TextBlock
+                Margin="50 10 50 0"
+                FontSize="27"
+                Text="{Binding CurrentQuestion.Query}"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                />
+        </StackPanel>
+            
         <TextBlock
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
@@ -67,7 +107,7 @@
                                 <Setter Property="Background" Value="Cornsilk"/>
                                 <Setter Property="BorderBrush" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="2"/>
-                                <Setter Property="Margin" Value="20"/>
+                                <Setter Property="Margin" Value="5"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="True">
                                         <Setter Property="Background" Value="Green"/>

@@ -17,6 +17,16 @@ namespace Labb03_GUI.ViewModels
         private readonly Random random = new Random();
         public List<Question> RandomQuestions { get; set; } = new List<Question>();
         public ObservableCollection<string> Answers { get; set; } = new ObservableCollection<string>();
+        private int _numberOfCurrentQuestion;
+        public int NumberOfCurrentQuestion 
+        {
+            get => _numberOfCurrentQuestion; 
+            set
+            {
+                _numberOfCurrentQuestion = value;
+                RaisePropertyChanged();
+            }
+        }
         private int _numberOfCorrectAnswers;
         public int NumberOfCorrectAnswers 
         {
@@ -67,6 +77,7 @@ namespace Labb03_GUI.ViewModels
             timer.Tick += Timer_Tick;
             CurrentQuestionIndex = 0;
             NumberOfCorrectAnswers = 0;
+            NumberOfCurrentQuestion = 1;
             CheckAnswerCommand = new DelegateCommand(CheckAnswer);
             RaisePropertyChanged(nameof(CurrentQuestion));
         }
@@ -100,6 +111,7 @@ namespace Labb03_GUI.ViewModels
                 timer.Stop();
                 _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
             }
+            NumberOfCurrentQuestion++;
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
