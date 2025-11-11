@@ -7,6 +7,8 @@ API-grejen
     Savemetoden - skriv om till interfacebaserat
     Hantera internetfel, alltså brist på internet
 
+Lägg till en "internet är aktivt"-symbol och om internet inte finns - gråa ut import :)
+
 SelectPack - gråa ut om det inte finns några packs
 
 
