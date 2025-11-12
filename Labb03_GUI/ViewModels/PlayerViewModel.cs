@@ -114,6 +114,51 @@ namespace Labb03_GUI.ViewModels
             }
             NumberOfCurrentQuestion++;
         }
+        //private async void CheckAnswer(object? obj)
+        //{
+        //    if (obj is not AnswerViewModel answer || CurrentQuestion == null)
+        //        return;
+
+        //    HandleAnswerResult(answer);
+        //    await ProceedToNextQuestionOrEndAsync();
+        //}
+
+        //private void HandleAnswerResult(AnswerViewModel answer)
+        //{
+        //    answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
+
+        //    if (answer.IsCorrect)
+        //        NumberOfCorrectAnswers++;
+
+        //    foreach (var ans in AnswerViewModels)
+        //        ans.IsCorrect = ans.Text == CurrentQuestion.CorrectAnswer;
+        //}
+
+        //private async Task ProceedToNextQuestionOrEndAsync()
+        //{
+        //    timer.Stop();
+        //    await Task.Delay(2000);
+
+        //    if (CurrentQuestionIndex < RandomQuestions.Count - 1)
+        //        LoadNextQuestion();
+        //    else
+        //        EndQuiz();
+        //}
+
+        //private void LoadNextQuestion()
+        //{
+        //    CurrentQuestionIndex++;
+        //    RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
+        //    TimeLeft = ActivePack.TimeLimitInSeconds;
+        //    timer.Start();
+        //    NumberOfCurrentQuestion++;
+        //}
+
+        //private void EndQuiz()
+        //{
+        //    _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
+        //}
+
 
         private void Timer_Tick(object? sender, EventArgs e)
         {

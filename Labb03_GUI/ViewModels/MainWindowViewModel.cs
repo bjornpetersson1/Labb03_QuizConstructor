@@ -108,8 +108,6 @@ namespace Labb03_GUI.ViewModels
                 Packs.Add(ActivePack);
             }
             else ActivePack = Packs.FirstOrDefault();
-
-            CurrentView = ConfigurationView;
         }
         private void OpenEndScreen(object? obj)
         {

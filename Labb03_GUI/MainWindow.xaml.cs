@@ -31,6 +31,7 @@ namespace Labb03_GUI
             Loaded += async (s, e) =>
             {
                 await _mainWindowViewModel.IntializeAsync();
+                _mainWindowViewModel.CurrentView = _mainWindowViewModel.ConfigurationView;
             };
             Closing += MainWindow_Closing;
         }
