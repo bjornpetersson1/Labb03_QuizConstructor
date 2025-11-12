@@ -58,6 +58,8 @@ namespace Labb03_GUI.ViewModels
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
+                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
             }
         }
         public AnswerViewModel AnswerViewModel { get; set; }
@@ -119,21 +121,20 @@ namespace Labb03_GUI.ViewModels
             return Packs.Count != 0;
         }
 
-        private bool CanOpenPlayerView(object? arg)
-        {
-           return Packs.Count > 0 && ActivePack != null && ActivePack.Questions.Count > 0;
-        }
-
         private void OpenConfigView(object? obj)
         {
             CurrentView = ConfigurationView;
         }
-
         private void OpenPlayerView(object? obj)
         {
             PlayerViewModel?.RandomiseActivePack();
             PlayerViewModel?.RandomiseActiveQuestionAnswers(PlayerViewModel.CurrentQuestionIndex);
+            PlayerViewModel?.SetAndStartTimer();
             CurrentView = PlayerView;
+        }
+        private bool CanOpenPlayerView(object? arg)
+        {
+           return Packs.Count > 0 && ActivePack != null && ActivePack.Questions.Count > 0;
         }
     }
 }

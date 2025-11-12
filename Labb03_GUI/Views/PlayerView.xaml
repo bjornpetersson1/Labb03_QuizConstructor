@@ -79,6 +79,41 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 />
+            <TextBlock
+                Text="Correct!"
+                Foreground="Green"
+                HorizontalAlignment="Center"
+                FontSize="35"
+                FontStyle="Italic">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAnswerCorrectVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBlock
+                Text="Incorrect :("
+                Foreground="Red"
+                HorizontalAlignment="Center"
+                FontSize="35"
+                FontStyle="Italic">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAnswerIncorrectVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
         </StackPanel>
             
         <TextBlock

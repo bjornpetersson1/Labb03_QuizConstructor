@@ -101,7 +101,7 @@ namespace Labb03_GUI.ViewModels
         }
         private bool CanOpenOption(object? arg)
         {
-            return _mainWindowViewModel.Packs.Count != 0;
+            return _mainWindowViewModel.ActivePack != null;
         }
     }
 }

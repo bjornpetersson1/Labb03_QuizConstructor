@@ -37,6 +37,26 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private bool _isAnswerCorrectVisible;
+        public bool IsAnswerCorrectVisible
+        {
+            get => _isAnswerCorrectVisible;
+            set
+            {
+                _isAnswerCorrectVisible = value;
+                RaisePropertyChanged();
+            }
+        }
+        private bool _isAnswerIncorrectVisible;
+        public bool IsAnswerIncorrectVisible
+        {
+            get => _isAnswerIncorrectVisible;
+            set
+            {
+                _isAnswerIncorrectVisible = value;
+                RaisePropertyChanged();
+            }
+        }
         DispatcherTimer timer = new DispatcherTimer();
         public int TimeLeft
         {
@@ -84,87 +104,77 @@ namespace Labb03_GUI.ViewModels
 
         private async void CheckAnswer(object? obj)
         {
-            if (obj is not AnswerViewModel answer || CurrentQuestion == null) return;
+            if (obj is not AnswerViewModel answer || CurrentQuestion == null)
+                return;
 
+            HandleAnswerResult(answer);
+            await ProceedToNextQuestionOrEndAsync();
+        }
+
+        private void HandleAnswerResult(AnswerViewModel answer)
+        {
             answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
+
             if ((bool)answer.IsCorrect)
             {
                 NumberOfCorrectAnswers++;
-            }
-            foreach (var ans in AnswerViewModels)
-            {
-                if (ans != answer && ans.Text != CurrentQuestion.CorrectAnswer)
-                    ans.IsCorrect = false;
-            }
-
-            if (CurrentQuestionIndex < RandomQuestions.Count - 1)
-            {
-                timer.Stop();
-                await Task.Delay(2000);
-                CurrentQuestionIndex++;
-                RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
-                TimeLeft = ActivePack.TimeLimitInSeconds;
-                timer.Start();
+                IsAnswerCorrectVisible = true;
+                IsAnswerIncorrectVisible = false;
             }
             else
             {
-                timer.Stop();
-                await Task.Delay(2000);
-                _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
+                IsAnswerCorrectVisible = false;
+                IsAnswerIncorrectVisible = true;
             }
+
+            foreach (var ans in AnswerViewModels)
+                ans.IsCorrect = ans.Text == CurrentQuestion.CorrectAnswer;
+        }
+
+        private async Task ProceedToNextQuestionOrEndAsync()
+        {
+            timer.Stop();
+            await Task.Delay(2000);
+            IsAnswerCorrectVisible = false;
+            IsAnswerIncorrectVisible = false;
+            if (CurrentQuestionIndex < RandomQuestions.Count - 1)
+                LoadNextQuestion();
+            else
+                EndQuiz();
+        }
+
+        private void LoadNextQuestion()
+        {
+            CurrentQuestionIndex++;
+            RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
+            TimeLeft = ActivePack.TimeLimitInSeconds;
+            timer.Start();
             NumberOfCurrentQuestion++;
         }
-        //private async void CheckAnswer(object? obj)
-        //{
-        //    if (obj is not AnswerViewModel answer || CurrentQuestion == null)
-        //        return;
 
-        //    HandleAnswerResult(answer);
-        //    await ProceedToNextQuestionOrEndAsync();
-        //}
-
-        //private void HandleAnswerResult(AnswerViewModel answer)
-        //{
-        //    answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
-
-        //    if (answer.IsCorrect)
-        //        NumberOfCorrectAnswers++;
-
-        //    foreach (var ans in AnswerViewModels)
-        //        ans.IsCorrect = ans.Text == CurrentQuestion.CorrectAnswer;
-        //}
-
-        //private async Task ProceedToNextQuestionOrEndAsync()
-        //{
-        //    timer.Stop();
-        //    await Task.Delay(2000);
-
-        //    if (CurrentQuestionIndex < RandomQuestions.Count - 1)
-        //        LoadNextQuestion();
-        //    else
-        //        EndQuiz();
-        //}
-
-        //private void LoadNextQuestion()
-        //{
-        //    CurrentQuestionIndex++;
-        //    RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
-        //    TimeLeft = ActivePack.TimeLimitInSeconds;
-        //    timer.Start();
-        //    NumberOfCurrentQuestion++;
-        //}
-
-        //private void EndQuiz()
-        //{
-        //    _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
-        //}
+        private void EndQuiz()
+        {
+            _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
+        }
 
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
             TimeLeft--;
+            if (TimeLeft <= 0)
+            {
+                timer.Stop();
+                EndQuiz();
+            }
         }
-
+        public void SetAndStartTimer()
+        {
+            if (ActivePack != null)
+            {
+                TimeLeft = ActivePack.TimeLimitInSeconds;
+                timer.Start();
+            }
+        }
         public void RandomiseActivePack()
         {
             RandomQuestions = ActivePack?.Questions.ToList() ?? new List<Question>();
@@ -175,12 +185,6 @@ namespace Labb03_GUI.ViewModels
                 CurrentQuestionIndex = 0;
                 RaisePropertyChanged(nameof(CurrentQuestion));
                 RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
-            }
-
-            if (ActivePack != null)
-            {
-                TimeLeft = ActivePack.TimeLimitInSeconds;
-                timer.Start();
             }
         }
         public void RandomiseActiveQuestionAnswers(int questionIndex)
