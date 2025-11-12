@@ -20,7 +20,7 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand DeleteActivePackCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
         public DelegateCommand SetActivePackCommand { get;  }
-        public bool HasPacks => _mainWindowViewModel.Packs.Any();
+        //public bool HasPacks => _mainWindowViewModel.Packs.Count > 0;
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;

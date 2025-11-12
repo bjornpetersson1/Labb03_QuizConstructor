@@ -6,7 +6,7 @@ Fixa snabbkommandon både i menyn och funktionalitet
 API-grejen
     Savemetoden - skriv om till interfacebaserat
 
-PlayerView
+PlayerView  BÖRJA HÄR IMORGON, KOLLA IGENOM UPPGIFTEN OCKSÅ
     Visa rätt svar i grönt när man trycker fel
         Det funkar nu men mousehoover är problem, går int att få bort det ljusblå
     Sista frågan i quizet får man inte se svaret
@@ -20,3 +20,5 @@ Dela upp checkanswrmetoden
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 
 fixa timertick initieringen
+
+Fixa haspacksgrejen!!

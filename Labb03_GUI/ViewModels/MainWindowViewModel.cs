@@ -2,6 +2,7 @@
 using Labb03_GUI.Models;
 using Labb03_GUI.Views;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Windows.Controls;
@@ -136,6 +137,5 @@ namespace Labb03_GUI.ViewModels
             PlayerViewModel?.RandomiseActiveQuestionAnswers(PlayerViewModel.CurrentQuestionIndex);
             CurrentView = PlayerView;
         }
-
     }
 }
