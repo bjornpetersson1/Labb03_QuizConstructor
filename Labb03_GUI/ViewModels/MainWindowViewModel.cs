@@ -11,30 +11,18 @@ namespace Labb03_GUI.ViewModels
     class MainWindowViewModel : ViewModelBase
     {
         private ObservableCollection<QuestionPackViewModel> _packs;
-        public ObservableCollection<QuestionPackViewModel> Packs 
+        public ObservableCollection<QuestionPackViewModel> Packs
         {
             get => _packs;
             set
             {
                 _packs = value;
                 RaisePropertyChanged(nameof(Packs));
-                MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
+                //MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
                 MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenConfigViewCommand.RaiseCanExecuteChanged();
                 OpenPlayerViewCommand.RaiseCanExecuteChanged();
-
-            }
-        }
-        private bool _isOnline;
-
-        public bool IsOnline
-        {
-            get => _isOnline;
-            set 
-            {
-                _isOnline = value;
-                RaisePropertyChanged(nameof(IsOnline));
             }
         }
 
@@ -46,6 +34,10 @@ namespace Labb03_GUI.ViewModels
             {
                 _currentView = value;
                 RaisePropertyChanged();
+                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
+                ConfigurationViewModel?.RemoveQuestionCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -62,7 +54,7 @@ namespace Labb03_GUI.ViewModels
                     pack.RefreshActiveStatus();
                 }
                 RaisePropertyChanged();
-                ConfigurationViewModel.AddQuestionCommand.RaiseCanExecuteChanged();
+                ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
             }
@@ -84,48 +76,26 @@ namespace Labb03_GUI.ViewModels
         private JsonModel _jsonModel = new JsonModel();
         public MainWindowViewModel()
         {
+            MenuViewModel = new MenuViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
             PackOptionsDialogViewModel = new PackOptionsDialogViewModel(this);
-            MenuViewModel = new MenuViewModel(this);
-            CreateNewPackDialogViewModel = new CreateNewPackDialogViewModel(this);
             ConfigurationView = new Views.ConfigurationView();
+            CreateNewPackDialogViewModel = new CreateNewPackDialogViewModel(this);
             PlayerView = new Views.PlayerView();
             PlayerEndScreen = new Views.PlayerEndScreen();
-            CurrentView = ConfigurationView;
             OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
             OpenEndScreenCommand = new DelegateCommand(OpenEndScreen);
             PlayerViewModel = new PlayerViewModel(this);
-            PlayerView.DataContext = PlayerViewModel;
             ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
             Packs = new ObservableCollection<QuestionPackViewModel>();
-            NetworkChange.NetworkAvailabilityChanged += (s, e) =>
-            {
-                IsOnline = e.IsAvailable;
-            };
-            UpdateInternetStatusAync();
+            PlayerView.DataContext = PlayerViewModel;
         }
-        private async Task UpdateInternetStatusAync()  // den här ska loopas med timer //eller kolla bara en gång när importfönstret öppnar
-        {
-            IsOnline = await CheckInternetConnectionActiveAsync();
-        }
-        public async Task<bool> CheckInternetConnectionActiveAsync()
-        {
-            try
-            {
-                using var client = new HttpClient(); //gör bara en
-                client.Timeout = TimeSpan.FromSeconds(4);
-                var respons = await client.GetAsync("https://github.com/everyloop");
-                return respons.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+
         public async Task IntializeAsync()
         {
             var loadedPacks = await _jsonModel.LoadFromJsonAsync();
+            Packs.Clear();
             foreach (var pack in loadedPacks)
             {
                 Packs.Add(new QuestionPackViewModel(pack, this));
@@ -136,7 +106,9 @@ namespace Labb03_GUI.ViewModels
                 ActivePack = new QuestionPackViewModel(pack, this);
                 Packs.Add(ActivePack);
             }
-            ActivePack = Packs.FirstOrDefault();
+            else ActivePack = Packs.FirstOrDefault();
+
+            CurrentView = ConfigurationView;
         }
         private void OpenEndScreen(object? obj)
         {

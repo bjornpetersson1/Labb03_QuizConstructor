@@ -25,13 +25,5 @@ namespace Labb03_GUI.Views
         {
             InitializeComponent();
         }
-
-        private void myOptionsButton_Click(object sender, RoutedEventArgs e)
-        {
-            //ConfigurationView myConfig = new ConfigurationView
-            //{
-            //    DataContext = new QuestionPackViewModel(pack)
-            //}
-        }
     }
 }

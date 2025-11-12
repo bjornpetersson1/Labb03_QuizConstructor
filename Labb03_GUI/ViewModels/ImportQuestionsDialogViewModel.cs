@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -73,10 +74,9 @@ namespace Labb03_GUI.ViewModels
             ImportQuestionsCommand = new DelegateCommand(async _ => ImportQuestionsAsync());
             NumberOfQuestions = 1;
             SelectedDifficulty = Difficulties[1];
-            LoadCategoriesAsync();
         }
 
-        private async void LoadCategoriesAsync()
+        public async void LoadCategoriesAsync()
         {
             Categories = await aPIService.GetCategoriesAsync();
             RaisePropertyChanged(nameof(Categories));

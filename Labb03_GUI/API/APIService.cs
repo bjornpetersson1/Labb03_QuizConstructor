@@ -7,6 +7,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace Labb03_GUI.API
 {
@@ -33,6 +34,19 @@ namespace Labb03_GUI.API
             var url = "https://opentdb.com/api_category.php";
             var response = await _httpClient.GetFromJsonAsync<CategoryRespons>(url);
             return response?.Trivia_categories ?? new List<Category>();
+        }
+        public async Task<bool> IsServerAvailable()
+        {
+            try
+            {
+                _httpClient.Timeout = TimeSpan.FromSeconds(4);
+                var respons = await _httpClient.GetAsync("https://opentdb.com/");
+                return respons.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

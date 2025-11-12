@@ -57,7 +57,6 @@
                 Width="20"
                 Height="20"
                 Content="&#xE713;"
-                Click="myOptionsButton_Click"
                 Command="{Binding MenuViewModel.OpenOptionsDialogCommand}"
                 />
         </StackPanel>

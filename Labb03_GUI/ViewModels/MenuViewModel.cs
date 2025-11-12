@@ -1,4 +1,5 @@
-﻿using Labb03_GUI.Command;
+﻿using Labb03_GUI.API;
+using Labb03_GUI.Command;
 using Labb03_GUI.Dialogs;
 using Labb03_GUI.Models;
 using System;
@@ -38,13 +39,22 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
-        private void OpenImportDialog(object? obj)
+        private async void OpenImportDialog(object? obj)
         {
-            var dialog = new ImportQuestionsDialog();
-            dialog.Owner = Application.Current.MainWindow;
-            dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            dialog.DataContext = _mainWindowViewModel.ImportQuestionsDialogViewModel;
-            dialog.ShowDialog();
+            APIService? _aPIService = new APIService();
+            if (await _aPIService.IsServerAvailable())
+            {
+                var dialog = new ImportQuestionsDialog();
+                _mainWindowViewModel.ImportQuestionsDialogViewModel.LoadCategoriesAsync();
+                dialog.Owner = Application.Current.MainWindow;
+                dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                dialog.DataContext = _mainWindowViewModel.ImportQuestionsDialogViewModel;
+                dialog.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No host available, check your network connection", "Unable to reach server", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private bool CanDeleteActivePack(object? arg)

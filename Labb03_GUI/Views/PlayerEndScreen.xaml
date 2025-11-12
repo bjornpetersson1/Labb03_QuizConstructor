@@ -9,7 +9,8 @@
     <Grid>
         <StackPanel
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                Orientation="Vertical">
             <TextBlock
                 Margin="10"
                 Text="Quiz is over"
@@ -33,8 +34,13 @@
                 <TextBlock
                     FontSize="30"
                     Text=" answers correct "/>
-
             </StackPanel>
+            <Button
+                Content="Return to Config"
+                Command="{Binding OpenConfigViewCommand}"/>
+            <Button
+                Content="Play again"
+                Command="{Binding OpenPlayerViewCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
