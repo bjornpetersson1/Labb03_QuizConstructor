@@ -5,8 +5,7 @@ Fixa snabbkommandon både i menyn och funktionalitet
 
 API-grejen
     Savemetoden - skriv om till interfacebaserat
-
-application rsoursces för styles
+    Lägg kolla internet där
 
 PlayerView
     Visa rätt svar i grönt när man trycker fel
@@ -24,6 +23,4 @@ Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 fixa timertick initieringen
 
 Fråga Fredrik
-Internetchecken - kolla bara när importfönstret öppnar
-
-flytta alla raise från constructorn
+Internetchecken - kolla bara när importfönstret öppna
