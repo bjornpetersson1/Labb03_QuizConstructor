@@ -11,7 +11,6 @@ namespace Labb03_GUI.ViewModels
     class MainWindowViewModel : ViewModelBase
     {
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
-        private QuestionPackViewModel _activePack;
         private bool _isOnline;
 
         public bool IsOnline
@@ -36,6 +35,7 @@ namespace Labb03_GUI.ViewModels
         }
 
 
+        private QuestionPackViewModel _activePack;
         public QuestionPackViewModel ActivePack
         {
             get { return _activePack; }
