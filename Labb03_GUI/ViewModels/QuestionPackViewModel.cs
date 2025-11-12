@@ -9,7 +9,7 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly QuestionPack _model;
         private readonly MainWindowViewModel? _mainWindowViewModel;
-        public DelegateCommand AddQuestionCommand { get; }
+        public DelegateCommand AddQuestionCommand { get; } // lägg i configviewmodel
         public DelegateCommand RemoveQuestionCommand { get; }
         public bool IsActive => _mainWindowViewModel.ActivePack == this;
         public void RefreshActiveStatus() => RaisePropertyChanged(nameof(IsActive));
@@ -38,7 +38,7 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanRemoveQuestion(object? arg)
         {
-            return arg is Question;
+            return SelectedQuestion != null && _mainWindowViewModel.ActivePack != null;
         }
 
         private void RemoveQuestion(object? obj)

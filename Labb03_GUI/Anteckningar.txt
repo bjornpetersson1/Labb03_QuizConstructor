@@ -27,5 +27,5 @@ Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 fixa timertick initieringen
 
 Fråga Fredrik
-Internetchecken
-+/- frågor
+Internetchecken - kolla bara när importfönstret öppnar
++/- frågor - lägg det på configviewmodel

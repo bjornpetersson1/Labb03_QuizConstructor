@@ -105,7 +105,7 @@ namespace Labb03_GUI.ViewModels
             };
             UpdateInternetStatusAync();
         }
-        private async Task UpdateInternetStatusAync()
+        private async Task UpdateInternetStatusAync()  // den här ska loopas med timer
         {
             IsOnline = await CheckInternetConnectionActiveAsync();
         }
@@ -113,7 +113,7 @@ namespace Labb03_GUI.ViewModels
         {
             try
             {
-                using var client = new HttpClient();
+                using var client = new HttpClient(); //gör bara en
                 client.Timeout = TimeSpan.FromSeconds(4);
                 var respons = await client.GetAsync("https://github.com/everyloop");
                 return respons.IsSuccessStatusCode;
