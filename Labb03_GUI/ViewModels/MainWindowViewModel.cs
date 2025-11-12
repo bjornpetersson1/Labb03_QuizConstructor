@@ -10,7 +10,22 @@ namespace Labb03_GUI.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
+        private ObservableCollection<QuestionPackViewModel> _packs;
+        public ObservableCollection<QuestionPackViewModel> Packs 
+        {
+            get => _packs;
+            set
+            {
+                _packs = value;
+                RaisePropertyChanged(nameof(Packs));
+                MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
+                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
+                OpenConfigViewCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
+
+            }
+        }
         private bool _isOnline;
 
         public bool IsOnline
@@ -83,16 +98,7 @@ namespace Labb03_GUI.ViewModels
             PlayerViewModel = new PlayerViewModel(this);
             PlayerView.DataContext = PlayerViewModel;
             ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
-
-            Packs.CollectionChanged += (s, e) =>
-            { 
-                RaisePropertyChanged(nameof(Packs));
-                MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
-                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
-                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
-                OpenConfigViewCommand.RaiseCanExecuteChanged();
-                OpenPlayerViewCommand.RaiseCanExecuteChanged();
-            };
+            Packs = new ObservableCollection<QuestionPackViewModel>();
             NetworkChange.NetworkAvailabilityChanged += (s, e) =>
             {
                 IsOnline = e.IsAvailable;
