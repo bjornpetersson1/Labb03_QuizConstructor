@@ -65,15 +65,15 @@
                 <MenuItem Header="_Edit">
                     <MenuItem 
                         Header="_Add Question"
-                        Command="{Binding ActivePack.AddQuestionCommand}">
+                        Command="{Binding ConfigurationViewModel.AddQuestionCommand}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE710;"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem 
                         Header="_Remove Question"
-                        Command="{Binding ActivePack.RemoveQuestionCommand}"
-                        CommandParameter="{Binding ActivePack.SelectedQuestion}">
+                        Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"
+                        CommandParameter="{Binding ConfigurationViewModel.SelectedQuestion}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE738;"/>
                         </MenuItem.Icon>
@@ -113,15 +113,6 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
-            <TextBlock
-                FontFamily="Segoe MDL2 Assets"
-                FontSize="15"
-                Text="&#xE774;"
-                HorizontalAlignment="Right"
-                DockPanel.Dock="Right"
-                Margin="15"
-                Foreground="{Binding IsOnline, Converter={StaticResource BoolToBrushConverter}}"
-                />
         </DockPanel>
     </Grid>
 </UserControl>

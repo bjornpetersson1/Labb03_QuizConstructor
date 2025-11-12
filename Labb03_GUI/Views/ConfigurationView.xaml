@@ -38,7 +38,7 @@
                 Width="20"
                 Height="20"
                 Content="&#xE710;" 
-                Command="{Binding ActivePack.AddQuestionCommand}"/>
+                Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
             <Button
                 x:Name="myRemoveButton"
                 FontFamily="Segoe MDL2 Assets"
@@ -47,8 +47,8 @@
                 Width="20"
                 Height="20"
                 Content="&#xE738;"
-                Command="{Binding ActivePack.RemoveQuestionCommand}"
-                CommandParameter="{Binding ElementName=myQuestionListBox, Path=SelectedItem}"/>
+                Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+
             <Button
                 x:Name="myOptionsButton"
                 FontFamily="Segoe MDL2 Assets"
@@ -67,7 +67,7 @@
             Grid.RowSpan="2"
             Margin="5"
             ItemsSource="{Binding ActivePack.Questions}"
-            SelectedItem="{Binding ActivePack.SelectedQuestion, Mode=TwoWay}"
+            SelectedItem="{Binding ConfigurationViewModel.SelectedQuestion, Mode=TwoWay}"
         >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -131,6 +131,5 @@
                     UpdateSourceTrigger=PropertyChanged}"/>
 
         </StackPanel>
-            
     </Grid>
 </UserControl>

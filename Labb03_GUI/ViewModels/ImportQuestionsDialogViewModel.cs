@@ -94,7 +94,7 @@ namespace Labb03_GUI.ViewModels
                 string decodedQuery = WebUtility.HtmlDecode(que.Question);
                 string decodedCorrectAnswer = WebUtility.HtmlDecode(que.Correct_Answer);
                 var decodedIncorrectAnswers = que.Incorrect_Answers.Select(ans => WebUtility.HtmlDecode(ans)).ToList();
-                _mainWindowViewModel.ActivePack.AddQuestionCommand.Execute(new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
+                _mainWindowViewModel.ConfigurationViewModel?.AddQuestionCommand.Execute(new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
             }
             string responseMessage = TokenRespons.TokenMessage.ContainsKey(responseCode) ? TokenRespons.TokenMessage[responseCode] : "Unknown error occured";
             MessageBox.Show(responseMessage, "Question import status", MessageBoxButton.OK, MessageBoxImage.Information);

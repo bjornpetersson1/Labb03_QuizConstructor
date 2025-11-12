@@ -9,61 +9,14 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly QuestionPack _model;
         private readonly MainWindowViewModel? _mainWindowViewModel;
-        public DelegateCommand AddQuestionCommand { get; } // lägg i configviewmodel
-        public DelegateCommand RemoveQuestionCommand { get; }
         public bool IsActive => _mainWindowViewModel.ActivePack == this;
         public void RefreshActiveStatus() => RaisePropertyChanged(nameof(IsActive));
-
-        private Question? _selectedQuestion;
-        public Question? SelectedQuestion
-        {
-            get => _selectedQuestion;
-            set
-            {
-                _selectedQuestion = value;
-                RaisePropertyChanged();
-                RemoveQuestionCommand.RaiseCanExecuteChanged();
-            }
-        }
         public QuestionPackViewModel(QuestionPack model, MainWindowViewModel mainWindowViewModel)
         {
             _model = model;
             _mainWindowViewModel = mainWindowViewModel;
             Questions = new ObservableCollection<Question>(_model.Questions);
             Questions.CollectionChanged += Questions_CollectionChanged;
-            AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
-            RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
-        }
-
-
-        private bool CanRemoveQuestion(object? arg)
-        {
-            return SelectedQuestion != null && _mainWindowViewModel.ActivePack != null;
-        }
-
-        private void RemoveQuestion(object? obj)
-        {
-            if (obj is Question question && Questions.Contains(question))
-            {
-                Questions.Remove(question);
-            }
-        }
-
-        private bool CanAddQuestion(object? arg)
-        {
-            return _mainWindowViewModel?.Packs.Count > 0 && _model.Questions != null;
-        }
-
-        private void AddQuestion(object? obj)
-        {
-            if (obj is Question question)
-            {
-                Questions.Add(question);
-            }
-            else
-            {
-                Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
-            }
         }
 
         private void Questions_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

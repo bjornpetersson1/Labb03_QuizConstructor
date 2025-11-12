@@ -5,9 +5,6 @@ Fixa snabbkommandon både i menyn och funktionalitet
 
 API-grejen
     Savemetoden - skriv om till interfacebaserat
-    Hantera internetfel, alltså brist på internet
-
-Lägg till en "internet är aktivt"-symbol och om internet inte finns - gråa ut import :)
 
 application rsoursces för styles
 
@@ -28,4 +25,5 @@ fixa timertick initieringen
 
 Fråga Fredrik
 Internetchecken - kolla bara när importfönstret öppnar
-+/- frågor - lägg det på configviewmodel
+
+flytta alla raise från constructorn

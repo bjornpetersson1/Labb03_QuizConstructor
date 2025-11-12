@@ -47,6 +47,7 @@ namespace Labb03_GUI.ViewModels
                     pack.RefreshActiveStatus();
                 }
                 RaisePropertyChanged();
+                ConfigurationViewModel.AddQuestionCommand.RaiseCanExecuteChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
             }
@@ -91,13 +92,6 @@ namespace Labb03_GUI.ViewModels
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenConfigViewCommand.RaiseCanExecuteChanged();
                 OpenPlayerViewCommand.RaiseCanExecuteChanged();
-                foreach (var pack in Packs)
-                {
-                    pack.AddQuestionCommand.RaiseCanExecuteChanged();
-                    pack.RemoveQuestionCommand.RaiseCanExecuteChanged();
-                }
-                ActivePack?.AddQuestionCommand.RaiseCanExecuteChanged();
-                ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
             };
             NetworkChange.NetworkAvailabilityChanged += (s, e) =>
             {
@@ -105,7 +99,7 @@ namespace Labb03_GUI.ViewModels
             };
             UpdateInternetStatusAync();
         }
-        private async Task UpdateInternetStatusAync()  // den här ska loopas med timer
+        private async Task UpdateInternetStatusAync()  // den här ska loopas med timer //eller kolla bara en gång när importfönstret öppnar
         {
             IsOnline = await CheckInternetConnectionActiveAsync();
         }
