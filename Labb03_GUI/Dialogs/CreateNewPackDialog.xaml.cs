@@ -23,7 +23,6 @@ namespace Labb03_GUI.Dialogs
         public CreateNewPackDialog()
         {
             InitializeComponent();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -2,6 +2,8 @@
 using Labb03_GUI.Models;
 using Labb03_GUI.Views;
 using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Windows.Controls;
 
 namespace Labb03_GUI.ViewModels
@@ -10,6 +12,18 @@ namespace Labb03_GUI.ViewModels
     {
         public ObservableCollection<QuestionPackViewModel> Packs { get; } = new();
         private QuestionPackViewModel _activePack;
+        private bool _isOnline;
+
+        public bool IsOnline
+        {
+            get => _isOnline;
+            set 
+            {
+                _isOnline = value;
+                RaisePropertyChanged(nameof(IsOnline));
+            }
+        }
+
         private UserControl _currentView;
         public UserControl CurrentView
         {
@@ -72,6 +86,7 @@ namespace Labb03_GUI.ViewModels
             Packs.CollectionChanged += (s, e) =>
             { 
                 RaisePropertyChanged(nameof(Packs));
+                MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
                 MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenConfigViewCommand.RaiseCanExecuteChanged();
@@ -84,11 +99,30 @@ namespace Labb03_GUI.ViewModels
                 ActivePack?.AddQuestionCommand.RaiseCanExecuteChanged();
                 ActivePack?.RemoveQuestionCommand.RaiseCanExecuteChanged();
             };
-            //ActivePack.Questions.Add(new Question("okej?", "JA!!!", "javiss", "t", "45"));
-            //ActivePack.Questions.Add(new Question("en till fråååååga!!", "23", "43", "67", "99"));
-
+            NetworkChange.NetworkAvailabilityChanged += (s, e) =>
+            {
+                IsOnline = e.IsAvailable;
+            };
+            UpdateInternetStatusAync();
         }
-
+        private async Task UpdateInternetStatusAync()
+        {
+            IsOnline = await CheckInternetConnectionActiveAsync();
+        }
+        public async Task<bool> CheckInternetConnectionActiveAsync()
+        {
+            try
+            {
+                using var client = new HttpClient();
+                client.Timeout = TimeSpan.FromSeconds(4);
+                var respons = await client.GetAsync("https://github.com/everyloop");
+                return respons.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public async Task IntializeAsync()
         {
             var loadedPacks = await _jsonModel.LoadFromJsonAsync();

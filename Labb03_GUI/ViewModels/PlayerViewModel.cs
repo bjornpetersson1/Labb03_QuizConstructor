@@ -109,6 +109,7 @@ namespace Labb03_GUI.ViewModels
             else
             {
                 timer.Stop();
+                await Task.Delay(2000);
                 _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
             }
             NumberOfCurrentQuestion++;

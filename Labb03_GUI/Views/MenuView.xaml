@@ -12,7 +12,6 @@
                 <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
                 <Setter Property="FontSize" Value="15" />
             </Style>
-                   
         </Grid.Resources>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -25,7 +24,8 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="S_elect Question Pack"
-                              ItemsSource="{Binding Packs}">
+                              ItemsSource="{Binding Packs}"
+                              IsEnabled="{Binding MenuViewModel.HasPacks}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE82D;"/>
                         </MenuItem.Icon>
@@ -61,7 +61,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                
+
                 <MenuItem Header="_Edit">
                     <MenuItem 
                         Header="_Add Question"
@@ -87,7 +87,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                
+
                 <MenuItem Header="_View">
                     <MenuItem 
                         Header="_Play"
@@ -113,6 +113,15 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
+            <TextBlock
+                FontFamily="Segoe MDL2 Assets"
+                FontSize="15"
+                Text="&#xE774;"
+                HorizontalAlignment="Right"
+                DockPanel.Dock="Right"
+                Margin="15"
+                Foreground="{Binding IsOnline, Converter={StaticResource BoolToBrushConverter}}"
+                />
         </DockPanel>
     </Grid>
 </UserControl>

@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="New Question Pack" Height="250" Width="200"
-        DataContext="{Binding CreateNewPackDialogViewModel}">
+        Title="New Question Pack" Height="250" Width="200">
     <Grid>
         <StackPanel>
             <Label

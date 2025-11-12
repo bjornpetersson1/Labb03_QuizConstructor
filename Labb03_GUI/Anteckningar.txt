@@ -9,9 +9,6 @@ API-grejen
 
 Lägg till en "internet är aktivt"-symbol och om internet inte finns - gråa ut import :)
 
-SelectPack - gråa ut om det inte finns några packs
-
-
 application rsoursces för styles
 
 PlayerView
@@ -27,6 +24,8 @@ Dela upp checkanswrmetoden
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 
-Packoptions gråas ut när det itne finns några packs mn plu o minus gråas inte ut, fixa det - Fråga frdr om det här
-
 fixa timertick initieringen
+
+Fråga Fredrik
+Internetchecken
++/- frågor

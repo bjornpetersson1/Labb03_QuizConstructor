@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Labb03_GUI.Dialogs;
+using Labb03_GUI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +43,13 @@ namespace Labb03_GUI.Views
             }
 
         }
+
+        //private void OpenCreateDialog_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var dialog = new CreateNewPackDialog();
+        //    dialog.Owner = Application.Current.MainWindow;
+        //    dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        //    dialog.ShowDialog();
+        //}
     }
 }
