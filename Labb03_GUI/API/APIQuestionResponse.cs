@@ -10,6 +10,6 @@ namespace Labb03_GUI.API
     class APIQuestionResponse
     {
         public int Response_Code { get; set; }
-        public List<APIQuestion> Results { get; set; }
+        public List<APIQuestion>? Results { get; set; }
     }
 }

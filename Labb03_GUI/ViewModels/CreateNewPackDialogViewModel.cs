@@ -33,7 +33,7 @@ namespace Labb03_GUI.ViewModels
             };
             var newPack = new QuestionPackViewModel(newModel, _mainWindowViewModel);
 
-            _mainWindowViewModel.Packs.Add(newPack);
+            _mainWindowViewModel.Packs?.Add(newPack);
             _mainWindowViewModel.ActivePack = newPack;
             TempNewPack = new QuestionPackViewModel(new QuestionPack(), _mainWindowViewModel);
             RaisePropertyChanged(nameof(TempNewPack));

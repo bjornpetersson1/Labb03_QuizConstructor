@@ -82,6 +82,7 @@ namespace Labb03_GUI.ViewModels
         public async void LoadCategoriesAsync()
         {
             Categories = await aPIService.GetCategoriesAsync();
+
             RaisePropertyChanged(nameof(Categories));
 
             if (Categories.Any())

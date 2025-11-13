@@ -12,7 +12,6 @@ namespace Labb03_GUI.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        private JsonModel _jsonModel = new JsonModel();
         public ConfigurationView ConfigurationView { get; }
         public PlayerView PlayerView { get; }
         public PlayerEndScreenView PlayerEndScreenView { get; }
@@ -24,6 +23,7 @@ namespace Labb03_GUI.ViewModels
         public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
         public QuestionPackViewModel? QuestionPackViewModel { get; set; }
         public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
+        private JsonModel _jsonModel = new JsonModel();
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
         public DelegateCommand OpenEndScreenCommand { get; }
@@ -64,6 +64,7 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
+
         private QuestionPackViewModel? _activePack;
         public QuestionPackViewModel? ActivePack
         {
@@ -71,22 +72,24 @@ namespace Labb03_GUI.ViewModels
             set
             {
                 _activePack = value;
-                foreach (var pack in Packs)
+                if (Packs != null)
                 {
-                    pack.RefreshActiveStatus();
+                    foreach (var pack in Packs)
+                    {
+                        pack.RefreshActiveStatus();
+                    }
                 }
                 RaisePropertyChanged();
                 UpdateHasActivePack();
-                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
-                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
-                MenuViewModel?.OpenImportDialogCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
-                OpenPlayerViewCommand.RaiseCanExecuteChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
+                MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenImportDialogCommand.RaiseCanExecuteChanged();
             }
         }
-
         public MainWindowViewModel()
         {
             MenuViewModel = new MenuViewModel(this);
@@ -120,11 +123,11 @@ namespace Labb03_GUI.ViewModels
         {
             return Packs?.Count != 0;
         }
+
         private void OpenConfigView(object? obj)
         {
             CurrentView = ConfigurationView;
         }
-
         private bool CanOpenPlayerView(object? arg)
         {
            return ActivePack != null 
@@ -157,7 +160,6 @@ namespace Labb03_GUI.ViewModels
             }
             else ActivePack = Packs?.FirstOrDefault();
         }
-
         private void UpdateHasActivePack()
         {
             if (MenuViewModel != null)

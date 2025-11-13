@@ -9,6 +9,6 @@ namespace Labb03_GUI.API
     internal class Category
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

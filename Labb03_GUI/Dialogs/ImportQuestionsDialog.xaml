@@ -16,6 +16,7 @@
             />
             <ComboBox
                 Margin="10 0 10 0"
+                Text="Loading..."
                 ItemsSource="{Binding Categories}"
                 DisplayMemberPath="Name"
                 SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"

@@ -9,8 +9,8 @@ namespace Labb03_GUI.Models
 {
     internal class ImportQuestion
     {
-        public string Difficulty { get; set; }
-        public Category Category { get; set; }
+        public string? Difficulty { get; set; }
+        public Category? Category { get; set; }
         
     }
 }

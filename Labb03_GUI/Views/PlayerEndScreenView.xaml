@@ -16,19 +16,23 @@
                 Text="Quiz is over"
                 />
             <StackPanel
-                Orientation="Horizontal"
-                TextElement.FontSize="30">
+                Orientation="Horizontal">
                 <TextBlock
+                    FontSize="30"
                     Text="you got "/>
                 <TextBlock
+                    FontSize="30"
                     Foreground="Green"
                     Text="{Binding PlayerViewModel.NumberOfCorrectAnswers}"/>
                 <TextBlock
+                    FontSize="30"
                     Text=" out of "/>
                 <TextBlock
+                    FontSize="30"
                     Foreground="Red"
                     Text="{Binding ActivePack.Questions.Count}"/>
                 <TextBlock
+                    FontSize="30"
                     Text=" answers correct "/>
             </StackPanel>
             <Button
@@ -38,7 +42,6 @@
                 Margin="20"
                 Padding="10"
                 FontSize="12"
-                FontWeight="Bold"
                 HorizontalAlignment="Center"
                 Content="Return to edit view"
                 Command="{Binding OpenConfigViewCommand}"/>

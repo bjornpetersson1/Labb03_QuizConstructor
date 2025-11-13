@@ -36,7 +36,7 @@ namespace Labb03_GUI.ViewModels
 
         private void RemoveQuestion(object? obj)
         {
-            if(SelectedQuestion != null)
+            if(_mainWindowViewModel.ActivePack != null && SelectedQuestion != null)
             {
                 _mainWindowViewModel.ActivePack.Questions.Remove(SelectedQuestion);
             }
@@ -51,13 +51,16 @@ namespace Labb03_GUI.ViewModels
 
         private void AddQuestion(object? obj)
         {
-            if (obj is Question question)
+            if (_mainWindowViewModel.ActivePack != null)
             {
-                _mainWindowViewModel.ActivePack.Questions.Add(question);
-            }
-            else
-            {
-                _mainWindowViewModel.ActivePack.Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
+                if (obj is Question question)
+                {
+                    _mainWindowViewModel.ActivePack.Questions.Add(question);
+                }
+                else
+                {
+                    _mainWindowViewModel.ActivePack.Questions.Add(new Question("<question>", "<correct answer>", "<incorrect answer>", "<incorrect answer>", "<incorrect answer>"));
+                }
             }
         }
     }
