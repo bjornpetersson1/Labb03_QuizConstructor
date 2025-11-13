@@ -8,7 +8,7 @@
         xmlns:views="clr-namespace:Labb03_GUI.Views"
         mc:Ignorable="d"
         d:Height='800' d:Width="400"
-        Title="Quiz Constructor 2000" 
+        Title="Quiz Constructor" 
         Height="450" 
         Width="800"
         MinWidth="500"
