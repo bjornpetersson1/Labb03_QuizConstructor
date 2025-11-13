@@ -27,7 +27,7 @@
             <ComboBox
                 Margin="10 0 10 0"
                 ItemsSource="{Binding TempNewPack.Difficulties}"
-                SelectedItem="{Binding TempNewPack.Difficulty}">
+                SelectedItem="{Binding TempNewPack.Difficulty, Mode=TwoWay}">
             </ComboBox>
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

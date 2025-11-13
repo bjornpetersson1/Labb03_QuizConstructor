@@ -18,6 +18,20 @@ namespace Labb03_GUI.ViewModels
         private readonly APIService aPIService = new APIService();
         public string[] Difficulties { get; set; } = new string[] { "Easy", "Medium", "Hard" };
         public DelegateCommand ImportQuestionsCommand { get; }
+        public List<Category> Categories { get; set; } = new List<Category>();
+
+        private Category _selectedCategory;
+        public Category SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                ImportQuestionModel.Category = value;
+                RaisePropertyChanged(nameof(SelectedCategory));
+            }
+        }
+
         private int _numbersOfQuestions;
         public int NumberOfQuestions
         {
@@ -30,7 +44,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public List<Category> Categories { get; set; } = new List<Category>();
+
         private ImportQuestion _importQuestioModel;
         public ImportQuestion ImportQuestionModel 
         {
@@ -41,19 +55,8 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged(nameof(ImportQuestionModel));
             }
         } 
-        private Category _selectedCategory;
-        public Category SelectedCategory
-        {
-            get => _selectedCategory;
-            set
-            {
-                _selectedCategory = value;
-                ImportQuestionModel.Category = value;
-                RaisePropertyChanged(nameof(SelectedCategory));
-            }
-        }
-        private string _selectedDifficulty;
 
+        private string _selectedDifficulty;
         public string SelectedDifficulty
         {
             get => _selectedDifficulty; 

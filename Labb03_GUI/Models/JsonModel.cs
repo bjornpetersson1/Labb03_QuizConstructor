@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Labb03_GUI.Models
@@ -12,11 +7,13 @@ namespace Labb03_GUI.Models
     internal class JsonModel
     {
         private readonly string _filePath;
+
         public JsonModel()
         {
             _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "packs.json");
-            Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);                
+            Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
         }
+
         public async Task SaveToJsonAsync(List<QuestionPack> packs)
         {
             var options = new JsonSerializerOptions
@@ -44,6 +41,5 @@ namespace Labb03_GUI.Models
                 return new List<QuestionPack>();
             }
         }
-        
     }
 }

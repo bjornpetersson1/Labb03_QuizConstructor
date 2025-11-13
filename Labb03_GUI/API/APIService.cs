@@ -1,13 +1,7 @@
 ﻿using Labb03_GUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 
 namespace Labb03_GUI.API
 {
@@ -24,9 +18,6 @@ namespace Labb03_GUI.API
                 PropertyNameCaseInsensitive = true
             };
             var data = JsonSerializer.Deserialize<APIQuestionResponse>(response, options);
-
-
-
             return (data.Results, data.Response_Code);
         }
         public async Task<List<Category>> GetCategoriesAsync()
