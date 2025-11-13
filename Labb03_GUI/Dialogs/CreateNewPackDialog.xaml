@@ -25,10 +25,9 @@
                 Margin="10 5 10 0"
                 />
             <ComboBox
-                Margin="10 0 10 0">
-                <ComboBoxItem Content="Easy" />
-                <ComboBoxItem IsSelected="True" Content="Medium" />
-                <ComboBoxItem Content="Hard" />
+                Margin="10 0 10 0"
+                ItemsSource="{Binding TempNewPack.Difficulties}"
+                SelectedItem="{Binding TempNewPack.Difficulty}">
             </ComboBox>
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
