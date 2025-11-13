@@ -20,8 +20,8 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand ImportQuestionsCommand { get; }
         public List<Category> Categories { get; set; } = new List<Category>();
 
-        private Category _selectedCategory;
-        public Category SelectedCategory
+        private Category? _selectedCategory;
+        public Category? SelectedCategory
         {
             get => _selectedCategory;
             set
@@ -45,8 +45,8 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
-        private ImportQuestion _importQuestioModel;
-        public ImportQuestion ImportQuestionModel 
+        private ImportQuestion? _importQuestioModel;
+        public ImportQuestion? ImportQuestionModel 
         {
             get => _importQuestioModel;
             set
@@ -56,8 +56,8 @@ namespace Labb03_GUI.ViewModels
             }
         } 
 
-        private string _selectedDifficulty;
-        public string SelectedDifficulty
+        private string? _selectedDifficulty;
+        public string? SelectedDifficulty
         {
             get => _selectedDifficulty; 
             set 
@@ -89,6 +89,7 @@ namespace Labb03_GUI.ViewModels
                 SelectedCategory = Categories.OrderBy(c => c.Id).First();
             }
         }
+
         private async Task ImportQuestionsAsync()
         {
             var (questions, responseCode) = await aPIService.GetQuestionsAsync(NumberOfQuestions, ImportQuestionModel);
@@ -97,7 +98,8 @@ namespace Labb03_GUI.ViewModels
                 string decodedQuery = WebUtility.HtmlDecode(que.Question);
                 string decodedCorrectAnswer = WebUtility.HtmlDecode(que.Correct_Answer);
                 var decodedIncorrectAnswers = que.Incorrect_Answers.Select(ans => WebUtility.HtmlDecode(ans)).ToList();
-                _mainWindowViewModel.ConfigurationViewModel?.AddQuestionCommand.Execute(new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
+                _mainWindowViewModel.ConfigurationViewModel?.AddQuestionCommand.Execute(
+                    new Question(decodedQuery, decodedCorrectAnswer, decodedIncorrectAnswers[0], decodedIncorrectAnswers[1], decodedIncorrectAnswers[2]));
             }
             string responseMessage = TokenRespons.TokenMessage.ContainsKey(responseCode) ? TokenRespons.TokenMessage[responseCode] : "Unknown error occured";
             MessageBox.Show(responseMessage, "Question import status", MessageBoxButton.OK, MessageBoxImage.Information);

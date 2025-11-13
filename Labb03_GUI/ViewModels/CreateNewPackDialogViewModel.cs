@@ -11,10 +11,9 @@ namespace Labb03_GUI.ViewModels
     class CreateNewPackDialogViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel _mainWindowViewModel;
+        private readonly QuestionPack _model;
         public DelegateCommand CreateNewPackCommand { get; }
         public QuestionPackViewModel TempNewPack { get; set; }
-        private readonly QuestionPack _model;
-
 
         public CreateNewPackDialogViewModel(MainWindowViewModel mainWindowViewModel)
         {

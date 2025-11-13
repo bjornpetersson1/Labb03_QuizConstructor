@@ -9,6 +9,7 @@ namespace Labb03_GUI.ViewModels
     class AnswerViewModel : ViewModelBase
     {
         public string Text { get; }
+
         private bool? _isCorrect;
         public bool? IsCorrect
         {

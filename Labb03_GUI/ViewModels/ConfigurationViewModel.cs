@@ -9,6 +9,7 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel _mainWindowViewModel;
         public DelegateCommand AddQuestionCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
+
         private Question? _selectedQuestion;
         public Question? SelectedQuestion
         {
@@ -27,6 +28,7 @@ namespace Labb03_GUI.ViewModels
             AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
         }
+
         private bool CanRemoveQuestion(object? arg)
         {
             return SelectedQuestion != null && _mainWindowViewModel.ActivePack != null;
@@ -34,7 +36,10 @@ namespace Labb03_GUI.ViewModels
 
         private void RemoveQuestion(object? obj)
         {
-            _mainWindowViewModel.ActivePack.Questions.Remove(SelectedQuestion);
+            if(SelectedQuestion != null)
+            {
+                _mainWindowViewModel.ActivePack.Questions.Remove(SelectedQuestion);
+            }
         }
 
         private bool CanAddQuestion(object? arg)

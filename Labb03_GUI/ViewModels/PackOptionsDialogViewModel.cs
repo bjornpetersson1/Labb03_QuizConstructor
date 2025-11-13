@@ -15,7 +15,6 @@ namespace Labb03_GUI.ViewModels
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
         
         private string _packName = string.Empty;
-
         public string PackName
         {
             get => _packName;
@@ -28,7 +27,6 @@ namespace Labb03_GUI.ViewModels
                 }
             }
         }
-
 
         public PackOptionsDialogViewModel(MainWindowViewModel? mainWindowViewModel)
         {

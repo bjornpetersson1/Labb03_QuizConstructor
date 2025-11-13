@@ -22,13 +22,14 @@ namespace Labb03_GUI.ViewModels
         public PlayerView PlayerView { get; }
         public PlayerEndScreen PlayerEndScreen { get; }
         public QuestionPackViewModel QuestionPackViewModel { get; set; }
+        public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
+        private JsonModel _jsonModel = new JsonModel();
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
         public DelegateCommand OpenEndScreenCommand { get; }
         public DelegateCommand ToggleFullscreenCommand { get; }
         public DelegateCommand ExitApplicationCommand { get; }
-        public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
-        private JsonModel _jsonModel = new JsonModel();
+
         private ObservableCollection<QuestionPackViewModel> _packs;
         public ObservableCollection<QuestionPackViewModel> Packs
         {
@@ -58,6 +59,7 @@ namespace Labb03_GUI.ViewModels
                 MenuViewModel?.SetActivePackCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.RemoveQuestionCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
 
             }
         }
@@ -123,6 +125,13 @@ namespace Labb03_GUI.ViewModels
         {
             CurrentView = ConfigurationView;
         }
+        private bool CanOpenPlayerView(object? arg)
+        {
+           return ActivePack != null 
+                && ActivePack.Questions.Count > 0
+                && CurrentView != PlayerView
+                && CurrentView != PlayerEndScreen;
+        }
         private void OpenPlayerView(object? obj)
         {
             PlayerViewModel?.RandomiseActivePack();
@@ -130,10 +139,6 @@ namespace Labb03_GUI.ViewModels
             PlayerViewModel?.ResetGame();
             PlayerViewModel?.SetAndStartTimer();
             CurrentView = PlayerView;
-        }
-        private bool CanOpenPlayerView(object? arg)
-        {
-           return ActivePack != null && ActivePack.Questions.Count > 0;
         }
 
         public async Task IntializeAsync()
