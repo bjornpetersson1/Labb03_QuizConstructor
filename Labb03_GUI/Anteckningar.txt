@@ -1,7 +1,12 @@
 ﻿
 
 Att göra:
-Fixa snabbkommandon både i menyn och funktionalitet
+
+VIKTIGT (G-nivå):
+    Skriva antal frågor i frågepaketet i playview
+        Ta bort poängräkningen? bara visa i slutet?
+    FIXA EXITKNAPPEN DEN GÖR INGET
+        med snabbkommandon och hela fadderullan
 
 API-grejen
     Savemetoden - skriv om till interfacebaserat

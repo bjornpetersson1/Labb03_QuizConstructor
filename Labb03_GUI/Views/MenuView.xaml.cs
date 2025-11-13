@@ -30,8 +30,10 @@ namespace Labb03_GUI.Views
         private void Fullscreen_Click(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);
-            if (window.WindowState != WindowState.Maximized || window.WindowStyle != WindowStyle.None)
+            if (window == null) return;
+            if (window.WindowStyle != WindowStyle.None)
             {
+                window.WindowStyle = WindowStyle.None;
                 window.WindowState = WindowState.Maximized;
                 window.ResizeMode = ResizeMode.CanResize;
             }
@@ -41,15 +43,6 @@ namespace Labb03_GUI.Views
                 window.WindowStyle = WindowStyle.SingleBorderWindow;
                 window.ResizeMode = ResizeMode.CanResize;
             }
-
         }
-
-        //private void OpenCreateDialog_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var dialog = new CreateNewPackDialog();
-        //    dialog.Owner = Application.Current.MainWindow;
-        //    dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        //    dialog.ShowDialog();
-        //}
     }
 }

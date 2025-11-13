@@ -12,7 +12,46 @@
         Height="450" 
         Width="800"
         MinWidth="500"
-        MinHeight="450">
+        MinHeight="450"
+        KeyDown="ToggleFullscreen_KeyDown">
+    <Window.InputBindings>
+        <KeyBinding
+            Key="N"
+            Modifiers="Ctrl"
+            Command="{Binding MenuViewModel.OpenCreateDialogCommand}" />
+        <KeyBinding
+            Key="Delete"
+            Command="{Binding MenuViewModel.DeleteActivePackCommand}" />
+        <KeyBinding
+            Key="I"
+            Modifiers="Ctrl"
+            Command="{Binding MenuViewModel.OpenImportDialogCommand}" />
+        <KeyBinding
+            Key="F4"
+            Modifiers="Alt"
+            Command="" />
+        <KeyBinding
+            Key="Q"
+            Modifiers="Ctrl"
+            Command="{Binding ConfigurationViewModel.AddQuestionCommand}" />
+        <KeyBinding
+            Key="Delete"
+            Modifiers="Ctrl"
+            Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"
+            CommandParameter="{Binding ConfigurationViewModel.SelectedQuestion}" />
+        <KeyBinding
+            Key="O"
+            Modifiers="Ctrl"
+            Command="{Binding MenuViewModel.OpenOptionsDialogCommand}" />
+        <KeyBinding
+            Key="P"
+            Modifiers="Ctrl"
+            Command="{Binding OpenPlayerViewCommand}" />
+        <KeyBinding
+            Key="E"
+            Modifiers="Ctrl"
+            Command="{Binding OpenConfigViewCommand}" />
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

@@ -158,15 +158,31 @@ namespace Labb03_GUI.ViewModels
         }
 
 
-        private void Timer_Tick(object? sender, EventArgs e)
+        private async void Timer_Tick(object? sender, EventArgs e)
         {
             TimeLeft--;
             if (TimeLeft <= 0)
             {
                 timer.Stop();
-                EndQuiz();
+                await HandleTimeoutAsync();
             }
         }
+        private async Task HandleTimeoutAsync()
+        {
+            foreach (var ans in AnswerViewModels)
+            {
+                if (ans.Text == CurrentQuestion.CorrectAnswer)
+                    ans.IsCorrect = true;
+                else
+                    ans.IsCorrect = false;
+            }
+
+            IsAnswerCorrectVisible = false;
+            IsAnswerIncorrectVisible = true;
+
+            await ProceedToNextQuestionOrEndAsync();
+        }
+
         public void SetAndStartTimer()
         {
             if (ActivePack != null)

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Net.Http;
 using System.Net.NetworkInformation;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Labb03_GUI.ViewModels
@@ -75,6 +76,7 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
         public DelegateCommand OpenEndScreenCommand { get; }
+        public DelegateCommand ToggleFullscreenCommand { get; }
         public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
         private JsonModel _jsonModel = new JsonModel();
         public MainWindowViewModel()

@@ -41,5 +41,25 @@ namespace Labb03_GUI
             var myPacks = _mainWindowViewModel.Packs.Select(ps => ps.GetModel()).ToList();
             await _jsonModel.SaveToJsonAsync(myPacks);
         }
+        private void ToggleFullscreen_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F11)
+            {
+                Window window = Window.GetWindow(this);
+                if (window == null) return;
+                if (window.WindowStyle != WindowStyle.None)
+                {
+                    window.WindowStyle = WindowStyle.None;
+                    window.WindowState = WindowState.Maximized;
+                    window.ResizeMode = ResizeMode.CanResize;
+                }
+                else
+                {
+                    window.WindowState = WindowState.Normal;
+                    window.WindowStyle = WindowStyle.SingleBorderWindow;
+                    window.ResizeMode = ResizeMode.CanResize;
+                }
+            }
+        }
     }
 }
