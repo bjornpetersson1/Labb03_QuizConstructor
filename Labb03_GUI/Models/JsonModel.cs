@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Labb03_GUI.Models
 {
@@ -28,12 +29,20 @@ namespace Labb03_GUI.Models
 
         public async Task<List<QuestionPack>> LoadFromJsonAsync()
         {
-            if(!File.Exists(_filePath))
+            if (!File.Exists(_filePath))
                 return new List<QuestionPack>();
 
-            using FileStream stream = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
-            var packs = await JsonSerializer.DeserializeAsync<List<QuestionPack>>(stream);
-            return packs ?? new List<QuestionPack>();
+            try
+            {
+                await using FileStream stream = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
+                var packs = await JsonSerializer.DeserializeAsync<List<QuestionPack>>(stream);
+                return packs ?? new List<QuestionPack>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unable to load your packs: {ex.Message}");
+                return new List<QuestionPack>();
+            }
         }
         
     }

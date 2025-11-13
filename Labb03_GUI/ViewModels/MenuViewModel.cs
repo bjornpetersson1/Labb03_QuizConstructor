@@ -2,6 +2,7 @@
 using Labb03_GUI.Command;
 using Labb03_GUI.Dialogs;
 using Labb03_GUI.Models;
+using Labb03_GUI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,17 @@ namespace Labb03_GUI.ViewModels
         {
             this._mainWindowViewModel = mainWindowViewModel;
             OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog, CanOpenOption);
-            OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
             DeleteActivePackCommand = new DelegateCommand(DeleteActivePack, CanDeleteActivePack);
+            OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog, CanOpenCreate);
             OpenImportDialogCommand = new DelegateCommand(OpenImportDialog, CanOpenImportDialog);
-            SetActivePackCommand = new DelegateCommand(SetActivePack);
+            SetActivePackCommand = new DelegateCommand(SetActivePack, CanSetActivePack);
             HasActivePack = true;
+        }
+
+        private bool CanSetActivePack(object? arg)
+        {
+                return _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerView
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerEndScreen;
         }
 
         private void SetActivePack(object? obj)
@@ -51,7 +58,9 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanOpenImportDialog(object? arg)
         {
-            return _mainWindowViewModel.ActivePack != null;
+            return _mainWindowViewModel?.ActivePack != null
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerView
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerEndScreen; ;
         }
 
         private async void OpenImportDialog(object? obj)
@@ -74,7 +83,9 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanDeleteActivePack(object? arg)
         {
-            return _mainWindowViewModel.ActivePack != null;
+            return _mainWindowViewModel.ActivePack != null 
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerView 
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerEndScreen;
         }
 
         private void DeleteActivePack(object? obj)
@@ -96,14 +107,25 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
+        private bool CanOpenCreate(object? arg)
+        {
+            return _mainWindowViewModel?.CurrentView != _mainWindowViewModel?.PlayerView
+                && _mainWindowViewModel?.CurrentView != _mainWindowViewModel?.PlayerEndScreen;
+        }
         private void OpenCreateDialog(object? obj)
         {
             var dialog = new CreateNewPackDialog();
             dialog.Owner = Application.Current.MainWindow;
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            dialog.DataContext = _mainWindowViewModel.CreateNewPackDialogViewModel;
+            dialog.DataContext = _mainWindowViewModel?.CreateNewPackDialogViewModel;
             dialog.ShowDialog();
 
+        }
+        private bool CanOpenOption(object? arg)
+        {
+            return _mainWindowViewModel?.ActivePack != null
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerView
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerEndScreen;
         }
 
         private void OpenOptionsDialog(object? obj)
@@ -111,12 +133,8 @@ namespace Labb03_GUI.ViewModels
             var dialog = new PackOptionsDialog();
             dialog.Owner = Application.Current.MainWindow;
             dialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            dialog.DataContext = _mainWindowViewModel.PackOptionsDialogViewModel;
+            dialog.DataContext = _mainWindowViewModel?.PackOptionsDialogViewModel;
             dialog.ShowDialog();
-        }
-        private bool CanOpenOption(object? arg)
-        {
-            return _mainWindowViewModel.ActivePack != null;
         }
     }
 }

@@ -10,9 +10,6 @@ PlayerView  BÖRJA HÄR IMORGON, KOLLA IGENOM UPPGIFTEN OCKSÅ
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 
-PackOptions i Config är fortfarande aktiv när det inte finns några packs
 
-OpenPLayerView är lite buggig
-    tar man bort alla packs, läggeer till ny pack och ny fråga så måste man klicka på att man väljer packet igeen för att playska funka
 
-Fixa haspacksgrejen!!
+REFAKTORISERA

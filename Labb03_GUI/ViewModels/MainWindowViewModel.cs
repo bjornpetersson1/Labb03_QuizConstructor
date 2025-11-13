@@ -53,8 +53,12 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenCreateDialogCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenImportDialogCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.SetActivePackCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.RemoveQuestionCommand.RaiseCanExecuteChanged();
+
             }
         }
 

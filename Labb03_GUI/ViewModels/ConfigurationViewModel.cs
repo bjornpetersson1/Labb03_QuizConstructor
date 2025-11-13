@@ -39,7 +39,9 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanAddQuestion(object? arg)
         {
-            return _mainWindowViewModel?.ActivePack != null;
+            return _mainWindowViewModel?.ActivePack != null
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerView
+                && _mainWindowViewModel.CurrentView != _mainWindowViewModel.PlayerEndScreen;
         }
 
         private void AddQuestion(object? obj)
