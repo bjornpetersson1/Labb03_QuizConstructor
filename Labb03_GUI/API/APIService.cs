@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Windows;
 
 namespace Labb03_GUI.API
 {
@@ -22,10 +23,25 @@ namespace Labb03_GUI.API
         }
         public async Task<List<Category>> GetCategoriesAsync()
         {
-            var url = "https://opentdb.com/api_category.php";
-            var response = await _httpClient.GetFromJsonAsync<CategoryRespons>(url);
-            return response?.Trivia_categories ?? new List<Category>();
+            try
+            {
+                var url = "https://opentdb.com/api_category.php";
+                var response = await _httpClient.GetFromJsonAsync<CategoryRespons>(url);
+                return response?.Trivia_categories ?? new List<Category>();
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Could not retrieve categories, check your network connection",
+                                "Network error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return new List<Category>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unkown error", "Unkown error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return new List<Category>();
+            }
         }
+
         public async Task<bool> IsServerAvailable()
         {
             try
