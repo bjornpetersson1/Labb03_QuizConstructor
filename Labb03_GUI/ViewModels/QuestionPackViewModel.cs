@@ -9,8 +9,10 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly QuestionPack _model;
         private readonly MainWindowViewModel? _mainWindowViewModel;
-        public bool IsActive => _mainWindowViewModel.ActivePack == this;
+        public ObservableCollection<Question> Questions { get; set; }
+        public bool IsActive => _mainWindowViewModel?.ActivePack == this;
         public void RefreshActiveStatus() => RaisePropertyChanged(nameof(IsActive));
+
         public QuestionPackViewModel(QuestionPack model, MainWindowViewModel mainWindowViewModel)
         {
             _model = model;
@@ -44,6 +46,7 @@ namespace Labb03_GUI.ViewModels
         {
             get => _model.Difficulties;  
         }
+
         public string Name
         {
             get => _model.Name;
@@ -53,6 +56,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public Difficulty Difficulty
         {
             get => _model.Difficulty;
@@ -62,6 +66,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public int TimeLimitInSeconds
         {
             get => _model.TimeLimitInSeconds;
@@ -71,7 +76,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<Question> Questions { get; set; }
+
         public QuestionPack GetModel()
         {
             _model.Questions = Questions.ToList();

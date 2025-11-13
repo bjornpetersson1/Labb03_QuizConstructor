@@ -12,26 +12,26 @@ namespace Labb03_GUI.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public AnswerViewModel AnswerViewModel { get; set; }
-        public PlayerViewModel? PlayerViewModel { get; set; }
-        public ConfigurationViewModel? ConfigurationViewModel { get; set; }
-        public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
-        public MenuViewModel? MenuViewModel { get; set; }
-        public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
+        private JsonModel _jsonModel = new JsonModel();
         public ConfigurationView ConfigurationView { get; }
         public PlayerView PlayerView { get; }
-        public PlayerEndScreen PlayerEndScreen { get; }
-        public QuestionPackViewModel QuestionPackViewModel { get; set; }
+        public PlayerEndScreenView PlayerEndScreenView { get; }
+        public AnswerViewModel? AnswerViewModel { get; set; }
+        public PlayerViewModel? PlayerViewModel { get; set; }
+        public MenuViewModel? MenuViewModel { get; set; }
+        public ConfigurationViewModel? ConfigurationViewModel { get; set; }
+        public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
+        public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
+        public QuestionPackViewModel? QuestionPackViewModel { get; set; }
         public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
-        private JsonModel _jsonModel = new JsonModel();
         public DelegateCommand OpenPlayerViewCommand { get; }
         public DelegateCommand OpenConfigViewCommand { get; }
         public DelegateCommand OpenEndScreenCommand { get; }
-        public DelegateCommand ToggleFullscreenCommand { get; }
+        public DelegateCommand? ToggleFullscreenCommand { get; }
         public DelegateCommand ExitApplicationCommand { get; }
 
-        private ObservableCollection<QuestionPackViewModel> _packs;
-        public ObservableCollection<QuestionPackViewModel> Packs
+        private ObservableCollection<QuestionPackViewModel>? _packs;
+        public ObservableCollection<QuestionPackViewModel>? Packs
         {
             get => _packs;
             set
@@ -44,8 +44,8 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
-        private UserControl _currentView;
-        public UserControl CurrentView
+        private UserControl? _currentView;
+        public UserControl? CurrentView
         {
             get => _currentView;
             set 
@@ -64,9 +64,8 @@ namespace Labb03_GUI.ViewModels
             }
         }
 
-
-        private QuestionPackViewModel _activePack;
-        public QuestionPackViewModel ActivePack
+        private QuestionPackViewModel? _activePack;
+        public QuestionPackViewModel? ActivePack
         {
             get { return _activePack; }
             set
@@ -78,15 +77,16 @@ namespace Labb03_GUI.ViewModels
                 }
                 RaisePropertyChanged();
                 UpdateHasActivePack();
-                ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
-                PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
-                PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
-                OpenPlayerViewCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.OpenImportDialogCommand.RaiseCanExecuteChanged();
+                ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
+                OpenPlayerViewCommand.RaiseCanExecuteChanged();
+                PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
+                PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
             }
         }
+
         public MainWindowViewModel()
         {
             MenuViewModel = new MenuViewModel(this);
@@ -97,7 +97,7 @@ namespace Labb03_GUI.ViewModels
             ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
             ConfigurationView = new Views.ConfigurationView();
             PlayerView = new Views.PlayerView();
-            PlayerEndScreen = new Views.PlayerEndScreen();
+            PlayerEndScreenView = new Views.PlayerEndScreenView();
             OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
             OpenEndScreenCommand = new DelegateCommand(OpenEndScreen);
@@ -113,24 +113,24 @@ namespace Labb03_GUI.ViewModels
 
         private void OpenEndScreen(object? obj)
         {
-            CurrentView = PlayerEndScreen;
+            CurrentView = PlayerEndScreenView;
         }
 
         private bool CanOpenConfigView(object? arg)
         {
-            return Packs.Count != 0;
+            return Packs?.Count != 0;
         }
-
         private void OpenConfigView(object? obj)
         {
             CurrentView = ConfigurationView;
         }
+
         private bool CanOpenPlayerView(object? arg)
         {
            return ActivePack != null 
                 && ActivePack.Questions.Count > 0
                 && CurrentView != PlayerView
-                && CurrentView != PlayerEndScreen;
+                && CurrentView != PlayerEndScreenView;
         }
         private void OpenPlayerView(object? obj)
         {
@@ -144,19 +144,20 @@ namespace Labb03_GUI.ViewModels
         public async Task IntializeAsync()
         {
             var loadedPacks = await _jsonModel.LoadFromJsonAsync();
-            Packs.Clear();
+            Packs?.Clear();
             foreach (var pack in loadedPacks)
             {
-                Packs.Add(new QuestionPackViewModel(pack, this));
+                Packs?.Add(new QuestionPackViewModel(pack, this));
             }
-            if (Packs.Count == 0)
+            if (Packs?.Count == 0)
             {
                 var pack = new QuestionPack("MyNewQuestionPack");
                 ActivePack = new QuestionPackViewModel(pack, this);
                 Packs.Add(ActivePack);
             }
-            else ActivePack = Packs.FirstOrDefault();
+            else ActivePack = Packs?.FirstOrDefault();
         }
+
         private void UpdateHasActivePack()
         {
             if (MenuViewModel != null)

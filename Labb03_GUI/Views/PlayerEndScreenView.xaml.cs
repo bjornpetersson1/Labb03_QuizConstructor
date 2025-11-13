@@ -19,9 +19,9 @@ namespace Labb03_GUI.Views
     /// <summary>
     /// Interaction logic for PlayerEndScreen.xaml
     /// </summary>
-    public partial class PlayerEndScreen : UserControl
+    public partial class PlayerEndScreenView : UserControl
     {
-        public PlayerEndScreen()
+        public PlayerEndScreenView()
         {
             InitializeComponent();
         }

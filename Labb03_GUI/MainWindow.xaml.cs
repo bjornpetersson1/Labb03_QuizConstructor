@@ -38,9 +38,13 @@ namespace Labb03_GUI
 
         private async void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var myPacks = _mainWindowViewModel.Packs.Select(ps => ps.GetModel()).ToList();
-            await _jsonModel.SaveToJsonAsync(myPacks);
+            if (_mainWindowViewModel.Packs != null)
+            {
+                var myPacks = _mainWindowViewModel.Packs.Select(ps => ps.GetModel()).ToList();
+                await _jsonModel.SaveToJsonAsync(myPacks);
+            }
         }
+
         private void ToggleFullscreen_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.F11)

@@ -11,8 +11,8 @@ namespace Labb03_GUI.ViewModels
     class PackOptionsDialogViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
-        public Array Difficulties => ActivePack.Difficulties;
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
+        public Array Difficulties => ActivePack.Difficulties;
         
         private string _packName = string.Empty;
         public string PackName

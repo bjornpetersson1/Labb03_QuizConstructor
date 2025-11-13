@@ -10,13 +10,14 @@ namespace Labb03_GUI.ViewModels
     class PlayerViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
-        private int _timeLeft;
-        public DelegateCommand CheckAnswerCommand { get; }
+        private readonly Random random = new Random();
+        DispatcherTimer timer = new DispatcherTimer();
         public ObservableCollection<AnswerViewModel> AnswerViewModels { get; set; } = new ObservableCollection<AnswerViewModel>();
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
-        private readonly Random random = new Random();
         public List<Question> RandomQuestions { get; set; } = new List<Question>();
         public ObservableCollection<string> Answers { get; set; } = new ObservableCollection<string>();
+        public DelegateCommand CheckAnswerCommand { get; }
+
         private int _numberOfCurrentQuestion;
         public int NumberOfCurrentQuestion 
         {
@@ -27,6 +28,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         private int _numberOfCorrectAnswers;
         public int NumberOfCorrectAnswers 
         {
@@ -37,6 +39,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         private bool _isAnswerCorrectVisible;
         public bool IsAnswerCorrectVisible
         {
@@ -47,6 +50,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         private bool _isAnswerIncorrectVisible;
         public bool IsAnswerIncorrectVisible
         {
@@ -57,7 +61,8 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
-        DispatcherTimer timer = new DispatcherTimer();
+
+        private int _timeLeft;
         public int TimeLeft
         {
             get => _timeLeft;
@@ -67,6 +72,7 @@ namespace Labb03_GUI.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public Question? CurrentQuestion
         {
             get
@@ -78,6 +84,7 @@ namespace Labb03_GUI.ViewModels
                 return RandomQuestions[CurrentQuestionIndex];
             }
         }
+
         private int _currentQuestionIndex;
         public int CurrentQuestionIndex
         {
@@ -113,7 +120,7 @@ namespace Labb03_GUI.ViewModels
 
         private void HandleAnswerResult(AnswerViewModel answer)
         {
-            answer.IsCorrect = answer.Text == CurrentQuestion.CorrectAnswer;
+            answer.IsCorrect = answer.Text == CurrentQuestion?.CorrectAnswer;
 
             if ((bool)answer.IsCorrect)
             {
@@ -128,7 +135,7 @@ namespace Labb03_GUI.ViewModels
             }
 
             foreach (var ans in AnswerViewModels)
-                ans.IsCorrect = ans.Text == CurrentQuestion.CorrectAnswer;
+                ans.IsCorrect = ans.Text == CurrentQuestion?.CorrectAnswer;
         }
 
         private async Task ProceedToNextQuestionOrEndAsync()
@@ -145,18 +152,20 @@ namespace Labb03_GUI.ViewModels
 
         private void LoadNextQuestion()
         {
-            CurrentQuestionIndex++;
-            RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
-            TimeLeft = ActivePack.TimeLimitInSeconds;
-            timer.Start();
-            NumberOfCurrentQuestion++;
+            if (ActivePack != null)
+            {
+                CurrentQuestionIndex++;
+                RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
+                TimeLeft = ActivePack.TimeLimitInSeconds;
+                timer.Start();
+                NumberOfCurrentQuestion++;
+            }
         }
 
         private void EndQuiz()
         {
-            _mainWindowViewModel.OpenEndScreenCommand.Execute(null);
+            _mainWindowViewModel?.OpenEndScreenCommand.Execute(null);
         }
-
 
         private async void Timer_Tick(object? sender, EventArgs e)
         {
@@ -167,11 +176,12 @@ namespace Labb03_GUI.ViewModels
                 await HandleTimeoutAsync();
             }
         }
+
         private async Task HandleTimeoutAsync()
         {
             foreach (var ans in AnswerViewModels)
             {
-                if (ans.Text == CurrentQuestion.CorrectAnswer)
+                if (ans.Text == CurrentQuestion?.CorrectAnswer)
                     ans.IsCorrect = true;
                 else
                     ans.IsCorrect = false;
@@ -191,11 +201,13 @@ namespace Labb03_GUI.ViewModels
                 timer.Start();
             }
         }
+
         public void ResetGame()
         {
             NumberOfCorrectAnswers = 0;
             NumberOfCurrentQuestion = 1;
         }
+
         public void RandomiseActivePack()
         {
             RandomQuestions = ActivePack?.Questions.ToList() ?? new List<Question>();
@@ -208,6 +220,7 @@ namespace Labb03_GUI.ViewModels
                 RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
             }
         }
+
         public void RandomiseActiveQuestionAnswers(int questionIndex)
         {
             if (RandomQuestions == null || RandomQuestions.Count == 0) return;
@@ -226,6 +239,5 @@ namespace Labb03_GUI.ViewModels
                 AnswerViewModels.Add(ans);
             }
         }
-
     }
 }

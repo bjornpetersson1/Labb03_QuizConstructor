@@ -32,40 +32,34 @@
                     Foreground="Red"/>
             </StackPanel>
         </Border>
-        
+
         <StackPanel
             Orientation="Vertical"
             HorizontalAlignment="Center"
             VerticalAlignment="Top">
             <StackPanel
                 Orientation="Horizontal"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Center"
+                TextElement.FontSize="40"
+                TextElement.Foreground="Purple">
                 <TextBlock
-                    FontSize="40"
                     Margin="15 15 0 15"
-                    Foreground="Purple"
                     Text="Question "
                         />
                 <TextBlock
-                    FontSize="40"
                     Margin="0 15 0 15"
-                    Foreground="Purple"
                     Text="{Binding NumberOfCurrentQuestion}"
                         />
                 <TextBlock
-                    FontSize="40"
                     Margin="15"
-                    Foreground="Purple"
                     Text="/"
                         />
                 <TextBlock
-                    FontSize="40"
                     Margin="0 15 0 15"
-                    Foreground="Purple"
                     Text="{Binding ActivePack.Questions.Count}"
                         />
             </StackPanel>
-            
+
             <TextBlock
                 Margin="50 10 50 0"
                 FontSize="27"
@@ -73,7 +67,7 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 />
-            
+
             <TextBlock
                 Text="Correct!"
                 Foreground="Green"
@@ -91,7 +85,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            
+
             <TextBlock
                 Text="Incorrect :("
                 Foreground="Red"
@@ -110,7 +104,7 @@
                 </TextBlock.Style>
             </TextBlock>
         </StackPanel>
-        
+
         <ItemsControl 
             ItemsSource="{Binding AnswerViewModels}"
             Grid.Row="1"
@@ -120,7 +114,7 @@
                     <UniformGrid Rows="2" Columns="2"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Content="{Binding Text}" 
@@ -139,10 +133,6 @@
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="False">
                                         <Setter Property="Background" Value="Red"/>
                                     </DataTrigger>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="BorderBrush" Value="Blue"/>
-                                        <Setter Property="BorderThickness" Value="3"/>
-                                    </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
@@ -150,7 +140,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
     </Grid>
-
 </UserControl>

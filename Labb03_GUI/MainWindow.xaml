@@ -52,6 +52,7 @@
             Modifiers="Ctrl"
             Command="{Binding OpenConfigViewCommand}" />
     </Window.InputBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
