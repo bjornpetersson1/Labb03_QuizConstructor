@@ -8,6 +8,6 @@ namespace Labb03_GUI.API
 {
     internal class CategoryRespons
     {
-        public List<Category> Trivia_categories { get; set; }
+        public List<Category>? Trivia_categories { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Labb03_GUI.API
         public async Task<(List<APIQuestion> questions, int responseCode)> GetQuestionsAsync(int numberOfQuestion, ImportQuestion importQuestion)
         {
             var difficulty = importQuestion.Difficulty?.ToLower() ?? "medium";
-            var url = $"https://opentdb.com/api.php?amount={numberOfQuestion}&category={importQuestion.Category.Id}&difficulty={difficulty}&type=multiple";
+            var url = $"https://opentdb.com/api.php?amount={numberOfQuestion}&category={importQuestion?.Category.Id}&difficulty={difficulty}&type=multiple";
             var response = await _httpClient.GetStringAsync(url);
             var options = new JsonSerializerOptions
             {
