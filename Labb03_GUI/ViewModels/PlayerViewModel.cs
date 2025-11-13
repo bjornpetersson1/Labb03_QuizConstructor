@@ -191,6 +191,11 @@ namespace Labb03_GUI.ViewModels
                 timer.Start();
             }
         }
+        public void ResetGame()
+        {
+            NumberOfCorrectAnswers = 0;
+            NumberOfCurrentQuestion = 1;
+        }
         public void RandomiseActivePack()
         {
             RandomQuestions = ActivePack?.Questions.ToList() ?? new List<Question>();

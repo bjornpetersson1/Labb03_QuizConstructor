@@ -29,7 +29,7 @@
         <KeyBinding
             Key="F4"
             Modifiers="Alt"
-            Command="" />
+            Command="{Binding ExitApplicationCommand}" />
         <KeyBinding
             Key="Q"
             Modifiers="Ctrl"

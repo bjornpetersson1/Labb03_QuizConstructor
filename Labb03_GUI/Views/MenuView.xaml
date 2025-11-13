@@ -26,7 +26,7 @@
                     </MenuItem>
                     <MenuItem Header="S_elect Question Pack"
                               ItemsSource="{Binding Packs}"
-                              IsEnabled="{Binding MenuViewModel.HasPacks}">
+                              IsEnabled="{Binding MenuViewModel.HasActivePack}">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xE82D;"/>
                         </MenuItem.Icon>
@@ -58,7 +58,10 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="E_xit">
+                    <MenuItem 
+                        Header="E_xit"
+                        Command="{Binding ExitApplicationCommand}"
+                        InputGestureText="Alt+F4">
                         <MenuItem.Icon>
                             <TextBlock Text="&#xEF2C;"/>
                         </MenuItem.Icon>

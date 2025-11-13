@@ -2,18 +2,11 @@
 
 Att göra:
 
-VIKTIGT (G-nivå):
-    Skriva antal frågor i frågepaketet i playview
-        Ta bort poängräkningen? bara visa i slutet?
-    FIXA EXITKNAPPEN DEN GÖR INGET
-        med snabbkommandon och hela fadderullan
-
 API-grejen
     Savemetoden - skriv om till interfacebaserat
 
 PlayerView  BÖRJA HÄR IMORGON, KOLLA IGENOM UPPGIFTEN OCKSÅ
         stäng av en massa knappar när man är i playmode
-    Fixa ruta runt timern
 
 Få bort ´öppna fönster från menuviewmodel, det ska ligga i codebehind :)
 

@@ -18,40 +18,21 @@
             BorderBrush="Gray"
             BorderThickness="2"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Margin="5">
             <StackPanel
                 Orientation="Vertical"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="Cornsilk">
                 <TextBlock
-                    FontSize="10"
-                    Margin="0 3 0 0"
-                    Text="p o i n t s"
-                    Foreground="Red"
-                    HorizontalAlignment="Center"
-                        />
-                <StackPanel 
-                    Orientation="Horizontal"                
-                    >
-                    <TextBlock
-                        FontSize="30"
-                        Margin="15 0 0 10"
-                        Text="{Binding NumberOfCorrectAnswers}"
-                            />
-                    <TextBlock
-                        FontSize="30"
-                        Margin="0 0 0 10"
-                        Text="/"
-                            />
-                    <TextBlock
-                        FontSize="30"
-                        Margin="0 0 15 10"
-                        Text="{Binding ActivePack.Questions.Count}"
-                            />
-                </StackPanel>
+                    Text="{Binding TimeLeft}" 
+                    Margin="5"
+                    FontSize="35"
+                    Foreground="Red"/>
             </StackPanel>
         </Border>
+        
         <StackPanel
             Orientation="Vertical"
             HorizontalAlignment="Center"
@@ -67,11 +48,24 @@
                         />
                 <TextBlock
                     FontSize="40"
-                    Margin="0 15 15 15"
+                    Margin="0 15 0 15"
                     Foreground="Purple"
                     Text="{Binding NumberOfCurrentQuestion}"
                         />
+                <TextBlock
+                    FontSize="40"
+                    Margin="15"
+                    Foreground="Purple"
+                    Text="/"
+                        />
+                <TextBlock
+                    FontSize="40"
+                    Margin="0 15 0 15"
+                    Foreground="Purple"
+                    Text="{Binding ActivePack.Questions.Count}"
+                        />
             </StackPanel>
+            
             <TextBlock
                 Margin="50 10 50 0"
                 FontSize="27"
@@ -79,6 +73,7 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 />
+            
             <TextBlock
                 Text="Correct!"
                 Foreground="Green"
@@ -96,6 +91,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
+            
             <TextBlock
                 Text="Incorrect :("
                 Foreground="Red"
@@ -113,15 +109,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-
         </StackPanel>
-            
-        <TextBlock
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Text="{Binding TimeLeft}" 
-            Margin="15"
-            FontSize="25"/>
+        
         <ItemsControl 
             ItemsSource="{Binding AnswerViewModels}"
             Grid.Row="1"
@@ -153,7 +142,6 @@
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="BorderBrush" Value="Blue"/>
                                         <Setter Property="BorderThickness" Value="3"/>
-                                        
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

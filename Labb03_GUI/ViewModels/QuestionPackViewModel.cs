@@ -37,6 +37,7 @@ namespace Labb03_GUI.ViewModels
             {
                 _model.Questions.Clear();
             }
+            _mainWindowViewModel?.OpenPlayerViewCommand.RaiseCanExecuteChanged();
         }
 
         public Array Difficulties 

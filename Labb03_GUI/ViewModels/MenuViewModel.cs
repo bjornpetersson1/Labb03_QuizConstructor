@@ -20,15 +20,25 @@ namespace Labb03_GUI.ViewModels
         public DelegateCommand DeleteActivePackCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
         public DelegateCommand SetActivePackCommand { get;  }
-        //public bool HasPacks => _mainWindowViewModel.Packs.Count > 0;
+        private bool _hasActivePack;
+        public bool HasActivePack
+        {
+            get => _hasActivePack;
+            set
+            {
+                _hasActivePack = value;
+                RaisePropertyChanged();
+            }
+        }
         public MenuViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this._mainWindowViewModel = mainWindowViewModel;
             OpenOptionsDialogCommand = new DelegateCommand(OpenOptionsDialog, CanOpenOption);
             OpenCreateDialogCommand = new DelegateCommand(OpenCreateDialog);
             DeleteActivePackCommand = new DelegateCommand(DeleteActivePack, CanDeleteActivePack);
-            OpenImportDialogCommand = new DelegateCommand(OpenImportDialog);
+            OpenImportDialogCommand = new DelegateCommand(OpenImportDialog, CanOpenImportDialog);
             SetActivePackCommand = new DelegateCommand(SetActivePack);
+            HasActivePack = true;
         }
 
         private void SetActivePack(object? obj)
@@ -37,6 +47,11 @@ namespace Labb03_GUI.ViewModels
             {
                 _mainWindowViewModel.ActivePack = selectedPack;
             }
+        }
+
+        private bool CanOpenImportDialog(object? arg)
+        {
+            return _mainWindowViewModel.ActivePack != null;
         }
 
         private async void OpenImportDialog(object? obj)
@@ -59,7 +74,7 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanDeleteActivePack(object? arg)
         {
-            return _mainWindowViewModel.Packs.Count != 0;
+            return _mainWindowViewModel.ActivePack != null;
         }
 
         private void DeleteActivePack(object? obj)

@@ -12,6 +12,23 @@ namespace Labb03_GUI.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
+        public AnswerViewModel AnswerViewModel { get; set; }
+        public PlayerViewModel? PlayerViewModel { get; set; }
+        public ConfigurationViewModel? ConfigurationViewModel { get; set; }
+        public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
+        public MenuViewModel? MenuViewModel { get; set; }
+        public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
+        public ConfigurationView ConfigurationView { get; }
+        public PlayerView PlayerView { get; }
+        public PlayerEndScreen PlayerEndScreen { get; }
+        public QuestionPackViewModel QuestionPackViewModel { get; set; }
+        public DelegateCommand OpenPlayerViewCommand { get; }
+        public DelegateCommand OpenConfigViewCommand { get; }
+        public DelegateCommand OpenEndScreenCommand { get; }
+        public DelegateCommand ToggleFullscreenCommand { get; }
+        public DelegateCommand ExitApplicationCommand { get; }
+        public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
+        private JsonModel _jsonModel = new JsonModel();
         private ObservableCollection<QuestionPackViewModel> _packs;
         public ObservableCollection<QuestionPackViewModel> Packs
         {
@@ -20,11 +37,9 @@ namespace Labb03_GUI.ViewModels
             {
                 _packs = value;
                 RaisePropertyChanged(nameof(Packs));
-                //MenuViewModel?.RaisePropertyChanged(nameof(MenuViewModel.HasPacks));
                 MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenConfigViewCommand.RaiseCanExecuteChanged();
-                OpenPlayerViewCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -56,63 +71,40 @@ namespace Labb03_GUI.ViewModels
                     pack.RefreshActiveStatus();
                 }
                 RaisePropertyChanged();
+                UpdateHasActivePack();
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 PlayerViewModel?.RaisePropertyChanged(nameof(PlayerViewModel.ActivePack));
                 PackOptionsDialogViewModel?.RaisePropertyChanged(nameof(PackOptionsDialogViewModel.ActivePack));
                 MenuViewModel?.OpenOptionsDialogCommand.RaiseCanExecuteChanged();
                 OpenPlayerViewCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.DeleteActivePackCommand.RaiseCanExecuteChanged();
+                MenuViewModel?.OpenImportDialogCommand.RaiseCanExecuteChanged();
             }
         }
-        public AnswerViewModel AnswerViewModel { get; set; }
-        public PlayerViewModel? PlayerViewModel { get; set; }
-        public ConfigurationViewModel? ConfigurationViewModel { get; set; }
-        public PackOptionsDialogViewModel? PackOptionsDialogViewModel { get; set; }
-        public MenuViewModel? MenuViewModel { get; set; }
-        public CreateNewPackDialogViewModel? CreateNewPackDialogViewModel { get; set; }
-        public ConfigurationView ConfigurationView { get; }
-        public PlayerView PlayerView { get; }
-        public PlayerEndScreen PlayerEndScreen { get; }
-        public QuestionPackViewModel QuestionPackViewModel { get; set; }
-        public DelegateCommand OpenPlayerViewCommand { get; }
-        public DelegateCommand OpenConfigViewCommand { get; }
-        public DelegateCommand OpenEndScreenCommand { get; }
-        public DelegateCommand ToggleFullscreenCommand { get; }
-        public ImportQuestionsDialogViewModel ImportQuestionsDialogViewModel { get; }
-        private JsonModel _jsonModel = new JsonModel();
         public MainWindowViewModel()
         {
             MenuViewModel = new MenuViewModel(this);
             ConfigurationViewModel = new ConfigurationViewModel(this);
             PackOptionsDialogViewModel = new PackOptionsDialogViewModel(this);
-            ConfigurationView = new Views.ConfigurationView();
             CreateNewPackDialogViewModel = new CreateNewPackDialogViewModel(this);
+            PlayerViewModel = new PlayerViewModel(this);
+            ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
+            ConfigurationView = new Views.ConfigurationView();
             PlayerView = new Views.PlayerView();
             PlayerEndScreen = new Views.PlayerEndScreen();
             OpenPlayerViewCommand = new DelegateCommand(OpenPlayerView, CanOpenPlayerView);
             OpenConfigViewCommand = new DelegateCommand(OpenConfigView, CanOpenConfigView);
             OpenEndScreenCommand = new DelegateCommand(OpenEndScreen);
-            PlayerViewModel = new PlayerViewModel(this);
-            ImportQuestionsDialogViewModel = new ImportQuestionsDialogViewModel(this);
+            ExitApplicationCommand = new DelegateCommand(ExitApplication);
             Packs = new ObservableCollection<QuestionPackViewModel>();
             PlayerView.DataContext = PlayerViewModel;
         }
 
-        public async Task IntializeAsync()
+        private void ExitApplication(object? obj)
         {
-            var loadedPacks = await _jsonModel.LoadFromJsonAsync();
-            Packs.Clear();
-            foreach (var pack in loadedPacks)
-            {
-                Packs.Add(new QuestionPackViewModel(pack, this));
-            }
-            if (Packs.Count == 0)
-            {
-                var pack = new QuestionPack("MyNewQuestionPack");
-                ActivePack = new QuestionPackViewModel(pack, this);
-                Packs.Add(ActivePack);
-            }
-            else ActivePack = Packs.FirstOrDefault();
+            Application.Current.Shutdown();
         }
+
         private void OpenEndScreen(object? obj)
         {
             CurrentView = PlayerEndScreen;
@@ -131,12 +123,37 @@ namespace Labb03_GUI.ViewModels
         {
             PlayerViewModel?.RandomiseActivePack();
             PlayerViewModel?.RandomiseActiveQuestionAnswers(PlayerViewModel.CurrentQuestionIndex);
+            PlayerViewModel?.ResetGame();
             PlayerViewModel?.SetAndStartTimer();
             CurrentView = PlayerView;
         }
         private bool CanOpenPlayerView(object? arg)
         {
-           return Packs.Count > 0 && ActivePack != null && ActivePack.Questions.Count > 0;
+           return ActivePack != null && ActivePack.Questions.Count > 0;
+        }
+
+        public async Task IntializeAsync()
+        {
+            var loadedPacks = await _jsonModel.LoadFromJsonAsync();
+            Packs.Clear();
+            foreach (var pack in loadedPacks)
+            {
+                Packs.Add(new QuestionPackViewModel(pack, this));
+            }
+            if (Packs.Count == 0)
+            {
+                var pack = new QuestionPack("MyNewQuestionPack");
+                ActivePack = new QuestionPackViewModel(pack, this);
+                Packs.Add(ActivePack);
+            }
+            else ActivePack = Packs.FirstOrDefault();
+        }
+        private void UpdateHasActivePack()
+        {
+            if (MenuViewModel != null)
+            {
+                MenuViewModel.HasActivePack = ActivePack != null;
+            }
         }
     }
 }
