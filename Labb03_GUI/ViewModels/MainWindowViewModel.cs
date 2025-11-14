@@ -130,10 +130,9 @@ namespace Labb03_GUI.ViewModels
         }
         private bool CanOpenPlayerView(object? arg)
         {
-           return ActivePack != null 
-                && ActivePack.Questions.Count > 0
-                && CurrentView != PlayerView
-                && CurrentView != PlayerEndScreenView;
+            return ActivePack != null
+                 && ActivePack.Questions.Count > 0
+                 && CurrentView != PlayerView;
         }
         private void OpenPlayerView(object? obj)
         {

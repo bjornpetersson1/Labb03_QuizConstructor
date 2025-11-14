@@ -6,6 +6,17 @@
              xmlns:local="clr-namespace:Labb03_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
+    <UserControl.Resources>
+        <Style x:Key="EndScreenButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Cornsilk"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <StackPanel
                 HorizontalAlignment="Center"
@@ -35,16 +46,18 @@
                     FontSize="30"
                     Text=" answers correct "/>
             </StackPanel>
-            <Button
-                Background="Cornsilk"
-                BorderBrush="Gray"
-                BorderThickness="2"
-                Margin="20"
-                Padding="10"
-                FontSize="12"
-                HorizontalAlignment="Center"
-                Content="Return to edit view"
-                Command="{Binding OpenConfigViewCommand}"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        >
+                <Button
+                    Style="{StaticResource EndScreenButtonStyle}"
+                    Content="Play again"
+                    Command="{Binding OpenPlayerViewCommand}"/>
+                <Button
+                    Style="{StaticResource EndScreenButtonStyle}"
+                    Content="Return to edit view"
+                    Command="{Binding OpenConfigViewCommand}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
