@@ -120,6 +120,11 @@ namespace Labb03_GUI.ViewModels
 
         private void HandleAnswerResult(AnswerViewModel answer)
         {
+            foreach (var ans in AnswerViewModels)
+                ans.IsSelected = false;
+
+            answer.IsSelected = true;
+
             answer.IsCorrect = answer.Text == CurrentQuestion?.CorrectAnswer;
 
             if ((bool)answer.IsCorrect)

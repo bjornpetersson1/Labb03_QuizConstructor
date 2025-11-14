@@ -133,6 +133,10 @@
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="False">
                                         <Setter Property="Background" Value="Red"/>
                                     </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                        <Setter Property="BorderBrush" Value="MediumPurple"/>
+                                        <Setter Property="BorderThickness" Value="6"/>
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>

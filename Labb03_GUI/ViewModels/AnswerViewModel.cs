@@ -14,8 +14,25 @@ namespace Labb03_GUI.ViewModels
         public bool? IsCorrect
         {
             get => _isCorrect;
-            set { _isCorrect = value; RaisePropertyChanged(); }
+            set 
+            { 
+                _isCorrect = value;
+                RaisePropertyChanged(); 
+            }
         }
+
+        private bool? _isSelected;
+
+        public bool? IsSelected
+        {
+            get => _isSelected;
+            set 
+            { 
+                _isSelected = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         public AnswerViewModel(string text)
         {
