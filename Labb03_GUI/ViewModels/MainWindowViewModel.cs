@@ -60,7 +60,7 @@ namespace Labb03_GUI.ViewModels
                 ConfigurationViewModel?.AddQuestionCommand.RaiseCanExecuteChanged();
                 ConfigurationViewModel?.RemoveQuestionCommand.RaiseCanExecuteChanged();
                 OpenPlayerViewCommand.RaiseCanExecuteChanged();
-
+                OpenConfigViewCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -121,7 +121,8 @@ namespace Labb03_GUI.ViewModels
 
         private bool CanOpenConfigView(object? arg)
         {
-            return Packs?.Count != 0;
+            return Packs?.Count != 0
+                && CurrentView != ConfigurationView;
         }
 
         private void OpenConfigView(object? obj)
