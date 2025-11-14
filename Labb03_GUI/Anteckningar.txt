@@ -3,7 +3,6 @@
 Att göra:
 
 API-grejen
-    Savemetoden - skriv om till interfacebaserat
     Gör så det står loading när kategorierna laddar
 
 Hörde från någon att man inte öppnar fönster med commands, det ska ligga i codebehind :) Fixa om du hinner

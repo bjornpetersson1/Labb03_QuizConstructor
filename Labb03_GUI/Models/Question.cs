@@ -2,10 +2,14 @@
 {
     class Question
     {
-        public string Query { get; set; }
-        public string CorrectAnswer { get; set; }
-        public string[] IncorrectAnswers { get; set; }
+        public string? Query { get; set; }
+        public string? CorrectAnswer { get; set; }
+        public string[]? IncorrectAnswers { get; set; }
 
+        public Question()
+        {
+
+        }
         public Question(string query, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3)
         {
             Query = query;
@@ -13,9 +17,5 @@
             IncorrectAnswers = [incorrectAnswer1, incorrectAnswer2, incorrectAnswer3];
         }
 
-        public Question()
-        {
-
-        }
     }
 }

@@ -36,7 +36,7 @@ namespace Labb03_GUI
             Closing += MainWindow_Closing;
         }
 
-        private async void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private async void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             if (_mainWindowViewModel.Packs != null)
             {
