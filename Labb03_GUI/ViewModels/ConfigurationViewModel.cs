@@ -9,6 +9,7 @@ namespace Labb03_GUI.ViewModels
         private readonly MainWindowViewModel _mainWindowViewModel;
         public DelegateCommand AddQuestionCommand { get; }
         public DelegateCommand RemoveQuestionCommand { get; }
+        public bool CanEditQuestion => RemoveQuestionCommand.CanExecute(null);
 
         private Question? _selectedQuestion;
         public Question? SelectedQuestion
@@ -19,6 +20,7 @@ namespace Labb03_GUI.ViewModels
                 _selectedQuestion = value;
                 RaisePropertyChanged();
                 RemoveQuestionCommand.RaiseCanExecuteChanged();
+                RaisePropertyChanged(nameof(CanEditQuestion));
             }
         }
 
@@ -27,6 +29,7 @@ namespace Labb03_GUI.ViewModels
             this._mainWindowViewModel = mainWindowViewModel;
             AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
+
         }
 
         private bool CanRemoveQuestion(object? arg)

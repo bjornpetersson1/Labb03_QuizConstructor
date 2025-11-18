@@ -81,19 +81,26 @@
         
         <DockPanel
             Grid.Row="1"
-            Grid.Column="1">
+            Grid.Column="1"
+            IsEnabled="{Binding ConfigurationViewModel.CanEditQuestion}">
             <Label
                 DockPanel.Dock="Top"
                 FontWeight="Bold"
                 Content="Question:" />
             <TextBox
                 Margin="5 5 20 0"
-                Text="{Binding ElementName=myQuestionListBox, Path=SelectedItem.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                TextWrapping="Wrap"
+                Text="{Binding 
+                    ElementName=myQuestionListBox, 
+                    Path=SelectedItem.Query, 
+                    Mode=TwoWay, 
+                    UpdateSourceTrigger=PropertyChanged}"/>
         </DockPanel>
         
         <StackPanel
             Grid.Row="2"
-            Grid.Column="2">
+            Grid.Column="2"
+            IsEnabled="{Binding ConfigurationViewModel.CanEditQuestion}">
             <Label
                 Margin="0 30 0 0"
                 FontWeight="Bold"
