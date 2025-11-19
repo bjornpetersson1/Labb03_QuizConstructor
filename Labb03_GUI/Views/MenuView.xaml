@@ -15,8 +15,12 @@
         </Grid.Resources>
         
         <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
+            <Menu 
+                DockPanel.Dock="Top">
+                <MenuItem 
+                    Header="_File"
+                    Background="PaleVioletRed"
+                    BorderBrush="Gray">
                     <MenuItem 
                         Header="_New Question Pack"
                         Command="{Binding MenuViewModel.OpenCreateDialogCommand}"
@@ -75,7 +79,10 @@
                     </MenuItem>
                 </MenuItem>
 
-                <MenuItem Header="_Edit">
+                <MenuItem 
+                    Header="_Edit"
+                    Background="PaleVioletRed"
+                    BorderBrush="Gray">
                     <MenuItem 
                         Header="_Add Question"
                         Command="{Binding ConfigurationViewModel.AddQuestionCommand}"
@@ -107,7 +114,10 @@
                     </MenuItem>
                 </MenuItem>
 
-                <MenuItem Header="_View">
+                <MenuItem 
+                    Header="_View"
+                    Background="PaleVioletRed"
+                    BorderBrush="Gray">
                     <MenuItem 
                         Header="_Play"
                         Command="{Binding OpenPlayerViewCommand}"

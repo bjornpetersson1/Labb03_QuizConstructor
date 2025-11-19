@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Labb03_GUI.Views"
              mc:Ignorable="d" 
-             d:Background="PapayaWhip"
+             Background="PapayaWhip"
              d:DesignHeight="450" d:DesignWidth="800"
              >
     <Grid>
@@ -29,7 +29,7 @@
                     Text="{Binding TimeLeft}" 
                     Margin="5"
                     FontSize="35"
-                    Foreground="Red"/>
+                    Foreground="MediumPurple"/>
             </StackPanel>
         </Border>
 
@@ -125,7 +125,7 @@
                         IsHitTestVisible="{Binding DataContext.CanAnswer, RelativeSource={RelativeSource AncestorType=UserControl}}">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="Cornsilk"/>
+                                <Setter Property="Background" Value="PaleVioletRed" />
                                 <Setter Property="BorderBrush" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="2"/>
                                 <Setter Property="Margin" Value="5"/>
@@ -143,6 +143,9 @@
                                 </Setter>
 
                                 <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="MediumPurple"/>
+                                    </Trigger>
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="True">
                                         <Setter Property="Background" Value="Green"/>
                                     </DataTrigger>
