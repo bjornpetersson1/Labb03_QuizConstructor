@@ -18,6 +18,20 @@ namespace Labb03_GUI.ViewModels
         public ObservableCollection<string> Answers { get; set; } = new ObservableCollection<string>();
         public DelegateCommand CheckAnswerCommand { get; }
 
+        private bool _canAnswer = true;
+
+        public bool CanAnswer
+        {
+            get => _canAnswer; 
+            set 
+            {
+                _canAnswer = value;
+                RaisePropertyChanged();
+                CheckAnswerCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+
         private int _numberOfCurrentQuestion;
         public int NumberOfCurrentQuestion 
         {
@@ -105,7 +119,7 @@ namespace Labb03_GUI.ViewModels
             CurrentQuestionIndex = 0;
             NumberOfCorrectAnswers = 0;
             NumberOfCurrentQuestion = 1;
-            CheckAnswerCommand = new DelegateCommand(CheckAnswer);
+            CheckAnswerCommand = new DelegateCommand(CheckAnswer, _ => CanAnswer);
             RaisePropertyChanged(nameof(CurrentQuestion));
         }
 
@@ -113,6 +127,8 @@ namespace Labb03_GUI.ViewModels
         {
             if (obj is not AnswerViewModel answer || CurrentQuestion == null)
                 return;
+            if (!CanAnswer) return;
+            CanAnswer = false;
 
             HandleAnswerResult(answer);
             await ProceedToNextQuestionOrEndAsync();
@@ -159,6 +175,7 @@ namespace Labb03_GUI.ViewModels
         {
             if (ActivePack != null)
             {
+                CanAnswer = true;
                 CurrentQuestionIndex++;
                 RandomiseActiveQuestionAnswers(CurrentQuestionIndex);
                 TimeLeft = ActivePack.TimeLimitInSeconds;

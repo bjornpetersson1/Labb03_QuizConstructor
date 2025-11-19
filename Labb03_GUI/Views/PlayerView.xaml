@@ -108,7 +108,8 @@
         <ItemsControl 
             ItemsSource="{Binding AnswerViewModels}"
             Grid.Row="1"
-            Grid.RowSpan="2">
+            Grid.RowSpan="2"
+            >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="2" Columns="2"/>
@@ -117,15 +118,30 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding Text}" 
+                    <Button 
+                        Content="{Binding Text}" 
                         Command="{Binding DataContext.CheckAnswerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                        CommandParameter="{Binding}">
+                        CommandParameter="{Binding}"
+                        IsHitTestVisible="{Binding DataContext.CanAnswer, RelativeSource={RelativeSource AncestorType=UserControl}}">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="Cornsilk"/>
                                 <Setter Property="BorderBrush" Value="Gray"/>
                                 <Setter Property="BorderThickness" Value="2"/>
                                 <Setter Property="Margin" Value="5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsCorrect}" Value="True">
                                         <Setter Property="Background" Value="Green"/>
