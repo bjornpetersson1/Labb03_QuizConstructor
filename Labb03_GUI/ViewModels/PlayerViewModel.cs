@@ -11,7 +11,7 @@ namespace Labb03_GUI.ViewModels
     {
         private readonly MainWindowViewModel? _mainWindowViewModel;
         private readonly Random random = new Random();
-        DispatcherTimer timer = new DispatcherTimer();
+        public DispatcherTimer timer = new DispatcherTimer();
         public ObservableCollection<AnswerViewModel> AnswerViewModels { get; set; } = new ObservableCollection<AnswerViewModel>();
         public QuestionPackViewModel? ActivePack { get => _mainWindowViewModel?.ActivePack; }
         public List<Question> RandomQuestions { get; set; } = new List<Question>();

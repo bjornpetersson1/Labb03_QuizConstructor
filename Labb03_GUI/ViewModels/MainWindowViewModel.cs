@@ -127,6 +127,7 @@ namespace Labb03_GUI.ViewModels
 
         private void OpenConfigView(object? obj)
         {
+            PlayerViewModel?.timer.Stop();
             CurrentView = ConfigurationView;
         }
         private bool CanOpenPlayerView(object? arg)
