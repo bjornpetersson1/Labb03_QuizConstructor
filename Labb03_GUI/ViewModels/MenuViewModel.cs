@@ -96,8 +96,8 @@ namespace Labb03_GUI.ViewModels
                 && _mainWindowViewModel.Packs != null)
             {
                 var result = MessageBox.Show(
-                    $"Är du säker på att du vill ta bort '{_mainWindowViewModel.ActivePack.Name}'?",
-                    "Bekräfta borttagning",
+                    $"Are you sure you want to delete '{_mainWindowViewModel.ActivePack.Name}'?",
+                    "Confirm removal",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning
                 );
