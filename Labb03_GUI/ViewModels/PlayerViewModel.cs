@@ -228,6 +228,7 @@ namespace Labb03_GUI.ViewModels
         {
             NumberOfCorrectAnswers = 0;
             NumberOfCurrentQuestion = 1;
+            CanAnswer = true;
         }
 
         public void RandomiseActivePack()
