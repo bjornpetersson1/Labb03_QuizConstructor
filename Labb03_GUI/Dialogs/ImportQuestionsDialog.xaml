@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Labb03_GUI.Dialogs"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="ImportQuestionsDialog" Height="250" Width="200">
+        Title="Import Questions" Height="250" Width="200">
     <Grid>
         <StackPanel>
             <Label
@@ -34,7 +34,7 @@
                 />
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label
@@ -43,7 +43,7 @@
                 FontWeight="Bold"
                 Margin="10 5 10 0"/>
                 <Label
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Left"
                 Grid.Column="1"
                 x:Name="mySecondsLabel"
                 Content="{Binding ElementName=mySlider, Path=Value}"
