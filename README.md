@@ -16,10 +16,21 @@ You should be able to add and remove new question packs and also switch between 
 
   *Main menu*  
 
-<img width="1182" height="662" alt="Pack Options" src="https://github.com/user-attachments/assets/0a91f310-38e0-498f-850d-8d2aed0dc309" />
-<img width="1180" height="667" alt="Import dialog" src="https://github.com/user-attachments/assets/4710eaae-f9b9-4fe8-a11e-cbefaad009a1" />
-<img width="1184" height="668" alt="Playview" src="https://github.com/user-attachments/assets/7920ff2e-1c32-4d71-9fe0-7dade6021f7b" />
-<img width="1174" height="662" alt="Endscreen" src="https://github.com/user-attachments/assets/c9518ddf-6cf5-4b9a-86ad-5428f28f7072" />
+<img width="55%" height="55%" alt="Pack Options" src="https://github.com/user-attachments/assets/0a91f310-38e0-498f-850d-8d2aed0dc309" />  
+
+  *Pack options dialog window*  
+  
+<img width="55%" height="55%" alt="Import dialog" src="https://github.com/user-attachments/assets/4710eaae-f9b9-4fe8-a11e-cbefaad009a1" />  
+
+  *Import questions dialog window*  
+  
+<img width="55%" height="55%" alt="Playview" src="https://github.com/user-attachments/assets/7920ff2e-1c32-4d71-9fe0-7dade6021f7b" />  
+  
+  *Play view*  
+  
+<img width="55%" height="55%" alt="Endscreen" src="https://github.com/user-attachments/assets/c9518ddf-6cf5-4b9a-86ad-5428f28f7072" />  
+
+  *End screen*
 
 
 
